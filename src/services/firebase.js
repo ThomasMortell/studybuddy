@@ -5,6 +5,9 @@ import * as firebase from "firebase/app";
 // Add the Firebase services that you want to use
 // We only want to use Firebase Auth here
 import "firebase/auth";
+import "firebase/firestore";
+import "firebase/storage";
+
 
 // Your app's Firebase configuration
 const firebaseConfig = {
@@ -23,3 +26,7 @@ firebase.initializeApp(firebaseConfig);
 
 // Finally, export it to use it throughout your app
 export default firebase;
+export const myStorage = firebase.storage();
+firebase.firestore().settings({
+  timestampsInSnapshots: true
+});
