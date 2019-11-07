@@ -7,16 +7,17 @@ import requireAuth from "./hoc/requireAuth";
 const Main = ({ signout }) => {
   return (
     <div className="page">
-      <div>
-        <span className="emoji" role="img" aria-label="House With Garden">
-          🏡
-        </span>
-      </div>
-      <h1>HomePage goes here</h1>
-      <p>Sign in works!</p>
-      <button className="btn-switch" onClick={() => signout()}>
-        Log out
-      </button>
+      <button className="btn-switch" onClick={() => signout()}>Log out</button>
+	  
+	  <h1>Study Buddy</h1>
+      <p id="Subtitle">A tool that helps students study together.</p>
+		
+	  <p id="groupCreate"> <button onClick={ ()=> createGroup()}>Create Groups</button> </p>
+	  <form id="groupSearch">
+		<input type="text" name="searchGroup" placeholder="Search Groups" />
+		<input type="submit" name="submitSearchGroup" value="Search Groups" />
+	  </form>
+		
     </div>
   );
 };
@@ -32,6 +33,10 @@ function mapDispatchToProps(dispatch) {
     signout: () => dispatch(signout())
   };
 }
+
+function createGroup(){
+	
+};
 
 export default compose(
   connect(
