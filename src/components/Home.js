@@ -1,3 +1,5 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min';
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
@@ -6,7 +8,9 @@ import requireAuth from "./hoc/requireAuth";
 
 const Main = ({ signout }) => {
   return (
-    <div className="page">
+  
+  
+    <div className="login-page">
       <button className="btn-switch" onClick={() => signout()}>Log out</button>
 	  
 	  <h1>Study Buddy</h1>

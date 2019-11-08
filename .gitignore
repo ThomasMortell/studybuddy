@@ -1,0 +1,3 @@
+
+node_modules/.cache/babel-loader/*.json
+node_modules/@firebase/installations/.rpt2_cache/*
