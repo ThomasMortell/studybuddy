@@ -4,11 +4,43 @@ input,
 button {
   font-family: "Capriola", sans-serif; }
 
+body {
+  background-image: url("back.jpg");
+/* Background image is centered vertically and horizontally at all times */
+  background-position: center center;
+  
+  /* Background image doesn't tile */
+  background-repeat: no-repeat;
+  
+  /* Background image is fixed in the viewport so that it doesn't move when 
+     the content's height is greater than the image's height */
+  background-attachment: fixed;
+  
+  /* This is what makes the background image rescale based
+     on the container's size */
+  background-size: cover;
+  
+  /* Set a background color that will be displayed
+     while the background image is loading */
+  background-color: #464646;
+}
+
 .App {
+  background-image: src("images/back.png");
+}
+
+.brand-logo{
+margin-left:20px;
+}
+.login-page {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh; }
+
+.login-label{
+color:black;
+}
 
 a {
   text-decoration: none; }
@@ -34,6 +66,7 @@ a {
 .btn-login:hover {
   box-shadow: 0 10px 20px rgba(41, 177, 204, 0.3); }
 
+
 .btn-link {
   color: #29b1cc;
   border: none;
@@ -44,25 +77,46 @@ a {
     border-bottom: none;
     cursor: pointer; }
 
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+
+.nav-wrapper {
+	background-color: #29b1cc;
+}
+
 .login {
+
   width: 35vw; }
+  
   .login h1 {
     text-align: center;
-    margin-bottom: 1em; }
+    margin-bottom: 0.2em; 
+    }
+    
+  .login img {
+    display: block;
+    margin: 5% auto auto;
+    
+  }
   .login h2 {
     text-align: center;
     color: #29b1cc;
-    margin-bottom: 2em; }
+    margin-bottom: 0.2em; }
   .login .auth-message {
     text-align: center;
     color: orange; }
   .login .input-group {
     display: flex;
     flex-direction: column;
-    margin-bottom: 2em; }
+    margin-bottom: 1em; }
     .login .input-group label {
       margin-bottom: 0.8em; }
     .login .input-group input {
+    height:5px;
       outline: none;
       border: 1px solid #dfe2e6;
       color: #6b6c6f;

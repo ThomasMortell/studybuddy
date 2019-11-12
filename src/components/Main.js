@@ -8,6 +8,7 @@ const Main = ({ auth }) => {
   return (
     <div>
       {!auth.isLoaded ? <Loader /> : !auth.isEmpty ? <Home /> : <Login />}
+      
     </div>
   );
 };

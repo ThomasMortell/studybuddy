@@ -40,7 +40,8 @@ const Login = ({
 
   return (
     <div className="login">
-      <h1>Hi there!</h1>
+    <img src="images/logo.png" width="100" height="auto"></img>
+      <h1>Welcome to Study Buddy!</h1>
       <h2>
         {reset ? "Reset password" : newUser ? "Create an account" : "Sign in"}
       </h2>
@@ -48,7 +49,7 @@ const Login = ({
       <form onSubmit={handleSubmit} noValidate>
         {/* Email */}
         <div className="input-group">
-          <label htmlFor="email">E-mail</label>
+          <label className="login-label" htmlFor="email">E-mail</label>
           <input
             type="email"
             id="email"
@@ -70,7 +71,7 @@ const Login = ({
         {/* PASSWORD */}
         {!reset && (
           <div className="input-group">
-            <label htmlFor="password">Password</label>
+            <label className="login-label" htmlFor="password">Password</label>
             <input
               type="password"
               id="password"

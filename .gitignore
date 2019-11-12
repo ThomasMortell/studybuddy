@@ -1,0 +1,6 @@
+
+node_modules/.cache/babel-loader/*.json
+node_modules/@firebase/installations/.rpt2_cache/*
+.DS_Store
+src/.DS_Store
+src/components/.DS_Store
