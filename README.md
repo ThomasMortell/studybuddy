@@ -1,5 +1,5 @@
 # Study Buddy
-Study Buddy is the next generation of student communication web service that connects millions of students to the INTERNET. 
+Study Buddy a web application that enables students to find fellow studets to study with.
 
 ## Prerequisites
 
