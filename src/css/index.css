@@ -8,18 +8,18 @@ body {
   background-image: url("back.jpg");
 /* Background image is centered vertically and horizontally at all times */
   background-position: center center;
-  
+
   /* Background image doesn't tile */
   background-repeat: no-repeat;
-  
-  /* Background image is fixed in the viewport so that it doesn't move when 
+
+  /* Background image is fixed in the viewport so that it doesn't move when
      the content's height is greater than the image's height */
   background-attachment: fixed;
-  
+
   /* This is what makes the background image rescale based
      on the container's size */
   background-size: cover;
-  
+
   /* Set a background color that will be displayed
      while the background image is loading */
   background-color: #464646;
@@ -91,16 +91,16 @@ a {
 .login {
 
   width: 35vw; }
-  
+
   .login h1 {
     text-align: center;
-    margin-bottom: 0.2em; 
+    margin-bottom: 0.2em;
     }
-    
+
   .login img {
     display: block;
     margin: 5% auto auto;
-    
+
   }
   .login h2 {
     text-align: center;
@@ -134,6 +134,9 @@ a {
     align-items: center;
     margin-top: 1em; }
 
+    .notice-footer{
+      font-size:12px;
+    }
 .page {
   display: flex;
   flex-direction: column;

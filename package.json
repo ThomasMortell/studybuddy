@@ -5,9 +5,10 @@
   "dependencies": {
     "bower": "^1.8.8",
     "firebase": "^6.3.3",
-    "moment": "^2.24.0",
+    "firebase-admin": "^8.7.0",
     "jquery": "^3.4.1",
     "materialize-css": "^1.0.0-rc.2",
+    "moment": "^2.24.0",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
     "react-loading": "^2.0.3",

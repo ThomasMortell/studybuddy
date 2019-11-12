@@ -126,6 +126,16 @@ const Login = ({
         >
           {newUser ? "Sign in" : "Create an account"}
         </button>
+        <div>
+        <p><b>Note:</b></p>
+        </div>
+        <div className="notice-footer">
+        <ul>
+        <li>A password must contain a special character -> "!£$€%^&*(){}[]"</li>
+        <li>A password must be a minimum of 8 characters long</li>
+        <li>A password must contain a digit and a capital letter anywhere in the string</li>
+        </ul>
+        </div>
       </footer>
     </div>
   );

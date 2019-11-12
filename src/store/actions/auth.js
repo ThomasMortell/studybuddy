@@ -12,15 +12,20 @@ import {
 import { beginApiCall, apiCallError } from "./apiStatus";
 import firebase from "../../services/firebase";
 
+
+var db = firebase.firestore();
+
 // Signing up with Firebase
 export const signup = (email, password) => async dispatch => {
   try {
     dispatch(beginApiCall());
-    firebase
-      .auth()
-      .createUserWithEmailAndPassword(email, password)
-      .then(dataBeforeEmail => {
+    firebase.auth().createUserWithEmailAndPassword(email, password).then(dataBeforeEmail => {
         firebase.auth().onAuthStateChanged(function(user) {
+   const { uid } = user;
+   const userCollection = db.collection('users');
+          userCollection.doc(uid).set({
+            email: email
+          })
           user.sendEmailVerification();
         });
       })

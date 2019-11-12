@@ -2,11 +2,15 @@
 // must be listed before other Firebase SDKs
 import * as firebase from "firebase/app";
 
+
 // Add the Firebase services that you want to use
 // We only want to use Firebase Auth here
 import "firebase/auth";
 import "firebase/firestore";
 import "firebase/storage";
+
+var admin = require('firebase-admin');
+
 
 
 // Your app's Firebase configuration
@@ -23,6 +27,14 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+
+admin.initializeApp({
+  credential: admin.credential.applicationDefault(),
+  databaseURL: 'https://study-buddy-3cd13.firebaseio.com'
+});
+
+
+let db = admin.firestore();
 
 // Finally, export it to use it throughout your app
 export default firebase;

@@ -17,8 +17,8 @@ export default function validate(credentials, isReset) {
       errors.passIsEmpty = "You need a password";
     }
     // Checking if password is strong enough
-    let strengthCheck = /^(?=.*[A-Z])(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])(?=.*[0-9])(?=.*[a-z]).{8,250}$/;
-	//let strengthCheck = /^.{1,250}$/;
+  //let strengthCheck = /^(?=.*[A-Z])(?=.*[!"#$%&'()*+,-./:;<=>?@[\]^_`{|}~])(?=.*[0-9])(?=.*[a-z]).{8,250}$/;
+	let strengthCheck = /^(?=.*[0-9])(?=.*[a-z]).{8,250}$/;
     if (credentials.password && !credentials.password.match(strengthCheck))
       errors.passIsStrong = "You need a stronger password";
   }
