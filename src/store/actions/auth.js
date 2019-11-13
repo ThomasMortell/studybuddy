@@ -21,10 +21,10 @@ export const signup = (email, password) => async dispatch => {
     dispatch(beginApiCall());
     firebase.auth().createUserWithEmailAndPassword(email, password).then(dataBeforeEmail => {
         firebase.auth().onAuthStateChanged(function(user) {
-   const { uid } = user;
+   var { uid } = user;
    const userCollection = db.collection('users');
-          userCollection.doc(uid).set({
-            email: email
+          userCollection.doc(email).set({
+            UserID: uid
           })
           user.sendEmailVerification();
         });
