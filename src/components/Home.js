@@ -1,16 +1,18 @@
-//import 'bootstrap/dist/css/bootstrap.min.css';
-//import 'bootstrap/dist/js/bootstrap.bundle.min';
+// /*
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { signout } from "../store/actions/auth";
 import requireAuth from "./hoc/requireAuth";
-import firebaseFile from "../services/firebase.js";
+import firebase from "../services/firebase.js";
 import css from "../css/Home.css";
+
+
+var db = firebase.firestore();
+
 
 const Main = ({ signout }) => {
   return (
-  
   
     <div className="page">
 		<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
@@ -30,8 +32,8 @@ const Main = ({ signout }) => {
 		
 		<div id="createPage">
 			<form id="createGroup">
-				<input type="text" name="groupName" placeholder="Group Name" />
-				<input type="text" name="moduleCode" placeholder="Module Code" />
+				<input type="text" id="cgroupName" name="groupName" placeholder="Group Name" />
+				<input type="text" id="cgroupModuleCode" name="moduleCode" placeholder="Module Code" />
 				<input type="button" value ="Create Group" onClick={ ()=> createGroup()} />
 			</form>
 			<button onClick={ () => back() } >Back</button>
@@ -59,8 +61,7 @@ function buildGroup(){
 }
 
 function profile(){
-	//var firebaseRef = firebase.database().ref();
-	//firebaseRef.child("Text").set("Hello World");
+
 }
 
 function back(){
@@ -69,11 +70,25 @@ function back(){
 }
 
 function searchGroups(){
-
+	
 }
 
 function createGroup(){
-	
+		const GroupCollection = db.collection('groups');
+		GroupCollection.doc(document.getElementById("cgroupName").value).set({
+		ModuleCode:document.getElementById("cgroupModuleCode").value,
+		Timetable: "",
+		User0: "",
+		User1: "",
+		User2: "",
+		User3: "",
+		User4: "",
+		User5: "",
+		User6: "",
+		User7: "",
+		User8: "",
+		User9: "",
+	})
 }
 
 export default compose(
@@ -83,3 +98,5 @@ export default compose(
   ),
   requireAuth
 )(Main);
+ 
+// */
