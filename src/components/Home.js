@@ -24,10 +24,12 @@ const Main = ({ signout }) => {
 
 		<div id="homePage">
 		  <p id="groupCreate"> <button onClick={ ()=> buildGroup()}>Create A Group</button> </p>
-		  <form id="groupSearch">
-			<input type="text" name="searchGroup" placeholder="Search Groups" />
+		  <form id="groupSearch2">
+			<input type="text" id ="groupSearch" name="searchGroup" placeholder="Search Groups" />
 			<input type="button" value="Search Groups" onClick={ ()=> searchGroups()} />
 		  </form>
+		  
+		  <div id="groupDisplay"></div>
 		</div>
 		
 		<div id="createPage">
@@ -70,7 +72,19 @@ function back(){
 }
 
 function searchGroups(){
-	
+	let GroupCollection = db.collection('groups').doc(document.getElementById("groupSearch").value);
+	let getDoc = GroupCollection.get()
+	  .then(doc => {
+		if (!doc.exists) {
+		  document.getElementById("groupDisplay").innerHTML = "No Results.";
+		} else {
+		  //console.log('Document data:', doc.data());
+		  document.getElementById("groupDisplay").innerHTML = doc.data();  
+		}
+	  })
+	  .catch(err => {
+		document.getElementById("groupDisplay").innerHTML = "Error getting document: "+err;  
+	  });
 }
 
 function createGroup(){
