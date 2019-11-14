@@ -4,7 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar";
 import Main from "./Main";
 import Login from "./Login";
-import Bunny from "./Bunny";
+import Message from "./Message";
 
 const App = () => {
   return (
@@ -14,7 +14,7 @@ const App = () => {
       <Switch>
         <Route exact path="/" component={Main} />
         <Route exact path="/login" component={Login} />
-        <Route exact path="/bunny" component={Bunny} />
+          <Route exact path="/message" component={Message} />
       </Switch>
  </div>
     </div>
