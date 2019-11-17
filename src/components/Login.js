@@ -89,7 +89,7 @@ const Login = ({
         )}
 
         {/* BUTTONS */}
-        <div>
+        <div class="login-btn-holder">
           <button type="submit" className="btn-login">
             {loading ? (
               <Spinner />
@@ -102,7 +102,7 @@ const Login = ({
             )}
           </button>
           {!newUser && !reset && (
-            <button onClick={() => SetReset(true)} className="btn-link">
+            <button onClick={() => SetReset(true)} className="btn-link forgot-btn">
               Forgot password?
             </button>
           )}
