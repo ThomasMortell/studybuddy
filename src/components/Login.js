@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { signup, signin, resetPassword } from "../store/actions/auth";
+import { signup, signin, resetPassword, state } from "../store/actions/auth";
 import useForm from "../utils/useForm";
 import validate from "../utils/validateLoginForm";
 import Spinner from "./Spinner";
 import bannerLogo from "../images/logo.png"
+import NavBar from './NavBar'
 
 const Login = ({
   signup,
@@ -36,6 +37,10 @@ const Login = ({
           history.push("/")
         );
       }
+    }
+    if (state === true){
+    	document.getElementById("log-in").style.display = "none";
+    	document.getElementById("log-out").style.display = "block";
     }
   }
 

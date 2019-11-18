@@ -16,4 +16,4 @@ class AboutUs extends Component {
     }
 }
 
-export default Navbar
+export default AboutUs

@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import { signout } from "../store/actions/auth";
 import requireAuth from "./hoc/requireAuth";
 import firebase from "../services/firebase.js";
-//import css from "../css/Home.css";
+import css from "../css/index.css";
 
 
 var db = firebase.firestore();
@@ -16,13 +16,9 @@ const Main = ({ signout }) => {
   
     <div className="page">
 		<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-		<button onClick={ () => profile()}>Profile</button>
-		<button className="btn-switch" onClick={() => signout()}>Log out</button>
 		  
-		<h1>Study Buddy</h1>
-		<p id="Subtitle">A tool that helps students study together.</p>
 
-		<div id="homePage">
+		<div id="homePage" class="">
 		  <p id="groupCreate"> <button onClick={ ()=> buildGroup()}>Create A Group</button> </p>
 		  <form id="groupSearch2">
 			<input type="text" id ="groupSearch" name="searchGroup" placeholder="Search Groups" />
@@ -32,7 +28,7 @@ const Main = ({ signout }) => {
 		  <div id="groupDisplay"></div>
 		</div>
 		
-		<div id="createPage">
+		<div id="createPage" hidden>
 			<form id="createGroup">
 				<input type="text" id="cgroupName" name="groupName" placeholder="Group Name" />
 				<input type="text" id="cgroupModuleCode" name="moduleCode" placeholder="Module Code" />
@@ -41,6 +37,8 @@ const Main = ({ signout }) => {
 			<button onClick={ () => back() } >Back</button>
 		</div>
 		
+		<button onClick={ () => profile()}>Profile</button>
+		<button className="btn-switch" onClick={() => signout()}>Log out</button>
     </div>
   );
 };
