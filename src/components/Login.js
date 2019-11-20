@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
-import { signup, signin, resetPassword, state } from "../store/actions/auth";
+import { signup, signin, resetPassword } from "../store/actions/auth";
 import useForm from "../utils/useForm";
 import validate from "../utils/validateLoginForm";
 import Spinner from "./Spinner";
-import bannerLogo from "../images/logo.png"
-import NavBar from './NavBar'
 
 const Login = ({
   signup,
@@ -38,83 +36,108 @@ const Login = ({
         );
       }
     }
-    if (state === true){
-    	document.getElementById("log-in").style.display = "none";
-    	document.getElementById("log-out").style.display = "block";
-    }
   }
 
   return (
-  <div class="login">
-    <div class="banner-box">
-      <img src={bannerLogo} alt="studybuddy logo of an apple on top of books cartoonized" width="90" height="auto"></img>
-      <h1 class="login-pg-header">Welcome to Study Buddy!</h1>
-    </div>
-    <h2>
-      {reset ? "Reset password" : newUser ? "Create an account" : "Sign in"}
-    </h2>
-    {authMsg && <p className="auth-message">{authMsg}</p>}
-    <form onSubmit={handleSubmit} noValidate>
-      {/* Email */}
-      <div className="input-group center">
-        <label className="login-label" htmlFor="email">E-mail</label>
-        <input type="email" id="email" name="email"
-          value={credentials.email} placeholder="Your e-mail" 
-          onChange={handleChange}
-          className={(errors.emailIsEmpty || errors.emailFormatInvalid) && "input-error"}
-        />
-        {errors.emailIsEmpty && <small>{errors.emailIsEmpty}</small>}
-        {errors.emailFormatInvalid && (<small>{errors.emailFormatInvalid}</small>)}
-      </div>
-
-      {/* PASSWORD */}
-      {!reset && (
-          <div className="input-group center">
-          <label className="login-label" htmlFor="password">Password</label>
-          <input type="password" id="password" name="password"
-            value={credentials.password} placeholder="Your password"
+    <div className="login">
+    <img src="images/logo.png" alt="Study Stuff" width="100" height="auto"></img>
+      <h1>Welcome to Study Buddy!</h1>
+      <h2>
+        {reset ? "Reset password" : newUser ? "Create an account" : "Sign in"}
+      </h2>
+      {authMsg && <p className="auth-message">{authMsg}</p>}
+      <form onSubmit={handleSubmit} noValidate>
+        {/* Email */}
+        <div className="input-group">
+          <label className="login-label" htmlFor="email">E-mail</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            value={credentials.email}
+            placeholder="Your e-mail"
             onChange={handleChange}
-            className={(errors.passIsStrong || errors.passIsEmpty) && "input-error"}/>
-              {errors.passIsStrong && <small>{errors.passIsStrong}</small>}
-              {errors.passIsEmpty && <small>{errors.passIsEmpty}</small>}
-          </div>
-        )
-      }
+            className={
+              (errors.emailIsEmpty || errors.emailFormatInvalid) &&
+              "input-error"
+            }
+          />
+          {errors.emailIsEmpty && <small>{errors.emailIsEmpty}</small>}
+          {errors.emailFormatInvalid && (
+            <small>{errors.emailFormatInvalid}</small>
+          )}
+        </div>
 
-      {/* BUTTONS */}
-      <div class="login-btn-holder">
-        <div class="login-btn-vert-align">
+        {/* PASSWORD */}
+        {!reset && (
+          <div className="input-group">
+            <label className="login-label" htmlFor="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              name="password"
+              value={credentials.password}
+              placeholder="Your password"
+              onChange={handleChange}
+              className={
+                (errors.passIsStrong || errors.passIsEmpty) && "input-error"
+              }
+            />
+            {errors.passIsStrong && <small>{errors.passIsStrong}</small>}
+            {errors.passIsEmpty && <small>{errors.passIsEmpty}</small>}
+          </div>
+        )}
+
+        {/* BUTTONS */}
+        <div>
           <button type="submit" className="btn-login">
             {loading ? (
-	            <Spinner />
-              ) : reset ? (
-                "Reset password"
-              ) : newUser ? (
-                "Create account"
-              ) : (
-               "Sign in"
-              )
-            }
+              <Spinner />
+            ) : reset ? (
+              "Reset password"
+            ) : newUser ? (
+              "Create account"
+            ) : (
+              "Sign in"
+            )}
           </button>
-          <button onClick={() => {setNewUser(!newUser); if (reset) SetReset(false);}} className="btn-switch">
-            {newUser ? "Sign in" : "Create an account"}
-          </button>
+          {!newUser && !reset && (
+            <button onClick={() => SetReset(true)} className="btn-link">
+              Forgot password?
+            </button>
+          )}
+          {reset && (
+            <button onClick={() => SetReset(false)} className="btn-link">
+              Back to sign in
+            </button>
+          )}
         </div>
-      </div>
-      {!newUser && !reset && (
-          <button onClick={() => SetReset(true)} class="btn-forgot">
-            Forgot password?
-          </button>
-        )
-      }
-      {reset && (
-          <button onClick={() => SetReset(false)} class="btn-forgot">
-            Back to sign in
-          </button>
-        )
-      }
-    </form>
-  </div>
+      </form>
+      <footer className="login-footer">
+        <p>
+          {newUser ? "Already have an account?" : "Don't have an account yet?"}
+        </p>
+        <button
+          onClick={() => {
+            setNewUser(!newUser);
+            if (reset) SetReset(false);
+          }}
+          className="btn-switch"
+        >
+          {newUser ? "Sign in" : "Create an account"}
+        </button>
+        <div>
+        <p><b>Note:</b></p>
+        </div>
+        <div className="notice-footer">
+        <ul>
+        <li>A password must contain a special character -> "!£$€%^&*(){}[]"</li>
+        <li>A password must be a minimum of 8 characters long</li>
+        <li>A password must contain a digit and a capital letter anywhere in the string</li>
+        </ul>
+        </div>
+      </footer>
+    </div>
   );
 };
 

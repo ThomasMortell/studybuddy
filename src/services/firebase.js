@@ -34,7 +34,7 @@ admin.initializeApp({
 });
 
 
-let db = admin.firestore();
+//let db = admin.firestore();
 
 // Finally, export it to use it throughout your app
 export default firebase;
