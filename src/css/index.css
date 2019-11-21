@@ -1,5 +1,5 @@
 html, body, input, button {
-  font-family: "Capriola", sans-serif; 
+  font-family: "Capriola", sans-serif;
 }
 
 body {
@@ -22,7 +22,19 @@ body {
      while the background image is loading */
   background-color: #464646;
 }
+search-bar {
+	width: 100px;
+	height: 100px;
+	background-color: red;
 
+	position: absolute;
+	top:0;
+	bottom: 0;
+	left: 0;
+	right: 0;
+
+	margin: auto;
+}
 .navbar-logo{
   margin-left:5px;
   margin-right:auto;
@@ -47,9 +59,9 @@ body {
 }
 
 a {
-  text-decoration: none; 
+  text-decoration: none;
 }
-  
+
 .login-btn-holder{
   margin-left: auto;
   margin-right: auto;
@@ -62,7 +74,8 @@ a {
   width: 400;
 }
 
-.logout-btn-navbar{
+/*navbar button hide*/
+.logout-btn-navbar, .profile-btn-navbar{
 	display: none;
 }
 
@@ -72,7 +85,7 @@ a {
   font-weight: bold;
   border: none;
   outline: none;
-  border: 2px solid #29b1cc; 
+  border: 2px solid #29b1cc;
   margin-right:5px;
 }
 
@@ -85,21 +98,21 @@ a {
 }
 
 .btn-login:hover, .btn-switch:hover {
-    cursor: pointer; 
+    cursor: pointer;
 }
 
 .btn-login, .btn-switch:hover {
   background-color: #29b1cc;
-  color: #fff; 
+  color: #fff;
 }
 
 .btn-switch {
   background-color: #fff;
-  color: #29b1cc; 
+  color: #29b1cc;
 }
 
 .btn-login:hover {
-  box-shadow: 0 10px 20px rgba(41, 177, 204, 0.3); 
+  box-shadow: 0 10px 20px rgba(41, 177, 204, 0.3);
 }
 
 //forgot password
@@ -108,12 +121,12 @@ a {
   border: none;
   border-bottom: 1px solid #29b1cc;
   padding: 0;
-  margin-left: 2em; 
+  margin-left: 2em;
 }
 
 .btn-link:hover {
-    border-bottom: none;
-    cursor: pointer; 
+    border-bottom: 10px;
+    cursor: pointer;
 }
 
 .center {
@@ -122,6 +135,8 @@ a {
   margin-right: auto;
   width: 50%;
 }
+
+
 
 .nav-wrapper {
 	background-color: #29b1cc;
@@ -141,13 +156,13 @@ a {
 .login h2 {
     text-align: center;
     color: #29b1cc;
-    margin-bottom: 0.2em; 
+    margin-bottom: 0.2em;
     font-size:20px;
 }
 
 .login .auth-message {
     text-align: center;
-    color: orange; 
+    color: orange;
 }
 
 /*.login .input-group {
@@ -157,7 +172,7 @@ a {
 
 label, .login .input-group  {
     margin-bottom: 1em;
-    text-align:left; 
+    text-align:left;
 }
 
 .input-group{
@@ -165,14 +180,14 @@ label, .login .input-group  {
   margin-left:auto;
   margin-right:auto;
   font-size: 0.6em;
-  color: red; 
+  color: red;
 }
 
 .login .input-group input {
     height:5px;
     color: #6b6c6f;
     border-radius: 20px;
-    padding: 1.2em 1.5em; 
+    padding: 1.2em 1.5em;
 }
 
 .login .input-group input.input-error {
@@ -182,14 +197,14 @@ label, .login .input-group  {
 .login small {
     font-size: 0.6em;
     /*margin: 0.6em 0 0 1.7em;*/
-    color: red; 
+    color: red;
 }
 
 .login .login-footer{
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-top: 1em; 
+    margin-top: 1em;
 }
 
 .notice-footer{
@@ -200,11 +215,11 @@ label, .login .input-group  {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center; 
+    align-items: center;
 }
 
 .page h1 {
-    margin-bottom: 0; 
+    margin-bottom: 0;
 }
 
 .login-pg-header{
@@ -212,11 +227,11 @@ label, .login .input-group  {
 }
 
 .page .emoji {
-    font-size: 4em; 
+    font-size: 4em;
 }
 
 .page button, .page a {
-    margin-top: 3em; 
+    margin-top: 3em;
 }
 
 @keyframes bounce {
@@ -224,30 +239,30 @@ label, .login .input-group  {
     top: 30px;
     height: 5px;
     border-radius: 60px 60px 20px 20px;
-    transform: scaleX(2); 
+    transform: scaleX(2);
   }
   35% {
     height: 15px;
     border-radius: 50%;
-    transform: scaleX(1); 
+    transform: scaleX(1);
   }
   100% {
-    top: 0; 
-  } 
+    top: 0;
+  }
 }
 
 .loader {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%); 
+    transform: translate(-50%, -50%);
 }
-  
+
 .loader .loader-bounceball {
     position: relative;
     display: inline-block;
     height: 37px;
-    width: 15px; 
+    width: 15px;
 }
 
 .loader .loader-bounceball:before {
@@ -260,20 +275,20 @@ label, .login .input-group  {
       border-radius: 50%;
       background-color: #29b1cc;
       transform-origin: 50%;
-      animation: bounce 500ms alternate infinite ease; 
+      animation: bounce 500ms alternate infinite ease;
 }
 
 .loader .loader-text {
     color: #29b1cc;
     display: inline-block;
-    margin-left: 1em; 
+    margin-left: 1em;
 }
 
 .sk-circle {
   margin: 0 auto;
   width: 1.5em;
   height: 1.5em;
-  position: relative; 
+  position: relative;
 }
 
 .sk-circle .sk-child {
@@ -281,7 +296,7 @@ label, .login .input-group  {
   height: 100%;
   position: absolute;
   left: 0;
-  top: 0; 
+  top: 0;
 }
 
 .sk-circle .sk-child:before {
@@ -293,7 +308,7 @@ label, .login .input-group  {
   background-color: #fff;
   border-radius: 100%;
   -webkit-animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
-  animation: sk-circleBounceDelay 1.2s infinite ease-in-out both; 
+  animation: sk-circleBounceDelay 1.2s infinite ease-in-out both;
 }
 
 .sk-circle .sk-circle2 {
@@ -413,4 +428,3 @@ label, .login .input-group  {
   40% {
     -webkit-transform: scale(1);
     transform: scale(1); } }
-    

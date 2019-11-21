@@ -15,8 +15,6 @@ import firebase from "../../services/firebase";
 
 var db = firebase.firestore();
 
-export var state = false;
-
 // Signing up with Firebase
 export const signup = (email, password) => async dispatch => {
   try {
@@ -57,9 +55,7 @@ export const signup = (email, password) => async dispatch => {
           payload:
             "Something went wrong, we couldn't create your account. Please try again."
         });
-        state = false;
       });
-      state = true;
   } catch (err) {
     dispatch(apiCallError());
     dispatch({
@@ -67,7 +63,6 @@ export const signup = (email, password) => async dispatch => {
       payload:
         "Something went wrong, we couldn't create your account. Please try again."
     });
-    state = false;
   }
 };
 
@@ -83,14 +78,12 @@ export const signin = (email, password, callback) => async dispatch => {
           console.log("IF", data.user.emailVerified);
           dispatch({ type: SIGNIN_SUCCESS });
           callback();
-          state = true;
         } else {
           console.log("ELSE", data.user.emailVerified);
           dispatch({
             type: EMAIL_NOT_VERIFIED,
             payload: "You haven't verified your e-mail address."
           });
-          state = false;
         }
       })
       .catch(() => {
@@ -99,13 +92,10 @@ export const signin = (email, password, callback) => async dispatch => {
           type: SIGNIN_ERROR,
           payload: "Invalid login credentials"
         });
-        state = false;
       });
-      state = true;
   } catch (err) {
     dispatch(apiCallError());
     dispatch({ type: SIGNIN_ERROR, payload: "Invalid login credentials" });
-    state = false;
   }
 };
 
@@ -126,14 +116,12 @@ export const signout = () => async dispatch => {
           payload: "Error, we were not able to log you out. Please try again."
         });
       });
-      state = true;
   } catch (err) {
     dispatch(apiCallError());
     dispatch({
       type: SIGNOUT_ERROR,
       payload: "Error, we were not able to log you out. Please try again."
     });
-    state = false;
   }
 };
 
@@ -159,10 +147,21 @@ export const resetPassword = email => async dispatch => {
             "Oops, something went wrong we couldn't send you the e-mail. Try again and if the error persists, contact admin."
         });
       });
-      state = false;
   } catch (err) {
     dispatch(apiCallError());
     dispatch({ type: RESET_ERROR, payload: err });
-    state = false;
   }
  };
+
+ //track user state logged in/out
+ firebase.auth().onAuthStateChanged(function(user) {
+   if (user) {
+     document.getElementById("log-in").style.display = "none";
+     document.getElementById("profile").style.display = "block";
+     document.getElementById("log-out").style.display = "block";
+   } else {
+     document.getElementById("log-in").style.display = "block";
+     document.getElementById("profile").style.display = "none";
+     document.getElementById("log-out").style.display = "none";
+   }
+ });

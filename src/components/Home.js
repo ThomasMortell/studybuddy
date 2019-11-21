@@ -5,34 +5,27 @@ import { connect } from "react-redux";
 import { signout } from "../store/actions/auth";
 import requireAuth from "./hoc/requireAuth";
 import firebase from "../services/firebase.js";
-import "../css/Home.css";
+import "../css/index.css"
 
 
 var db = firebase.firestore();
 
-
 const Main = ({ signout }) => {
   return (
-  
+
     <div className="page">
 		<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-		<button onClick={ () => profile()}>Profile</button>
-		<button className="btn-switch" onClick={() => signout()}>Log out</button>
-		  
-		<h1>Study Buddy</h1>
-		<p id="Subtitle">A tool that helps students study together.</p>
-
 		<div id="homePage">
 		  <p id="groupCreate"> <button onClick={ ()=> buildGroup()}>Create A Group</button> </p>
 		  <form id="groupSearch2">
 			<input type="text" id ="groupSearch" name="searchGroup" placeholder="Search Groups" />
 			<input type="button" value="Search Groups" onClick={ ()=> searchGroups()} />
 		  </form>
-		  
+
 		  <div id="groupDisplay"></div>
 		</div>
-		
-		<div id="createPage">
+
+		<div id="createPage" hidden >
 			<form id="createGroup">
 				<input type="text" id="cgroupName" name="groupName" placeholder="Group Name" />
 				<input type="text" id="cgroupModuleCode" name="moduleCode" placeholder="Module Code" />
@@ -40,7 +33,8 @@ const Main = ({ signout }) => {
 			</form>
 			<button onClick={ () => back() } >Back</button>
 		</div>
-		
+    <button onClick={ () => profile()} hidden>Profile</button>
+    <button className="btn-switch" onClick={() => signout()}>Log out</button>
     </div>
   );
 };
@@ -80,14 +74,14 @@ function searchGroups(){
 		} else {
 		  //console.log('Document data:', doc.data());
 		  //var info = doc.data();
-		  
+
 		var butstring = '<input type="button" value="Join Group" onClick={ ()=> joinGroup()}>'
-		  
+
 		  document.getElementById("groupDisplay").innerHTML = "Group Name: "+doc.id+" Module Code: "+doc.data().ModuleCode + butstring;
 		}
 	  })
 	  .catch(err => {
-		document.getElementById("groupDisplay").innerHTML = "Error getting document: "+err;  
+		document.getElementById("groupDisplay").innerHTML = "Error getting document: "+err;
 	  });
 }
 
@@ -110,7 +104,7 @@ function createGroup(){
 }
 
 function joinGroup(){
-	alert("Fuck");
+
 }
 
 export default compose(
@@ -120,5 +114,5 @@ export default compose(
   ),
   requireAuth
 )(Main);
- 
+
 // */
