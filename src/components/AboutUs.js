@@ -1,17 +1,11 @@
 import React, {Component} from 'react';
 
 class AboutUs extends Component {
-
-  constructor(props){
-    super(props);
-    
-  }
-
   render() {
     return(
   	  <div>
   	    <nav>
-    	  <div class="about-us">
+    	  <div className="about-us">
      	    This is a page about our team and the Study Buddy app we have created.
     	  </div>
   	    </nav>

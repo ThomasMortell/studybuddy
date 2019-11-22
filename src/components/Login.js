@@ -12,15 +12,13 @@ const Login = ({
   resetPassword,
   authMsg,
   history,
-  loading
-}) => {
-  const [newUser, setNewUser] = useState(false);
-  const [reset, SetReset] = useState(false);
-  const [credentials, handleChange, handleSubmit, errors] = useForm(
-    login,
-    validate,
-    reset
-  );
+  loading}) => {
+    const [newUser, setNewUser] = useState(false);
+    const [reset, SetReset] = useState(false);
+    const [credentials, handleChange, handleSubmit, errors] = useForm(
+      login,
+      validate,
+      reset);
 
   function login() {
     if (newUser) {
@@ -40,10 +38,10 @@ const Login = ({
   }
 
   return (
-    <div class="login">
-      <div class="banner-box">
+    <div className="login ">
+      <div className="banner-box">
         <img src={bannerLogo} alt="studybuddy logo of an apple on top of books cartoonized" width="90" height="auto"></img>
-        <h1 class="login-pg-header">Welcome to Study Buddy!</h1>
+        <h1 className="login-pg-header">Welcome to Study Buddy!</h1>
       </div>
       <h2>
         {reset ? "Reset password" : newUser ? "Create an account" : "Sign in"}
@@ -77,11 +75,11 @@ const Login = ({
         )}
 
         {/* BUTTONS */}
-        <div class="login-btn-holder">
-          <div class="login-btn-vert-align">
+        <div className="login-btn-holder">
+          <div className="login-btn-vert-align">
             <div>
-              <button type="submit" className="btn-login">
-                {loading ? (
+              <button type="submit" className="btn-login">{
+                loading ? (
                     <Spinner />
                   ) : reset ? (
                     "Reset password"
@@ -91,26 +89,20 @@ const Login = ({
                     "Sign in"
                   )
                 }
-             </button>
-             <button onClick={() => {setNewUser(!newUser); if (reset) SetReset(false);}} className="btn-switch">
-               {newUser ? "Sign in" : "Create an account"}
-             </button>
-           </div>
-         </div>
-          {!newUser && !reset && (
-              <button onClick={() => SetReset(true)} class="btn-forgot">
-                Forgot password?
               </button>
-            )
+              <button onClick={() => {setNewUser(!newUser); if (reset) SetReset(false);}} className="btn-switch">
+                {newUser ? "Sign in" : "Create an account"}
+              </button>
+            </div>
+          </div>
+          {!newUser && !reset && (
+            <a onClick={() => SetReset(true)} className="btn-forgot">Forgot password?</a>)
           }
           {reset && (
-              <button onClick={() => SetReset(false)} class="btn-forgot">
-                Back to sign in
-              </button>
-            )
+            <button onClick={() => SetReset(false)} className="btn-forgot">Back to sign in</button>)
           }
-          </div>
-        </form>
+        </div>
+      </form>
     </div>
   );
 };

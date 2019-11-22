@@ -22,23 +22,18 @@ body {
      while the background image is loading */
   background-color: #464646;
 }
-search-bar {
-	width: 100px;
-	height: 100px;
-	background-color: red;
 
-	position: absolute;
-	top:0;
-	bottom: 0;
-	left: 0;
-	right: 0;
 
-	margin: auto;
-}
 .navbar-logo{
   margin-left:5px;
   margin-right:auto;
   font-size:30px;
+}
+
+.center-elements{
+  display:block;
+  margin-left:auto;
+  margin-right:auto;
 }
 
 .banner-box{
@@ -62,6 +57,21 @@ a {
   text-decoration: none;
 }
 
+.search-btn{
+  margin-bottom:30px;
+  margin-left:90px;
+}
+
+.search-icon{
+  margin-top:30px;
+  margin-left:10px;
+}
+
+.placeholder{
+  margin-top:30px;
+  margin-left:10px;
+}
+
 .login-btn-holder{
   margin-left: auto;
   margin-right: auto;
@@ -75,8 +85,13 @@ a {
 }
 
 /*navbar button hide*/
-.logout-btn-navbar, .profile-btn-navbar{
+.logout-btn-navbar, .profile-btn-navbar, .hide{
 	display: none;
+}
+
+.vert-align{
+  display:flex;
+  align-items:center;
 }
 
 .btn-login, .btn-switch {
@@ -115,7 +130,7 @@ a {
   box-shadow: 0 10px 20px rgba(41, 177, 204, 0.3);
 }
 
-//forgot password
+/*forgot password*/
 .btn-link {
   color: #29b1cc;
   border: none;
@@ -135,8 +150,6 @@ a {
   margin-right: auto;
   width: 50%;
 }
-
-
 
 .nav-wrapper {
 	background-color: #29b1cc;

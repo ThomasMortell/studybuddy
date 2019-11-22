@@ -12,29 +12,53 @@ var db = firebase.firestore();
 
 const Main = ({ signout }) => {
   return (
-
-    <div className="page">
-		<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-		<div id="homePage">
-		  <p id="groupCreate"> <button onClick={ ()=> buildGroup()}>Create A Group</button> </p>
-		  <form id="groupSearch2">
-			<input type="text" id ="groupSearch" name="searchGroup" placeholder="Search Groups" />
-			<input type="button" value="Search Groups" onClick={ ()=> searchGroups()} />
-		  </form>
-
-		  <div id="groupDisplay"></div>
-		</div>
-
-		<div id="createPage" hidden >
-			<form id="createGroup">
-				<input type="text" id="cgroupName" name="groupName" placeholder="Group Name" />
-				<input type="text" id="cgroupModuleCode" name="moduleCode" placeholder="Module Code" />
-				<input type="button" value ="Create Group" onClick={ ()=> createGroup()} />
-			</form>
-			<button onClick={ () => back() } >Back</button>
-		</div>
-    <button onClick={ () => profile()} hidden>Profile</button>
-    <button className="btn-switch" onClick={() => signout()}>Log out</button>
+    <div id="homePage" className="page">
+		  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+      <div className="container">
+        <h5>Search For A Group</h5>
+        <div className="row">
+          <div className="col s12">
+            <div className="row">
+              <div className="input-field col s12 vert-align">
+                <i className="material-icons prefix search-icon">search</i>
+                <input type= "text" id ="groupSearch" name="searchGroup"/>
+                <label className="placeholder" htmlFor="groupSearch">search for a group</label>
+        			  <a className="search-btn" onClick={ ()=> searchGroups()}>Search</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="groupDisplay">
+      </div>
+		  <div id="createPage">
+			  <form id="createGroup">
+        <div className="container">
+          <h5>Create A Group</h5>
+          <div className="row">
+            <div className="col s12">
+              <div className="row">
+                <div className="input-field col s12 vert-align">
+				          <input type="text" id="cgroupName" name="groupName"/>
+                  <label htmlFor="cgroupName">group name</label>
+                </div>
+              </div>
+              <div className="row">
+                <div className="input-field col s12 vert-align">
+                  <input type="text" id="cgroupModuleCode" name="moduleCode"/>
+                  <label htmlFor="cgroupModuleCode">module code</label>
+                </div>
+              </div>
+              <div className="row">
+                <input type="button" value ="Create Group" onClick={ ()=> createGroup()} />
+              </div>
+            </div>
+          </div>
+        </div>
+			  </form>
+		  </div>
+      <button onClick={ () => profile()} hidden>Profile</button>
+      <button className="btn-switch" onClick={() => signout()}>Log out</button>
     </div>
   );
 };
@@ -51,18 +75,22 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-function buildGroup(){
-	document.getElementById("homePage").style.display = "none";
-	document.getElementById("createPage").style.display = "block";
-}
+// function buildGroup(){
+// 	document.getElementById("homePage").style.display = "none";
+// 	document.getElementById("createPage").style.display = "block";
+// }
 
 function profile(){
 
 }
 
-function back(){
-	document.getElementById("homePage").style.display = "block";
-	document.getElementById("createPage").style.display = "none";
+// function back(){
+// 	document.getElementById("homePage").style.display = "block";
+// 	document.getElementById("createPage").style.display = "none";
+// }
+
+function logOut(){
+
 }
 
 function searchGroups(){
