@@ -37,72 +37,91 @@ const Login = ({
     }
   }
 
+  // Containerising loging page to split left side as sign in and right side as
+  // logo with page heading
   return (
-    <div className="login ">
-      <div className="banner-box">
-        <img src={bannerLogo} alt="studybuddy logo of an apple on top of books cartoonized" width="90" height="auto"></img>
-        <h1 className="login-pg-header">Welcome to Study Buddy!</h1>
-      </div>
-      <h2>
-        {reset ? "Reset password" : newUser ? "Create an account" : "Sign in"}
-      </h2>
-      {authMsg && <p className="auth-message">{authMsg}</p>}
-      <form onSubmit={handleSubmit} noValidate>
-        {/* Email */}
-        <div className="input-group center">
-          <label className="login-label" htmlFor="email">E-mail</label>
-          <input type="email" id="email" name="email"
-           value={credentials.email} placeholder="Your e-mail"
-           onChange={handleChange}
-           className={(errors.emailIsEmpty || errors.emailFormatInvalid) && "input-error"}
-          />
-          {errors.emailIsEmpty && <small>{errors.emailIsEmpty}</small>}
-          {errors.emailFormatInvalid && (<small>{errors.emailFormatInvalid}</small>)}
-        </div>
-
-        {/* PASSWORD */}
-        {!reset && (
-          <div className="input-group center">
-            <label className="login-label" htmlFor="password">Password</label>
-            <input type="password" id="password" name="password"
-              value={credentials.password} placeholder="Your password"
-              onChange={handleChange}
-              className={(errors.passIsStrong || errors.passIsEmpty) && "input-error"}
-            />
-            {errors.passIsStrong && <small>{errors.passIsStrong}</small>}
-            {errors.passIsEmpty && <small>{errors.passIsEmpty}</small>}
-          </div>
-        )}
-
-        {/* BUTTONS */}
-        <div className="login-btn-holder">
-          <div className="login-btn-vert-align">
-            <div>
-              <button type="submit" className="btn-login">{
-                loading ? (
-                    <Spinner />
-                  ) : reset ? (
-                    "Reset password"
-                  ) : newUser ? (
-                    "Create account"
-                  ) : (
-                    "Sign in"
-                  )
-                }
-              </button>
-              <button onClick={() => {setNewUser(!newUser); if (reset) SetReset(false);}} className="btn-switch">
-                {newUser ? "Sign in" : "Create an account"}
-              </button>
+    <div className="">
+      <div className="container">
+        <div className="row">
+          <div className="col s6 vert-center" id="left-split">
+            <div className="row">
+              <p>
+                {/*reset ? "Reset password" : newUser ? "Create an account" : "Sign in"*/}
+                {authMsg && <p className="auth-message">{authMsg}</p>}
+              </p>
             </div>
+
+            <form onSubmit={handleSubmit} noValidate>
+              <div className="container">
+                {/* Email */}
+                <div className="input-field hori-center">
+                  <input type= "email" id ="email" name="email"
+                    value={credentials.email} onChange={handleChange}
+                    className={(errors.emailIsEmpty || errors.emailFormatInvalid) && "input-error"}/>
+
+                  <label className="email-placeholder" htmlFor="emailInput">email</label>
+                  {errors.emailIsEmpty && <small>{errors.emailIsEmpty}</small>}
+                  {errors.emailFormatInvalid && (<small>{errors.emailFormatInvalid}</small>)}
+                </div>
+
+                {/* PASSWORD */}
+                {!reset && (
+                  <div className="input-field hori-center">
+                    <input type= "password" id ="password" name="password"
+                      value={credentials.password} onChange={handleChange}
+                      className={(errors.passIsStrong || errors.passIsEmpty) && "input-error"}/>
+
+                    <label className="password-placeholder" htmlFor="password">password</label>
+                    {errors.passIsStrong && <small>{errors.passIsStrong}</small>}
+                    {errors.passIsEmpty && <small>{errors.passIsEmpty}</small>}
+                  </div>
+                )}
+
+                {/* BUTTONS */}
+                <div className="container">
+                  <div className="row">
+                    <button type="submit" className="btn-login">{
+                      loading ? (
+                          <Spinner />
+                        ) : reset ? (
+                          "Reset password"
+                        ) : newUser ? (
+                          "Create account"
+                        ) : (
+                          "Sign in"
+                        )
+                      }
+                    </button>
+                  </div>
+                  <div className="row">
+                    {!newUser && !reset && (
+                      <a onClick={() => SetReset(true)} className="btn-forgot">Forgot password?</a>)
+                    }
+                  </div>
+                  <div className="row">
+                    <hr />
+                  </div>
+                  {reset && (
+                    <button onClick={() => SetReset(false)} className="btn-forgot">Back to sign in</button>)
+                  }
+                  <div className="row">
+                    <p>Don't have an account? No problem!<br />Click below to make your free account.</p>
+                    <button onClick={() => {setNewUser(!newUser); if (reset) SetReset(false);}} className="btn-create">
+                      {newUser ? "Sign in" : "Create an account"}
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
           </div>
-          {!newUser && !reset && (
-            <a onClick={() => SetReset(true)} className="btn-forgot">Forgot password?</a>)
-          }
-          {reset && (
-            <button onClick={() => SetReset(false)} className="btn-forgot">Back to sign in</button>)
-          }
+
+          <div className="col s6 vert-center" id="right-split">
+            <img src={bannerLogo} className="logo vert-center" alt="studybuddy logo of an
+              apple on top of books cartoonized" width="auto" height="200px">
+            </img>
+          </div>
         </div>
-      </form>
+      </div>
     </div>
   );
 };

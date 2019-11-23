@@ -1,0 +1,103 @@
+body {
+  background-image: url("../images/back.jpg");
+  /* Background image is centered vertically and horizontally at all times */
+  background-position:  center;
+
+  /* Background image doesn't tile */
+  background-repeat: no-repeat;
+
+  /* Background image is fixed in the viewport so that it doesn't move when
+     the content's height is greater than the image's height */
+  background-attachment: fixed;
+
+  /* This is what makes the background image rescale based
+     on the container's size */
+  background-size: cover;
+
+  /* Set a background color that will be displayed
+     while the background image is loading */
+  background-color: #464646;
+
+  /* Set the page font */
+  font-family: "Capriola", sans-serif;
+}
+
+/* Horizontally center elements */
+.hori-center {
+  margin-left:auto;
+  margin-right:auto;
+}
+
+/* Vertically center elements */
+.vert-center{
+}
+
+.logo{
+  margin-top: 15%;
+}
+
+.container{
+  width:100%;
+}
+
+#left-split, #right-split{
+    margin-top: 5%;
+}
+
+/* For login section, apply below style left side*/
+#left-split{
+  background-color: rgba(200, 200, 200, 0.3);
+}
+
+#left-split hr{
+  width: 90%;
+}
+
+/* For login section, apply below style to right side */
+#right-split{
+}
+
+#right-split div{
+    float: left;
+    clear: none;
+}
+
+/* NavBar */
+.nav-wrapper, nav{
+  display:none;
+	background-color: #29b1cc;
+}
+
+/* Input */
+.input-field{
+  margin:20px 40px 20px 40px;
+}
+
+.input-field>label{
+  color: black;
+}
+
+/*  Buttons */
+.search-btn{
+  margin-bottom:30px;
+  margin-left:90px;
+}
+
+.btn-login, .btn-create, .btn-switch {
+  padding: 1em 3em;
+  border-radius: 0px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  border: 2px solid #29b1cc;
+}
+
+.btn-login:hover, .btn-create:hover, .btn-switch:hover {
+  background-color: #29b1cc;
+  color: #fff;
+}
+
+.btn-login, .btn-create{
+  width: 84%;
+  margin: 0px 40px 0px 40px
+}

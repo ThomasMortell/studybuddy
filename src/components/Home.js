@@ -5,7 +5,6 @@ import { connect } from "react-redux";
 import { signout } from "../store/actions/auth";
 import requireAuth from "./hoc/requireAuth";
 import firebase from "../services/firebase.js";
-import "../css/index.css"
 
 
 var db = firebase.firestore();
@@ -14,15 +13,15 @@ const Main = ({ signout }) => {
   return (
     <div id="homePage" className="page">
 		  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+      <h5>Search For A Group</h5>
       <div className="container">
-        <h5>Search For A Group</h5>
         <div className="row">
           <div className="col s12">
             <div className="row">
               <div className="input-field col s12 vert-align">
                 <i className="material-icons prefix search-icon">search</i>
                 <input type= "text" id ="groupSearch" name="searchGroup"/>
-                <label className="placeholder" htmlFor="groupSearch">search for a group</label>
+                <label htmlFor="groupSearch">search for a group</label>
         			  <a className="search-btn" onClick={ ()=> searchGroups()}>Search</a>
               </div>
             </div>
