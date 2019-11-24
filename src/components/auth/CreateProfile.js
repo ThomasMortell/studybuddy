@@ -1,49 +1,69 @@
-import React from 'react'
+import React, { Component } from 'react'
 import { signup } from '../../store/actions/auth'
 
-const CreateProfile = () =>{
-  return (
-    <div className="container">
-      <div className="row">
-        <div class="col">
-          <form id="createProfile">
-            <i className="large material-icons prefix search-icon">group_add</i>
-            <div className="row">
-              <div className="col s12 m12">
-                <div className="row">
-                  <div className="input-field col s12 m12 vert-align">
-                    <input type="text" id="firstName" name="firstName"/>
-                    <label htmlFor="firstName">First Name</label>
+class CreateProfile extends Component{
+  state = {
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: ''
+  }
+
+  handleChange = (e) =>{
+    this.setState({
+      [e.target.id]: e.target.value
+    });
+  }
+
+  handleSubmit = (e) =>{
+    e.preventDefault();
+    console.log(e);
+  }
+
+  render(){
+    return (
+      <div className="container">
+        <div className="row">
+          <div className="col">
+            <form id="createProfile" onSubmit={this.handleSubmit}>
+              <i className="large material-icons prefix search-icon">person_add</i>
+              <div className="row">
+                <div className="col s12 m12">
+                  <div className="row">
+                    <div className="input-field col s12 m12 vert-align">
+                      <input type="text" id="firstName" onChange={this.handleChange}/>
+                      <label htmlFor="firstName">First Name</label>
+                    </div>
                   </div>
-                </div>
-                <div className="row">
-                  <div className="input-field col s12 m12 vert-align">
-                    <input type="text" id="lastName" name="lastName"/>
-                    <label htmlFor="lastName">Last Name</label>
+                  <div className="row">
+                    <div className="input-field col s12 m12 vert-align">
+                      <input type="text" id="lastName" onChange={this.handleChange}/>
+                      <label htmlFor="lastName">Last Name</label>
+                    </div>
                   </div>
-                </div>
-                <div className="row">
-                  <div className="input-field col s12 m12 vert-align">
-                    <input type="email" id="email" name="email"/>
-                    <label htmlFor="email">Email</label>
+                  <div className="row">
+                    <div className="input-field col s12 m12 vert-align">
+                      <input type="email" id="email" onChange={this.handleChange}/>
+                      <label htmlFor="email">Email</label>
+                    </div>
                   </div>
-                </div>
-                <div className="row">
-                  <div className="input-field col s12 m12 vert-align">
-                    <input type="password" id="password" name="password"/>
-                    <label htmlFor="password">Password</label>
+                  <div className="row">
+                    <div className="input-field col s12 m12 vert-align">
+                      <input type="password" id="password" onChange={this.handleChange}/>
+                      <label htmlFor="password">Password</label>
+                    </div>
                   </div>
-                </div>
-                <div className="row">
-                  <button onClick={ ()=> signup() }>Create Profile</button>
+                  <div className="row">
+                    <button onClick={ ()=> signup() }>Create Profile</button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  );
+    );
+  }
 }
 
 export default CreateProfile;

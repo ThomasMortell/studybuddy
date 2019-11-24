@@ -152,3 +152,13 @@ export const resetPassword = email => async dispatch => {
     dispatch({ type: RESET_ERROR, payload: err });
   }
  };
+
+export const signedIn = () => {
+  firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+      return true;
+    } else {
+      return false;
+    }
+  });
+}

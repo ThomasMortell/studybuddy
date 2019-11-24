@@ -1,5 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { signedIn } from '../../store/actions/auth'
+
 import SignedInLinks from './SignedInLinks'
 import SignedOutLinks from './SignedOutLinks'
 
@@ -8,8 +10,7 @@ const Navbar = () => {
     <nav id="navbar">
       <div className="nav-wrapper">
         <Link to="/" className="navbar-logo">Study Buddy</Link>
-        <SignedInLinks />
-        <SignedOutLinks />
+        {signedIn() ? <SignedInLinks /> : <SignedOutLinks />}
         {/*<a href="#top" className="brand-logo" >Study Buddy</a>
         <ul id="nav-mobile" className="right hide-on-med-and-down">
           <li><a id="log-out" className="logout-btn-navbar" onClick={() => signout()} ref="logoutBtn" href="">Log Out</a></li>

@@ -3,17 +3,14 @@ import { compose } from "redux";
 import { connect } from "react-redux";
 import { signout } from "../store/actions/auth";
 import requireAuth from "./hoc/requireAuth";
-//import firebase from "../services/firebase.js";
 import Searchbar from './layout/Searchbar'
 import { createGroup, searchGroups, joinGroup } from '../store/actions/groups'
-
-// var db = firebase.firestore();
 
 const Main = ({ signout }) => {
   return (
     <div id="homePage" className="container">
       <div className="row">
-        <div class="col s12 m6" id="createPage">
+        <div className="col s12 m6" id="createPage">
   			  <form id="createGroup">
             <i className="large material-icons prefix search-icon">group_add</i>
             <div className="row">
@@ -21,13 +18,13 @@ const Main = ({ signout }) => {
                 <div className="row">
                   <div className="input-field col s12 m12 vert-align">
   				          <input type="text" id="cgroupName" name="groupName"/>
-                    <label htmlFor="cgroupName">Group Name</label>
+                    <label className="black-text" htmlFor="cgroupName">Group Name</label>
                   </div>
                 </div>
                 <div className="row">
                   <div className="input-field col s12 m12 vert-align">
                     <input type="text" id="cgroupModuleCode" name="moduleCode"/>
-                    <label htmlFor="cgroupModuleCode">Module Code</label>
+                    <label className="black-text" htmlFor="cgroupModuleCode">Module Code</label>
                   </div>
                 </div>
                 <div className="row">
@@ -39,16 +36,15 @@ const Main = ({ signout }) => {
   		  </div>
 
         <div className="col s12 m6">
-          {/*<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>*/}
           {/* Renders the search bar */}
           <Searchbar />
           {/* Display any searched groups here */}
-          <div class="row" id="groupDisplay">
+          <div className="row" id="groupDisplay">
           </div>
         </div>
       </div>
       <button onClick={ () => profile()} hidden>Profile</button>
-      <button className="btn-switch" onClick={() => signout()}>Log Out</button>
+      <button name="btn-switch" onClick={() => signout()}>Log Out</button>
     </div>
   );
 };
@@ -65,65 +61,9 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-// function buildGroup(){
-// 	document.getElementById("homePage").style.display = "none";
-// 	document.getElementById("createPage").style.display = "block";
-// }
-
 function profile(){
 
 }
-
-// function back(){
-// 	document.getElementById("homePage").style.display = "block";
-// 	document.getElementById("createPage").style.display = "none";
-// }
-
-// function searchGroups(){
-// 	if(document.getElementById("groupSearch").value == ""){
-// 		document.getElementById("groupDisplay").innerHTML = "Please enter a value and try again.";
-// 	}
-// 	else{
-// 		let GroupCollection = db.collection('groups').doc(document.getElementById("groupSearch").value);
-// 		GroupCollection.get()
-// 		  .then(doc => {
-// 			if (!doc.exists) {
-// 			  document.getElementById("groupDisplay").innerHTML = "No Results.";
-// 			} else {
-// 			    //var bane = document.createElement('button').bane.onClick = joinGroup();
-// 				//document.getElementById("groupDisplay").innerHTML = "Group Name: "+doc.id+" Module Code: "+doc.data().ModuleCode+" "+ bane;
-// 				//var evil = '>';
-// 				//document.getElementById("groupDisplay").innerHTML = "Group Name: "+doc.id+" Module Code: "+doc.data().ModuleCode+' <input type="button" value="Join Group" onClick={ ()=>joinGroup()}>';
-// 			}
-// 		  })
-// 		  .catch(err => {
-// 			document.getElementById("groupDisplay").innerHTML = "Error getting document: "+err;
-// 		  });
-// 	}
-// }
-
-// function createGroup(){
-// 		const GroupCollection = db.collection('groups');
-// 		GroupCollection.doc(document.getElementById("cgroupName").value).set({
-// 		ModuleCode:document.getElementById("cgroupModuleCode").value,
-// 		Timetable: "",
-// 		User0: "",
-// 		User1: "",
-// 		User2: "",
-// 		User3: "",
-// 		User4: "",
-// 		User5: "",
-// 		User6: "",
-// 		User7: "",
-// 		User8: "",
-// 		User9: "",
-// 	})
-// }
-
-// function joinGroup(){
-// 	alert("Hello");
-// 	console.log('Button');
-// }
 
 export default compose(
   connect(

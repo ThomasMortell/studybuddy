@@ -1,3 +1,7 @@
+html{
+    min-height: 100%;
+}
+
 body {
   background-image: url("../images/back.jpg");
   /* Background image is centered vertically and horizontally at all times */
@@ -20,8 +24,19 @@ body {
 
   /* Set the page font */
   font-family: "Capriola", sans-serif;
+
+  min-height: 100%;
 }
 
+/* Input placeholder colour */
+input[type=username]:not(.browser-default):focus:not([readonly]),
+input[type=password]:not(.browser-default):focus:not([readonly]),
+input[type=email]:not(.browser-default):focus:not([readonly]),
+input[type=text]:not(.browser-default):focus:not([readonly]),
+textarea.materialize-textarea:focus:not([readonly]){
+  border-color:#29b1cc;
+  box-shadow:none;
+}
 /* Horizontally center elements */
 .hori-center {
   margin-left:auto;
@@ -88,6 +103,7 @@ body {
 .input-field>label{
   color: black;
 }
+
 
 /*  Buttons */
 .search-btn{

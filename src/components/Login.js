@@ -60,7 +60,7 @@ const Login = ({
                     value={credentials.email} onChange={handleChange}
                     className={(errors.emailIsEmpty || errors.emailFormatInvalid) && "input-error"}/>
 
-                  <label className="email-placeholder" htmlFor="emailInput">email</label>
+                  <label className=" black-text email-placeholder" htmlFor="emailInput">email</label>
                   {errors.emailIsEmpty && <small>{errors.emailIsEmpty}</small>}
                   {errors.emailFormatInvalid && (<small>{errors.emailFormatInvalid}</small>)}
                 </div>
@@ -72,7 +72,7 @@ const Login = ({
                       value={credentials.password} onChange={handleChange}
                       className={(errors.passIsStrong || errors.passIsEmpty) && "input-error"}/>
 
-                    <label className="password-placeholder" htmlFor="password">password</label>
+                    <label className="black-text password-placeholder" htmlFor="password">password</label>
                     {errors.passIsStrong && <small>{errors.passIsStrong}</small>}
                     {errors.passIsEmpty && <small>{errors.passIsEmpty}</small>}
                   </div>
