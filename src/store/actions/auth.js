@@ -13,7 +13,7 @@ import { beginApiCall, apiCallError } from "./apiStatus";
 import firebase from "../../services/firebase";
 
 
-var db = firebase.firestore(); 
+var db = firebase.firestore();
 
 
 // Signing up with Firebase
@@ -157,12 +157,8 @@ export const resetPassword = email => async dispatch => {
  //track user state logged in/out
  firebase.auth().onAuthStateChanged(function(user) {
    if (user) {
-     document.getElementById("log-in").style.display = "none";
-     document.getElementById("profile").style.display = "block";
-     document.getElementById("log-out").style.display = "block";
+     document.getElementById("navbar").style.display = "block";
    } else {
-     document.getElementById("log-in").style.display = "block";
-     document.getElementById("profile").style.display = "none";
-     document.getElementById("log-out").style.display = "none";
+     document.getElementById("navbar").style.display = "none";
    }
  });

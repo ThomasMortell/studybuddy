@@ -30,9 +30,7 @@ const Login = ({
         resetPassword(credentials.email);
       } else {
         // signin
-        signin(credentials.email, credentials.password, () =>
-          history.push("/")
-        );
+        signin(credentials.email, credentials.password, () => history.push("/"));
       }
     }
   }
@@ -44,6 +42,9 @@ const Login = ({
       <div className="container">
         <div className="row">
           <div className="col s6 vert-center" id="left-split">
+            <div className="row">
+              <i className="large material-icons prefix">https</i>
+            </div>
             <div className="row">
               <p>
                 {/*reset ? "Reset password" : newUser ? "Create an account" : "Sign in"*/}
@@ -116,7 +117,7 @@ const Login = ({
           </div>
 
           <div className="col s6 vert-center" id="right-split">
-            <img src={bannerLogo} className="logo vert-center" alt="studybuddy logo of an
+            <img src={bannerLogo} className="logo" alt="studybuddy logo of an
               apple on top of books cartoonized" width="auto" height="200px">
             </img>
           </div>

@@ -11,51 +11,54 @@ var db = firebase.firestore();
 
 const Main = ({ signout }) => {
   return (
-    <div id="homePage" className="page">
-		  <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-      <h5>Search For A Group</h5>
-      <div className="container">
-        <div className="row">
-          <div className="col s12">
+    <div id="homePage" className="container">
+      <div className="row">
+        <div class="col s6" id="createPage">
+  			  <form id="createGroup">
+            <i className="large material-icons prefix search-icon">group_add</i>
             <div className="row">
-              <div className="input-field col s12 vert-align">
-                <i className="material-icons prefix search-icon">search</i>
-                <input type= "text" id ="groupSearch" name="searchGroup"/>
-                <label htmlFor="groupSearch">search for a group</label>
-        			  <a className="search-btn" onClick={ ()=> searchGroups()}>Search</a>
+              <div className="col s12">
+                <div className="row">
+                  <div className="input-field col s12 vert-align">
+  				          <input type="text" id="cgroupName" name="groupName"/>
+                    <label htmlFor="cgroupName">group name</label>
+                  </div>
+                </div>
+                <div className="row">
+                  <div className="input-field col s12 vert-align">
+                    <input type="text" id="cgroupModuleCode" name="moduleCode"/>
+                    <label htmlFor="cgroupModuleCode">module code</label>
+                  </div>
+                </div>
+                <div className="row">
+                  <button onClick={ ()=> createGroup()}>Create group</button>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-      <div id="groupDisplay">
-      </div>
-		  <div id="createPage">
-			  <form id="createGroup">
-        <div className="container">
-          <h5>Create A Group</h5>
+  			  </form>
+  		  </div>
+
+        <div className="col s6">
+          {/*<script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>*/}
+          {/* Renders the search bar */}
+          <i className="large material-icons prefix search-icon">group</i>
           <div className="row">
             <div className="col s12">
               <div className="row">
                 <div className="input-field col s12 vert-align">
-				          <input type="text" id="cgroupName" name="groupName"/>
-                  <label htmlFor="cgroupName">group name</label>
+                  <i className="material-icons prefix search-icon">search</i>
+                  <input type= "text" id ="groupSearch" name="searchGroup"/>
+                  <label htmlFor="groupSearch">search for a group</label>
+                  <a className="waves-effect waves-teal btn-flat search-btn" onClick={ ()=> searchGroups()}>Search</a>
                 </div>
-              </div>
-              <div className="row">
-                <div className="input-field col s12 vert-align">
-                  <input type="text" id="cgroupModuleCode" name="moduleCode"/>
-                  <label htmlFor="cgroupModuleCode">module code</label>
-                </div>
-              </div>
-              <div className="row">
-                <input type="button" value ="Create Group" onClick={ ()=> createGroup()} />
               </div>
             </div>
           </div>
+          {/* Display any searched groups here */}
+          <div class="row" id="groupDisplay">
+          </div>
         </div>
-			  </form>
-		  </div>
+      </div>
       <button onClick={ () => profile()} hidden>Profile</button>
       <button className="btn-switch" onClick={() => signout()}>Log out</button>
     </div>
@@ -89,7 +92,8 @@ function profile(){
 // }
 
 function logOut(){
-
+  document.getElementById("navbar").style.display = "none";
+  signout();
 }
 
 function searchGroups(){

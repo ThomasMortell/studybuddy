@@ -32,6 +32,12 @@ body {
 .vert-center{
 }
 
+/* Vertically align values */
+.vert-align{
+  display:flex;
+  align-items:center;
+}
+
 .logo{
   margin-top: 15%;
 }
@@ -64,7 +70,6 @@ body {
 
 /* NavBar */
 .nav-wrapper, nav{
-  display:none;
 	background-color: #29b1cc;
 }
 
@@ -79,11 +84,11 @@ body {
 
 /*  Buttons */
 .search-btn{
-  margin-bottom:30px;
-  margin-left:90px;
+  /*margin-bottom:30px;*/
+  margin:0px 20px 0px 30px;
 }
 
-.btn-login, .btn-create, .btn-switch {
+button {
   padding: 1em 3em;
   border-radius: 0px;
   font-weight: bold;
@@ -92,7 +97,7 @@ body {
   border: 2px solid #29b1cc;
 }
 
-.btn-login:hover, .btn-create:hover, .btn-switch:hover {
+button:hover{
   background-color: #29b1cc;
   color: #fff;
 }
