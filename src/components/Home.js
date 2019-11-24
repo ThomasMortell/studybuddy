@@ -1,4 +1,3 @@
-// /*
 import React from "react";
 import { compose } from "redux";
 import { connect } from "react-redux";
@@ -21,17 +20,17 @@ const Main = ({ signout }) => {
                 <div className="row">
                   <div className="input-field col s12 vert-align">
   				          <input type="text" id="cgroupName" name="groupName"/>
-                    <label htmlFor="cgroupName">group name</label>
+                    <label htmlFor="cgroupName">Group Name</label>
                   </div>
                 </div>
                 <div className="row">
                   <div className="input-field col s12 vert-align">
                     <input type="text" id="cgroupModuleCode" name="moduleCode"/>
-                    <label htmlFor="cgroupModuleCode">module code</label>
+                    <label htmlFor="cgroupModuleCode">Module Code</label>
                   </div>
                 </div>
                 <div className="row">
-                  <button onClick={ ()=> createGroup()}>Create group</button>
+                  <button onClick={ ()=> createGroup()}>Create Group</button>
                 </div>
               </div>
             </div>
@@ -48,7 +47,7 @@ const Main = ({ signout }) => {
                 <div className="input-field col s12 vert-align">
                   <i className="material-icons prefix search-icon">search</i>
                   <input type= "text" id ="groupSearch" name="searchGroup"/>
-                  <label htmlFor="groupSearch">search for a group</label>
+                  <label htmlFor="groupSearch">Search For A Group</label>
                   <a className="waves-effect waves-teal btn-flat search-btn" onClick={ ()=> searchGroups()}>Search</a>
                 </div>
               </div>
@@ -60,7 +59,7 @@ const Main = ({ signout }) => {
         </div>
       </div>
       <button onClick={ () => profile()} hidden>Profile</button>
-      <button className="btn-switch" onClick={() => signout()}>Log out</button>
+      <button className="btn-switch" onClick={() => signout()}>Log Out</button>
     </div>
   );
 };
@@ -97,23 +96,26 @@ function logOut(){
 }
 
 function searchGroups(){
-	let GroupCollection = db.collection('groups').doc(document.getElementById("groupSearch").value);
-	GroupCollection.get()
-	  .then(doc => {
-		if (!doc.exists) {
-		  document.getElementById("groupDisplay").innerHTML = "No Results.";
-		} else {
-		  //console.log('Document data:', doc.data());
-		  //var info = doc.data();
-
-		var butstring = '<input type="button" value="Join Group" onClick={ ()=> joinGroup()}>'
-
-		  document.getElementById("groupDisplay").innerHTML = "Group Name: "+doc.id+" Module Code: "+doc.data().ModuleCode + butstring;
-		}
-	  })
-	  .catch(err => {
-		document.getElementById("groupDisplay").innerHTML = "Error getting document: "+err;
-	  });
+	if(document.getElementById("groupSearch").value == ""){
+		document.getElementById("groupDisplay").innerHTML = "Please enter a value and try again.";
+	}
+	else{
+		let GroupCollection = db.collection('groups').doc(document.getElementById("groupSearch").value);
+		GroupCollection.get()
+		  .then(doc => {
+			if (!doc.exists) {
+			  document.getElementById("groupDisplay").innerHTML = "No Results.";
+			} else {
+			    //var bane = document.createElement('button').bane.onClick = joinGroup();
+				//document.getElementById("groupDisplay").innerHTML = "Group Name: "+doc.id+" Module Code: "+doc.data().ModuleCode+" "+ bane;
+				//var evil = '>';
+				//document.getElementById("groupDisplay").innerHTML = "Group Name: "+doc.id+" Module Code: "+doc.data().ModuleCode+' <input type="button" value="Join Group" onClick={ ()=>joinGroup()}>';
+			}
+		  })
+		  .catch(err => {
+			document.getElementById("groupDisplay").innerHTML = "Error getting document: "+err;
+		  });
+	}
 }
 
 function createGroup(){
@@ -135,7 +137,8 @@ function createGroup(){
 }
 
 function joinGroup(){
-
+	alert("Hello");
+	console.log('Button');
 }
 
 export default compose(
@@ -145,5 +148,3 @@ export default compose(
   ),
   requireAuth
 )(Main);
-
-// */
