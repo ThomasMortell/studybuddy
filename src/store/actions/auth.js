@@ -13,9 +13,7 @@ import { beginApiCall, apiCallError } from "./apiStatus";
 import firebase from "../../services/firebase";
 import React, { Component }  from 'react';
 
-
 var db = firebase.firestore();
-
 
 // Signing up with Firebase
 export const signup = (email, password) => async dispatch => {

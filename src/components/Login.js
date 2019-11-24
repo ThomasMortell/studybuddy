@@ -107,9 +107,7 @@ const Login = ({
                   }
                   <div className="row">
                     <p>Don't have an account? No problem!<br />Click below to make your free account.</p>
-                    <button onClick={() => {setNewUser(!newUser); if (reset) SetReset(false);}} className="btn-create">
-                      {newUser ? "Sign in" : "Create an account"}
-                    </button>
+                    <button onClick={() => {setNewUser(!newUser); if (reset) SetReset(false);}} className="btn-create">Create an account</button>
                   </div>
                 </div>
               </div>

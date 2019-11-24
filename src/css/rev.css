@@ -38,14 +38,17 @@ body {
   align-items:center;
 }
 
+/* Pushed the logo down so that it centers on the page */
 .logo{
   margin-top: 15%;
 }
 
+/* Set the container to use the full width of the screen and then adjust if necessary */
 .container{
   width:100%;
 }
 
+/*  */
 #left-split, #right-split{
     /*margin-top: 5%;*/
 }
@@ -55,6 +58,7 @@ body {
   background-color: rgba(200, 200, 200, 0.3);
 }
 
+/* Set the horizontal ruling for the left pane of login page to 90% width */
 #left-split hr{
   width: 90%;
 }
@@ -63,16 +67,12 @@ body {
 #right-split{
 }
 
-#right-split div{
-    float: left;
-    clear: none;
-}
-
 /* NavBar */
 .nav-wrapper, nav{
 	background-color: #29b1cc;
 }
 
+/* Adjust the logo on the navbar with margining */
 .navbar-logo{
   margin-left: 20px;
   float:left;
@@ -84,16 +84,17 @@ body {
   margin:20px 40px 20px 40px;
 }
 
+/* Set the labels for any input-field class with black font */
 .input-field>label{
   color: black;
 }
 
 /*  Buttons */
 .search-btn{
-  /*margin-bottom:30px;*/
   margin:0px 20px 0px 30px;
 }
 
+/* Set all buttons with the below style */
 button {
   padding: 1em 3em;
   border-radius: 0px;
@@ -103,11 +104,13 @@ button {
   border: 2px solid #29b1cc;
 }
 
+/* Change the buttons color when the mouse hovers over it */
 button:hover{
   background-color: #29b1cc;
   color: #fff;
 }
 
+/* Set the buttons width and margining */
 .btn-login, .btn-create{
   width: 84%;
   margin: 0px 40px 0px 40px

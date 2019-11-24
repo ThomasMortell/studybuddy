@@ -6,6 +6,7 @@ import Main from "./Main";
 import Login from "./Login";
 import Message from "./Message";
 import Navbar from './layout/Navbar'
+import CreateProfile from './auth/CreateProfile'
 import "../css/rev.css"
 
 
@@ -18,8 +19,9 @@ class App extends Component{
           <div className="center">
             <Switch>
               <Route exact path="/" component={Main} />
-              <Route exact path="/login" component={Login} />
-              <Route exact path="/message" component={Message} />
+              <Route path="/login" component={Login} />
+              <Route path="/createprofile" component={CreateProfile} />
+              <Route path="/message" component={Message} />
               {/*<Route exact path="/profile" component={Profile} />*/}
             </Switch>
           </div>
