@@ -13,21 +13,20 @@ var db = firebase.firestore();
 
 
 class Message extends Component {
-    render() {
-        return (
-            <div className="page">
-                <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-                <p>Send Message</p>
-                <div id="sendField">
-                    <form id="sendField">
-                        <input type="text" id="messageField" name="messageField" placeholder="message"/>
-                        <input type="button" value="Send" onClick={() => sendMessage()}/>
-                    </form>
-
-                </div>
-            </div>
-        );
-    }
+  render() {
+    return (
+      <div className="page">
+        <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+        <p>Send Message</p>
+        <div id="sendField">
+          <form id="sendField">
+              <input type="text" id="messageField" name="messageField" placeholder="message"/>
+              <input type="button" value="Send" onClick={() => sendMessage()}/>
+          </form>
+        </div>
+      </div>
+    );
+  }
 };
 
 function sendMessage(){

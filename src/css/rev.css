@@ -47,7 +47,7 @@ body {
 }
 
 #left-split, #right-split{
-    margin-top: 5%;
+    /*margin-top: 5%;*/
 }
 
 /* For login section, apply below style left side*/
@@ -71,6 +71,12 @@ body {
 /* NavBar */
 .nav-wrapper, nav{
 	background-color: #29b1cc;
+}
+
+.navbar-logo{
+  margin-left: 20px;
+  float:left;
+  font-size: 30px;
 }
 
 /* Input */

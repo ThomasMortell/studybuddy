@@ -41,7 +41,7 @@ const Login = ({
     <div className="">
       <div className="container">
         <div className="row">
-          <div className="col s6 vert-center" id="left-split">
+          <div className="col s12 m6 vert-center" id="left-split">
             <div className="row">
               <i className="large material-icons prefix">https</i>
             </div>
@@ -116,7 +116,7 @@ const Login = ({
             </form>
           </div>
 
-          <div className="col s6 vert-center" id="right-split">
+          <div className="col s12 m6 vert-center" id="right-split">
             <img src={bannerLogo} className="logo" alt="studybuddy logo of an
               apple on top of books cartoonized" width="auto" height="200px">
             </img>
