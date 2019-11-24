@@ -29,19 +29,6 @@ export const searchGroups = () => {
 		let GroupCollection = db.collection('groups').doc(document.getElementById("groupSearch").value);
 		GroupCollection.get()
 		  .then(doc => {
-<<<<<<< HEAD
-			if (!doc.exists) {
-			  document.getElementById("groupDisplay").innerHTML = "No Results.";
-			} else {
-			    //var bane = document.createElement('button').bane.onClick = joinGroup();
-				//document.getElementById("groupDisplay").innerHTML = "Group Name: "+doc.id+" Module Code: "+doc.data().ModuleCode+" "+ bane;
-				//var evil = '>';
-				//document.getElementById("groupDisplay").innerHTML = "Group Name: "+doc.id+" Module Code: "+doc.data().ModuleCode+' <input type="button" value="Join Group" onClick={ ()=>joinGroup()}>';
-			}
-		  })
-		  .catch(err => {
-			document.getElementById("groupDisplay").innerHTML = "Error getting document: "+err;
-=======
 				if (!doc.exists) {
 			  	document.getElementById("groupDisplay").innerHTML = "No Results.";
 				} else {
@@ -57,7 +44,6 @@ export const searchGroups = () => {
 		  })
 		  .catch(err => {
 				document.getElementById("groupDisplay").innerHTML = "Error getting document: "+err;
->>>>>>> guoda
 		  });
 	}
 }
