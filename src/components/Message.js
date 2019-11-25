@@ -9,12 +9,14 @@ import moment from 'moment';
 
 
 
+
 var db = firebase.firestore();
 
 
 class Message extends Component {
     render() {
         return (
+
             <div className="page">
                 <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
                 <p>Send Message</p>
@@ -32,37 +34,29 @@ class Message extends Component {
 
 function sendMessage(){
     var user = firebase.auth().currentUser;
-    const timestamp = moment()
+    const admin = require('firebase-admin');
+    const timestamp = moment() //Timestamp
         .valueOf()
         .toString()
 
     let GroupCollection = db.collection('groups').doc('george').collection('messages');
-    GroupCollection.doc(timestamp +"_"+ user.email).set({
+    GroupCollection.doc(timestamp +"_"+ user.email).set({   //message data
         Sender: user.email,
         Timestamp: timestamp,
         Message:document.getElementById("messageField").value,
 
     })
+    const increment = firebase.firestore.FieldValue.increment(1); //keeps count of messages sent
+    GroupCollection.doc('--stats--').update({count: increment});
 
 
 }
 
-// function sendMessage(){
-//     var user = firebase.auth().currentUser;
-//     const timestamp = moment()
-//         .valueOf()
-//         .toString()
-//
-//     let GroupCollection = db.collection('groups').doc('george').collection('messages');
-//     GroupCollection.doc(timestamp +"_"+ user.email).set({
-//         Sender: user.email,
-//         Timestamp: timestamp,
-//         Message:document.getElementById("messageField").value,
-//
-//     })
-//
-//
-// }
+function getMessage(){
+     var user = firebase.auth().currentUser;
+     let GroupCollection = db.collection('groups').doc('george').collection('messages');
+
+}
 
 
 

@@ -5,6 +5,7 @@ import NavBar from "./NavBar";
 import Main from "./Main";
 import Login from "./Login";
 import Message from "./Message";
+import messageDisplay from "./diplayMessages";
 import "../css/rev.css"
 
 const App = () => {
@@ -16,6 +17,7 @@ const App = () => {
         <Route exact path="/" component={Main} />
         <Route exact path="/login" component={Login} />
           <Route exact path="/message" component={Message} />
+            <Route exact path="/test" component={messageDisplay}/>
       </Switch>
  </div>
     </div>
