@@ -5,19 +5,23 @@ import NavBar from "./NavBar";
 import Main from "./Main";
 import Login from "./Login";
 import Bunny from "./Bunny";
+import AppProfile from "./Profile/App";
 
 const App = () => {
   return (
     <div className="App">
               <NavBar/>
-                  <div className="login-page">
+
       <Switch>
-        <Route exact path="/" component={Main} />
+
+        <Route exact path="/profile" component={AppProfile} />
+        <div className="login-page">
         <Route exact path="/login" component={Login} />
+        <Route exact path="/" component={Main} />
         <Route exact path="/bunny" component={Bunny} />
+        </div>
       </Switch>
  </div>
-    </div>
   );
 };
 
