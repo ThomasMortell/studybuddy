@@ -1,4 +1,5 @@
 import React from "react";
+import ReactDOM from 'react-dom';
 import { compose } from "redux";
 import { connect } from "react-redux";
 import { signout } from "../store/actions/auth";
@@ -7,6 +8,7 @@ import firebase from "../services/firebase.js";
 
 
 var db = firebase.firestore();
+var cheat;
 
 const Main = ({ signout }) => {
   return (
@@ -55,6 +57,9 @@ const Main = ({ signout }) => {
           </div>
           {/* Display any searched groups here */}
           <div class="row" id="groupDisplay">
+			<p id="groupDisplayError"></p>
+			<table id="groupDisplayTable">
+			</table>
           </div>
         </div>
       </div>
@@ -76,19 +81,9 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-// function buildGroup(){
-// 	document.getElementById("homePage").style.display = "none";
-// 	document.getElementById("createPage").style.display = "block";
-// }
-
 function profile(){
 
 }
-
-// function back(){
-// 	document.getElementById("homePage").style.display = "block";
-// 	document.getElementById("createPage").style.display = "none";
-// }
 
 function logOut(){
   document.getElementById("navbar").style.display = "none";
@@ -97,24 +92,33 @@ function logOut(){
 
 function searchGroups(){
 	if(document.getElementById("groupSearch").value == ""){
-		document.getElementById("groupDisplay").innerHTML = "Please enter a value and try again.";
+		document.getElementById("groupDisplayError").innerHTML = "Please enter a value and try again.";
 	}
 	else{
 		let GroupCollection = db.collection('groups').doc(document.getElementById("groupSearch").value);
 		GroupCollection.get()
 		  .then(doc => {
 			if (!doc.exists) {
-			  document.getElementById("groupDisplay").innerHTML = "No Results.";
+			  document.getElementById("groupDisplayError").innerHTML = "No Results.";
 			} else {
-			    //var bane = document.createElement('button').bane.onClick = joinGroup();
-				//document.getElementById("groupDisplay").innerHTML = "Group Name: "+doc.id+" Module Code: "+doc.data().ModuleCode+" "+ bane;
-				//var evil = '>';
-				//document.getElementById("groupDisplay").innerHTML = "Group Name: "+doc.id+" Module Code: "+doc.data().ModuleCode+' <input type="button" value="Join Group" onClick={ ()=>joinGroup()}>';
+				document.getElementById("groupDisplayError").innerHTML = "";
+				document.getElementById("groupDisplayTable").innerHTML = '<tr id="groupDisplayTableHeader"><th>Group Name</th><th>Module Code</th><th>Join Or Open Group</th></tr>';
+				cheat = doc.id;
+				document.getElementById("groupDisplayTable").innerHTML += "<tr><td>"+doc.id+"</td><td>"+doc.data().ModuleCode+"</td><td id='groupDisplayTableButton'></td></tr>";
+				ReactDOM.render(<Button />, document.getElementById('groupDisplayTableButton'));
 			}
 		  })
 		  .catch(err => {
-			document.getElementById("groupDisplay").innerHTML = "Error getting document: "+err;
+			document.getElementById("groupDisplayError").innerHTML = "Error getting document: "+err;
 		  });
+		
+		/*
+		db.collection("groups").get().then(function(querySnapshot) {      	
+			for(int i=0; i<querySnapshot.size; i++){
+				let GroupCollection2 = db.collection('groups').doc[0]//(document.getElementById("groupSearch").value);	
+			}
+		});
+		*/
 	}
 }
 
@@ -136,9 +140,14 @@ function createGroup(){
 	})
 }
 
-function joinGroup(){
-	alert("Hello");
-	console.log('Button');
+class Button extends React.Component{
+	joinGroup(cheat){
+		alert(cheat);
+	}
+	
+	render(){
+		return(<button onClick={this.joinGroup.bind(this, cheat)}>Join Group</button>);
+	}
 }
 
 export default compose(
