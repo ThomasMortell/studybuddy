@@ -1,9 +1,19 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import {BrowserRouter as Router,Route, Redirect,Switch} from 'react-router-dom';
 import firebase from '../../services/firebase.js'
 
+
+
 export default class Form extends React.Component {
+
   constructor (props) {
+    firebase.auth().onAuthStateChanged(function(user) {
+    if(!user){
+       alert("To view this page you must sign in, Redirecting to login...")
+       window.location = '/';
+    }
+  });
     super(props)
     this.state = {
       firstName: this.props.values.firstName || 'Your name',
@@ -32,7 +42,6 @@ export default class Form extends React.Component {
       bio: this.state.bio
     })
   }
-
   render () {
     return (
       <form onSubmit={this.handleSubmit}>
@@ -59,7 +68,6 @@ export default class Form extends React.Component {
     )
   }
 }
-
 Form.propTypes = {
   values: PropTypes.shape({
     firstName: PropTypes.string,
