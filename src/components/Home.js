@@ -58,7 +58,7 @@ const Main = ({ signout }) => {
           </div>
         </div>
       </div>
-      <button onClick={ () => profile()} hidden>Profile</button>
+      {/*<button onClick={ () => profile()} hidden>Profile</button>*/}
       <button className="btn-switch" onClick={() => signout()}>Log Out</button>
     </div>
   );
@@ -81,9 +81,7 @@ function mapDispatchToProps(dispatch) {
 // 	document.getElementById("createPage").style.display = "block";
 // }
 
-function profile(){
 
-}
 
 // function back(){
 // 	document.getElementById("homePage").style.display = "block";
