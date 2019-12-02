@@ -2,9 +2,11 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {BrowserRouter as Router,Route, Redirect,Switch} from 'react-router-dom';
 import firebase from '../../services/firebase.js'
+import email from '../../store/actions/auth'
 
+var user = firebase.auth().currentUser;
 
-
+const db = firebase.firestore();
 export default class Form extends React.Component {
 
   constructor (props) {
@@ -13,34 +15,34 @@ export default class Form extends React.Component {
        alert("To view this page you must sign in, Redirecting to login...")
        window.location = '/';
     }
+    if(user){
+      console.log(user.email);
+    }
   });
     super(props)
     this.state = {
-      firstName: this.props.values.firstName || 'Your name',
-      jobTitle: this.props.values.jobTitle || 'Your title',
-      birthday: this.props.values.birthday || 'mm/dd/yyyy',
-      bio: this.props.values.bio || 'A few words about yourself'
+      firstName: '',
+      jobTitle: '',
+      birthday: '',
+      bio: ''
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange (event) {
-    event.preventDefault()
-    this.setState({
+        this.setState({
       [event.target.name]: event.target.value
     })
   }
 
-  handleSubmit (event) {
+  handleSubmit (event, email) {
+    var email = user.ref(email);
     event.preventDefault()
-    firebase
-    .firestore()
-    .collection(`users/${this.state.uid}`)
-    .set({
-      firstName: this.state.firstName,
-      bio: this.state.bio
-    })
+    const {firstName, jobTitle, birthday} = this.state;
+    db.collection('users').doc(email).set({
+      Name: firstName
+    }, {merge : true});
   }
   render () {
     return (
