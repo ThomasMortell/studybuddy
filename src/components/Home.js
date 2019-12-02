@@ -6,9 +6,7 @@ import { signout } from "../store/actions/auth";
 import requireAuth from "./hoc/requireAuth";
 import firebase from "../services/firebase.js";
 
-
 var db = firebase.firestore();
-var cheat;
 
 const Main = ({ signout }) => {
   return (
@@ -32,8 +30,9 @@ const Main = ({ signout }) => {
                   </div>
                 </div>
                 <div className="row">
-                  <button onClick={ ()=> createGroup()}>Create Group</button>
+                  <input type="button" value="Create Group" onClick={ ()=> createGroup()}/>
                 </div>
+				<p id="groupCreateError"></p>
               </div>
             </div>
   			  </form>
@@ -91,62 +90,111 @@ function logOut(){
 }
 
 function searchGroups(){
-	if(document.getElementById("groupSearch").value == ""){
+	if(document.getElementById("groupSearch").value === ""){
 		document.getElementById("groupDisplayError").innerHTML = "Please enter a value and try again.";
 	}
 	else{
+		var found = false;
+		var count = 0;
+		
 		let GroupCollection = db.collection('groups').doc(document.getElementById("groupSearch").value);
 		GroupCollection.get()
 		  .then(doc => {
-			if (!doc.exists) {
-			  document.getElementById("groupDisplayError").innerHTML = "No Results.";
-			} else {
+			if (doc.exists) {
+				found = true;
 				document.getElementById("groupDisplayError").innerHTML = "";
-				document.getElementById("groupDisplayTable").innerHTML = '<tr id="groupDisplayTableHeader"><th>Group Name</th><th>Module Code</th><th>Join Or Open Group</th></tr>';
-				cheat = doc.id;
-				document.getElementById("groupDisplayTable").innerHTML += "<tr><td>"+doc.id+"</td><td>"+doc.data().ModuleCode+"</td><td id='groupDisplayTableButton'></td></tr>";
-				ReactDOM.render(<Button />, document.getElementById('groupDisplayTableButton'));
-			}
+				document.getElementById("groupDisplayTable").innerHTML = '<tr id="groupDisplayTableHeader"><th>Group Name</th><th>Module Code</th><th>Join Or View Group</th></tr>';
+				document.getElementById("groupDisplayTable").innerHTML += "<tr><td>"+doc.id+"</td><td>"+doc.data().ModuleCode+"</td><td class='groupDisplayTableButton'></td></tr>";
+				ReactDOM.render(<Button />, document.getElementsByClassName('groupDisplayTableButton')[count]);
+				count++;
+			} 
 		  })
 		  .catch(err => {
 			document.getElementById("groupDisplayError").innerHTML = "Error getting document: "+err;
 		  });
-		
-		/*
-		db.collection("groups").get().then(function(querySnapshot) {      	
-			for(int i=0; i<querySnapshot.size; i++){
-				let GroupCollection2 = db.collection('groups').doc[0]//(document.getElementById("groupSearch").value);	
-			}
-		});
-		*/
+		  
+		  let GroupCollection2 = db.collection('groups');
+			GroupCollection2.get()
+				.then(snapshot => {
+					snapshot.forEach(doc => {
+						if(doc.get('ModuleCode') === document.getElementById("groupSearch").value)
+						{
+							document.getElementById("groupDisplayError").innerHTML = "";
+							if(found === false){
+								document.getElementById("groupDisplayTable").innerHTML = '<tr id="groupDisplayTableHeader"><th>Group Name</th><th>Module Code</th><th>Join Or View Group</th></tr>';
+							}
+							found = true;
+							document.getElementById("groupDisplayTable").innerHTML += "<tr><td>"+doc.id+"</td><td>"+doc.data().ModuleCode+"</td><td class='groupDisplayTableButton'></td></tr>";
+							ReactDOM.render(<Button />, document.getElementsByClassName('groupDisplayTableButton')[count]);
+							count++;
+						}
+					});
+					if(found === false){
+						document.getElementById("groupDisplayError").innerHTML = "No Results.";
+					}
+				})
+				.catch(err => {
+					console.log('Error getting documents', err);
+				});
+
 	}
 }
 
 function createGroup(){
-		const GroupCollection = db.collection('groups');
-		GroupCollection.doc(document.getElementById("cgroupName").value).set({
-		ModuleCode:document.getElementById("cgroupModuleCode").value,
-		Timetable: "",
-		User0: "",
-		User1: "",
-		User2: "",
-		User3: "",
-		User4: "",
-		User5: "",
-		User6: "",
-		User7: "",
-		User8: "",
-		User9: "",
-	})
+		let GroupCollection = db.collection('groups').doc(document.getElementById("cgroupName").value);
+		GroupCollection.get()
+		  .then(doc => {
+			if (!doc.exists) {
+				document.getElementById("groupCreateError").innerHTML = "Group created sucessfully.";
+				
+				const GroupCollection2 = db.collection('groups');
+				GroupCollection2.doc(document.getElementById("cgroupName").value).set({
+				ModuleCode:document.getElementById("cgroupModuleCode").value,
+				Timetable: "",
+				User0: firebase.auth().currentUser.email,
+				User1: "",
+				User2: "",
+				User3: "",
+				User4: "",
+				User5: "",
+				User6: "",
+				User7: "",
+				User8: "",
+				User9: "",
+				})
+			} else {
+				document.getElementById("groupCreateError").innerHTML = "Group Name Already Exists.";
+			}
+		  })
+		  .catch(err => {
+			document.getElementById("groupCreateError").innerHTML = "Error getting document: "+err;
+		  });
 }
 
 class Button extends React.Component{
-	joinGroup(cheat){
-		alert(cheat);
+	/*
+	constructor(){
+		super();
+		this.state = {
+			Button: "Hello"
+		}
+	}
+	
+	setButtstring(){
+		this.setState({
+			//Button: title
+		})
+	}
+	*/
+	
+	joinGroup()
+	{
+		alert("Hello");
 	}
 	
 	render(){
-		return(<button onClick={this.joinGroup.bind(this, cheat)}>Join Group</button>);
+		//return(<button onClick={this.joinGroup.bind(this, this.setButtstring)}>Join Group</button>);
+		return(<button onClick={this.joinGroup.bind(this, "Hello")}>Join Group</button>);
 	}
 }
 
