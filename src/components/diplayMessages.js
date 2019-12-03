@@ -19,27 +19,50 @@ const style = {
 var user = firebase.auth().currentUser;
 let GroupCollection = db.collection('groups').doc('george').collection('messages');
 var messageCount = GroupCollection.doc('--stats--').valueOf('count');
-let messageArray = ["hr","dfsdf"];
-GroupCollection.get()
-    .then(snapshot => {
-        snapshot.forEach(doc => {
-            messageArray.push(doc.id);
-        });
-    })
-    .catch(err => {
-        console.log('Error getting documents', err);
-    });
+let messageArray = [];
+let count = 0;
+let mData = "";
+
+
 
 
 class messageDisplay extends React.Component {
 
     state = {
-        items: [1,2,3,4,5,6,7,8,9,10],
+        items: messageArray,
         hasMore: true,
-        messagesLeft: messageCount,
+
 
 
     };
+    componentDidMount() {
+        GroupCollection.get()
+            .then(snapshot => {
+                snapshot.forEach(doc => {
+
+                    messageArray.push(doc.id);
+
+                    console.log("Run Firsta");
+                    console.log(doc.get('Sender'));
+                    let check = doc.get('Sender');
+                    if(check==="georgemarshall@live.ie"){
+                        console.log("gotcha");
+                    }
+                    this.setState({items: messageArray});
+
+
+
+
+
+
+                });
+
+
+            })
+            .catch(err => {
+                console.log('Error getting documents', err);
+            });
+    }
 
     fetchMoreData = () => {
         if (this.state.items.length >= 500) {
@@ -48,7 +71,6 @@ class messageDisplay extends React.Component {
         }
         // a fake async api call like which sends
         // 20 more records in .5 secs
-        let x = this.messageData;
         ////////////////////////////////////////////////////////////////////////////////////////////////////////
         var user = firebase.auth().currentUser;
         const admin = require('firebase-admin');
@@ -74,11 +96,11 @@ class messageDisplay extends React.Component {
                 <h1>demo: react-infinite-scroll-component</h1>
                 <form id="sa">
 
-                    <input type="button" value="Send" onClick={() => getMessage()}/>
+                    {/*<input type="button" value="Send" onClick={() => getMessage()}/>*/}
                 </form>
                 <hr/>
                 <InfiniteScroll
-                    dataLength={20}
+                    dataLength={this.state.items.length}
                     next={this.fetchMoreData}
                     hasMore={this.state.hasMore}
                     loader={<h4>Loading...</h4>}
@@ -92,15 +114,23 @@ class messageDisplay extends React.Component {
 
 
                     {/*{messageArray.forEach((item) => {*/}
-                    {/*    console.log(item)*/}
-                    {/*})}*/}
-                    {messageArray.map((i, index) => (
-                        <div style={style} key={index}>
-                            div - #{index}
+                    {/*{console.log(messageArray)}*/}
+                    {/*{console.log(messageArray.length)}*/}
+                    {console.log(this.state.items)}
+
+                    {this.state.items.map((i, index) => (
+
+
+                        <div style={style}>
+                            {/*{console.log(GroupCollection.doc('1573746212542_georgemarshall@live.ie').get())}*/}
+
+                                {mData = this.state.items[index]}
+                                div - #{mData}
+                            {GroupCollection.doc(mData).get()}
                         </div>
                     ))},
-                    {console.log(messageArray.length)},
-                    {console.log(messageArray)}
+
+
 
                 </InfiniteScroll>
             </div>
@@ -120,25 +150,6 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-function getMessage() {
-    var user = firebase.auth().currentUser;
-    const admin = require('firebase-admin');
-    let GroupCollection = db.collection('groups').doc('george').collection('messages');
-
-    let getDoc = GroupCollection.doc('--stats--').get()
-        .then(doc => {
-            if (!doc.exists) {
-                console.log('No such document!');
-            } else {
-                console.log('Document data:', doc.data());
-            }
-        })
-        .catch(err => {
-            console.log('Error getting document', err);
-        });
-
-
-}
 
 
 
