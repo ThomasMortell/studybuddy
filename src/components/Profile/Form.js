@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import {BrowserRouter as Router,Route, Redirect,Switch} from 'react-router-dom';
 import firebase from '../../services/firebase.js'
-import email from '../../store/actions/auth'
+
 
 var user = firebase.auth().currentUser;
 
@@ -14,9 +14,6 @@ export default class Form extends React.Component {
     if(!user){
        alert("To view this page you must sign in, Redirecting to login...")
        window.location = '/';
-    }
-    if(user){
-      console.log(user.email);
     }
   });
     super(props)
@@ -36,13 +33,12 @@ export default class Form extends React.Component {
     })
   }
 
-  handleSubmit (event, email) {
-    var email = user.ref(email);
+  handleSubmit (event) {
     event.preventDefault()
     const {firstName, jobTitle, birthday} = this.state;
-    db.collection('users').doc(email).set({
-      Name: firstName
-    }, {merge : true});
+    db.collection('users').doc('test').set({
+      name: firstName
+    });
   }
   render () {
     return (
