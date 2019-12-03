@@ -15,6 +15,9 @@ export default class Form extends React.Component {
        alert("To view this page you must sign in, Redirecting to login...")
        window.location = '/';
     }
+    if(user){
+      console.log(user.email);
+    }
   });
     super(props)
     this.state = {
@@ -25,6 +28,7 @@ export default class Form extends React.Component {
     }
     this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
+  
   }
 
   handleChange (event) {
@@ -36,9 +40,15 @@ export default class Form extends React.Component {
   handleSubmit (event) {
     event.preventDefault()
     const {firstName, jobTitle, birthday} = this.state;
-    db.collection('users').doc('test').set({
-      name: firstName
-    });
+    firebase.auth().onAuthStateChanged(function(user){
+      var email = user.email;
+      var { uid } = user;
+      db.collection('users').doc(email).set({
+        name: firstName,
+        UserID: uid,
+      });
+    })
+
   }
   render () {
     return (
