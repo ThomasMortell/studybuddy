@@ -1,16 +1,20 @@
 import React from "react";
 import ReactDOM from 'react-dom';
 import { compose } from "redux";
+import "../css/Home.css";
 import { connect } from "react-redux";
 import { signout } from "../store/actions/auth";
 import requireAuth from "./hoc/requireAuth";
 import firebase from "../services/firebase.js";
 
+import Calendar from "./Planner.js"
+//<Calendar />
 var db = firebase.firestore();
 
 const Main = ({ signout }) => {
   return (
     <div id="homePage" className="container">
+	
       <div className="row">
         <div class="col s6" id="createPage">
   			  <form id="createGroup">
@@ -64,6 +68,7 @@ const Main = ({ signout }) => {
       </div>
       <button onClick={ () => profile()} hidden>Profile</button>
       <button className="btn-switch" onClick={() => signout()}>Log Out</button>
+	  <p id="Haha">Let's Go Website!</p>
     </div>
   );
 };
@@ -96,7 +101,6 @@ function searchGroups(){
 	else{
 		var found = false;
 		var count = 0;
-		
 		let GroupCollection = db.collection('groups').doc(document.getElementById("groupSearch").value);
 		GroupCollection.get()
 		  .then(doc => {
@@ -105,7 +109,15 @@ function searchGroups(){
 				document.getElementById("groupDisplayError").innerHTML = "";
 				document.getElementById("groupDisplayTable").innerHTML = '<tr id="groupDisplayTableHeader"><th>Group Name</th><th>Module Code</th><th>Join Or View Group</th></tr>';
 				document.getElementById("groupDisplayTable").innerHTML += "<tr><td>"+doc.id+"</td><td>"+doc.data().ModuleCode+"</td><td class='groupDisplayTableButton'></td></tr>";
-				ReactDOM.render(<Button />, document.getElementsByClassName('groupDisplayTableButton')[count]);
+				if(firebase.auth().currentUser.email===(doc.data().User0||doc.data().User1||doc.data().User2||doc.data().User3||doc.data().User4||doc.data().User5||doc.data().User6||doc.data().User7||doc.data().User8||doc.data().User9)){
+					ReactDOM.render(<ButtonB command={doc.id} />, document.getElementsByClassName('groupDisplayTableButton')[count]);
+				}
+				else if((""===doc.data().User0)||(""===doc.data().User1)||(""===doc.data().User2)||(""===doc.data().User3)||(""===doc.data().User4)||(""===doc.data().User5)||(""===doc.data().User6)||(""===doc.data().User7)||(""===doc.data().User8)||(""===doc.data().User9)){
+					ReactDOM.render(<ButtonA command={doc.id} />, document.getElementsByClassName('groupDisplayTableButton')[count]);
+				}
+				else{
+					document.getElementsByClassName('groupDisplayTableButton')[count].innerHTML = "Group Full";
+				}
 				count++;
 			} 
 		  })
@@ -125,7 +137,17 @@ function searchGroups(){
 							}
 							found = true;
 							document.getElementById("groupDisplayTable").innerHTML += "<tr><td>"+doc.id+"</td><td>"+doc.data().ModuleCode+"</td><td class='groupDisplayTableButton'></td></tr>";
-							ReactDOM.render(<Button />, document.getElementsByClassName('groupDisplayTableButton')[count]);
+							if(firebase.auth().currentUser.email===(doc.data().User0||doc.data().User1||doc.data().User2||doc.data().User3||doc.data().User4||doc.data().User5||doc.data().User6||doc.data().User7||doc.data().User8||doc.data().User9)){
+								ReactDOM.render(<ButtonB command={doc.id} />, document.getElementsByClassName('groupDisplayTableButton')[count]);
+							}
+							else if((""===doc.data().User0)||(""===doc.data().User1)||(""===doc.data().User2)||(""===doc.data().User3)||(""===doc.data().User4)||(""===doc.data().User5)||(""===doc.data().User6)||(""===doc.data().User7)||(""===doc.data().User8)||(""===doc.data().User9)){
+								
+								ReactDOM.render(<ButtonA command={doc.id} />, document.getElementsByClassName('groupDisplayTableButton')[count]);
+							}
+						
+							else{
+								document.getElementsByClassName('groupDisplayTableButton')[count].innerHTML = "Group Full";
+							}
 							count++;
 						}
 					});
@@ -151,7 +173,7 @@ function createGroup(){
 				GroupCollection2.doc(document.getElementById("cgroupName").value).set({
 				ModuleCode:document.getElementById("cgroupModuleCode").value,
 				Timetable: "",
-				User0: firebase.auth().currentUser.email,
+				User0: "",//firebase.auth().currentUser.email,
 				User1: "",
 				User2: "",
 				User3: "",
@@ -171,32 +193,103 @@ function createGroup(){
 		  });
 }
 
+const ButtonA = ({ command }) => {
+  const joinGroup = command => {
+	alert(command);
+	
+	let GroupCollection3 = db.collection('groups').doc(command);
+			GroupCollection3.get()
+				.then(doc => {
+					if(doc.data().User0===""){
+						GroupCollection3.update({
+							User0: firebase.auth().currentUser.email,
+						})
+					}
+					else if(doc.data().User1===""){
+						GroupCollection3.update({
+							User1: firebase.auth().currentUser.email,
+						})
+					}
+					else if(doc.data().User2===""){
+						GroupCollection3.update({
+							User2: firebase.auth().currentUser.email,
+						})
+					}
+					else if(doc.data().User3===""){
+						GroupCollection3.update({
+							User3: firebase.auth().currentUser.email,
+						})
+					}
+					else if(doc.data().User4===""){
+						GroupCollection3.update({
+							User4: firebase.auth().currentUser.email,
+						})
+					}
+					else if(doc.data().User5===""){
+						GroupCollection3.update({
+							User5: firebase.auth().currentUser.email,
+						})
+					}
+					else if(doc.data().User6===""){
+						GroupCollection3.update({
+							User6: firebase.auth().currentUser.email,
+						})
+					}
+					else if(doc.data().User7===""){
+						GroupCollection3.update({
+							User7: firebase.auth().currentUser.email,
+						})
+					}
+					else if(doc.data().User8===""){
+						GroupCollection3.update({
+							User8: firebase.auth().currentUser.email,
+						})
+					}
+					else if(doc.data().User9===""){
+						GroupCollection3.update({
+							User9: firebase.auth().currentUser.email,
+						})
+					}					
+				})
+				.catch(err => {
+					console.log('Error getting documents', err);
+				});
+	
+	  
+  }
+  return (
+    <button type="button" key={command} onClick={() => joinGroup(command)}>
+      Join Group
+    </button>
+  );
+};
+
+const ButtonB = ({ command }) => {
+  const viewGroup = command => {
+	alert(command);
+  }
+
+  return (
+    <button type="button" key={command} onClick={() => viewGroup(command)}>
+      View Group
+    </button>
+  );
+};
+
+/*
 class Button extends React.Component{
-	/*
-	constructor(){
-		super();
-		this.state = {
-			Button: "Hello"
-		}
-	}
-	
-	setButtstring(){
-		this.setState({
-			//Button: title
-		})
-	}
-	*/
-	
-	joinGroup()
-	{
-		alert("Hello");
+
+	joinGroup(command){
+		alert(command);
 	}
 	
 	render(){
-		//return(<button onClick={this.joinGroup.bind(this, this.setButtstring)}>Join Group</button>);
-		return(<button onClick={this.joinGroup.bind(this, "Hello")}>Join Group</button>);
+		return(<button onClick={this.joinGroup.bind(this, this.props.command ) }>Join Group</button>);
 	}
+	
+	
 }
+*/
 
 export default compose(
   connect(

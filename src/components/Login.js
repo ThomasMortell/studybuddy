@@ -123,6 +123,7 @@ const Login = ({
           </div>
         </div>
       </div>
+	  <p>Website Made By Team Dynamo</p>
     </div>
   );
 };
