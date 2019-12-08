@@ -153,12 +153,3 @@ export const resetPassword = email => async dispatch => {
     dispatch({ type: RESET_ERROR, payload: err });
   }
  };
-
- //track user state logged in/out
- firebase.auth().onAuthStateChanged(function(user) {
-   if (user) {
-     document.getElementById("navbar").style.display = "block";
-   } else {
-     document.getElementById("navbar").style.display = "none";
-   }
- });

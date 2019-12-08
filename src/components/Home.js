@@ -7,16 +7,16 @@ import { signout } from "../store/actions/auth";
 import requireAuth from "./hoc/requireAuth";
 import firebase from "../services/firebase.js";
 
-import Calendar from "./Planner.js"
+//import Calendar from "./Planner.js"
 //<Calendar />
 var db = firebase.firestore();
 
 const Main = ({ signout }) => {
   return (
     <div id="homePage" className="container">
-	
+
       <div className="row">
-        <div class="col s6" id="createPage">
+        <div className="col s6" id="createPage">
   			  <form id="createGroup">
             <i className="large material-icons prefix search-icon">group_add</i>
             <div className="row">
@@ -59,7 +59,7 @@ const Main = ({ signout }) => {
             </div>
           </div>
           {/* Display any searched groups here */}
-          <div class="row" id="groupDisplay">
+          <div className="row" id="groupDisplay">
 			<p id="groupDisplayError"></p>
 			<table id="groupDisplayTable">
 			</table>
@@ -67,7 +67,7 @@ const Main = ({ signout }) => {
         </div>
       </div>
       <button onClick={ () => profile()} hidden>Profile</button>
-      <button className="btn-switch" onClick={() => signout()}>Log Out</button>
+      {/*<button className="btn-switch" onClick={() => signout()}>Log Out</button>*/}
 	  <p id="Haha">Let's Go Website!</p>
     </div>
   );
@@ -119,12 +119,12 @@ function searchGroups(){
 					document.getElementsByClassName('groupDisplayTableButton')[count].innerHTML = "Group Full";
 				}
 				count++;
-			} 
+			}
 		  })
 		  .catch(err => {
 			document.getElementById("groupDisplayError").innerHTML = "Error getting document: "+err;
 		  });
-		  
+
 		  let GroupCollection2 = db.collection('groups');
 			GroupCollection2.get()
 				.then(snapshot => {
@@ -141,10 +141,10 @@ function searchGroups(){
 								ReactDOM.render(<ButtonB command={doc.id} />, document.getElementsByClassName('groupDisplayTableButton')[count]);
 							}
 							else if((""===doc.data().User0)||(""===doc.data().User1)||(""===doc.data().User2)||(""===doc.data().User3)||(""===doc.data().User4)||(""===doc.data().User5)||(""===doc.data().User6)||(""===doc.data().User7)||(""===doc.data().User8)||(""===doc.data().User9)){
-								
+
 								ReactDOM.render(<ButtonA command={doc.id} />, document.getElementsByClassName('groupDisplayTableButton')[count]);
 							}
-						
+
 							else{
 								document.getElementsByClassName('groupDisplayTableButton')[count].innerHTML = "Group Full";
 							}
@@ -168,7 +168,7 @@ function createGroup(){
 		  .then(doc => {
 			if (!doc.exists) {
 				document.getElementById("groupCreateError").innerHTML = "Group created sucessfully.";
-				
+
 				const GroupCollection2 = db.collection('groups');
 				GroupCollection2.doc(document.getElementById("cgroupName").value).set({
 				ModuleCode:document.getElementById("cgroupModuleCode").value,
@@ -196,7 +196,7 @@ function createGroup(){
 const ButtonA = ({ command }) => {
   const joinGroup = command => {
 	alert(command);
-	
+
 	let GroupCollection3 = db.collection('groups').doc(command);
 			GroupCollection3.get()
 				.then(doc => {
@@ -249,13 +249,13 @@ const ButtonA = ({ command }) => {
 						GroupCollection3.update({
 							User9: firebase.auth().currentUser.email,
 						})
-					}					
+					}
 				})
 				.catch(err => {
 					console.log('Error getting documents', err);
 				});
-	
-	  
+
+
   }
   return (
     <button type="button" key={command} onClick={() => joinGroup(command)}>
@@ -282,12 +282,12 @@ class Button extends React.Component{
 	joinGroup(command){
 		alert(command);
 	}
-	
+
 	render(){
 		return(<button onClick={this.joinGroup.bind(this, this.props.command ) }>Join Group</button>);
 	}
-	
-	
+
+
 }
 */
 
