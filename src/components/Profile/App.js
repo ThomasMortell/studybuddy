@@ -11,8 +11,8 @@ export default class AppProfile extends React.Component {
       photo: require('./scss/jane-doe.jpg'),
       profileFields: {
         firstName: '',
-        jobTitle: '',
-        birthday: null,
+        studentNumber: '',
+        degreeTitle: null,
         bio: null
       }
     }
