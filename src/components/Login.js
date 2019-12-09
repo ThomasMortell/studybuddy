@@ -30,7 +30,7 @@ const Login = ({
         resetPassword(credentials.email);
       } else {
         // signin
-        signin(credentials.email, credentials.password, () => history.push("/"));
+        signin(credentials.email, credentials.password, () => history.push("/groups"));
       }
     }
   }
@@ -46,10 +46,8 @@ const Login = ({
               <i className="large material-icons prefix">https</i>
             </div>
             <div className="row">
-              <p>
-                {/*reset ? "Reset password" : newUser ? "Create an account" : "Sign in"*/}
-                {authMsg && <p className="auth-message">{authMsg}</p>}
-              </p>
+              {/*reset ? "Reset password" : newUser ? "Create an account" : "Sign in"*/}
+              {authMsg ? <p className="auth-message">{authMsg}</p> : null}
             </div>
 
             <form onSubmit={handleSubmit} noValidate>

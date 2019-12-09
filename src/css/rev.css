@@ -38,6 +38,11 @@ body {
   align-items:center;
 }
 
+/* Hide an element */
+.hide {
+  display:none;
+}
+
 .logo{
   margin-top: 15%;
 }
@@ -69,8 +74,21 @@ body {
 }
 
 /* NavBar */
-.nav-wrapper, nav{
+.navbar, nav{
 	background-color: #29b1cc;
+}
+
+/* Groups page */
+#createGroupPage{
+  display: none;
+}
+
+.groups-btn{
+  width:50%;
+}
+
+.groups{
+  margin-top: 50px;
 }
 
 /* Input */
