@@ -42,6 +42,15 @@ export default class Form extends React.Component
                         //TODO: Make better error handling - check if data is undefined or null.
                         let studentName = doc.data().name;
                         this.changeState(studentName);
+
+                        let studentno = doc.data().stuNo;
+                        this.changeState1(studentno);
+
+                        let degreename = doc.data().title;
+                        this.changeState2(degreename);
+
+                        let biography = doc.data().bio;
+                        this.changeState3(biography);
                     }
                 });
             }
@@ -50,13 +59,28 @@ export default class Form extends React.Component
 
     changeState(name, stuNo, title, bio)
     {
-        this.setState({firstName: name , studentNumber: stuNo, degreeTitle: title, bio: bio,});
+        this.setState({firstName: name, studentNumber: stuNo, degreeTitle: title, bio: bio});
+    };
+    changeState1(stuNo, title, bio)
+    {
+        this.setState({studentNumber: stuNo, degreeTitle: title, bio: bio});
+    };
+    changeState2(title, bio)
+    {
+        this.setState({degreeTitle: title, bio: bio});
+    };
+    changeState3(bio)
+    {
+        this.setState({bio: bio});
     };
 
     handleChange(event)
     {
         this.setState({
-            [event.target.name]: event.target.value
+            [event.target.name]: event.target.value,
+            [event.target.stuNo]: event.target.value,
+            [event.target.title]: event.target.value,
+            [event.target.bio]: event.target.value
         })
     }
 
