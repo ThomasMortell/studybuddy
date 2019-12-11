@@ -25,7 +25,7 @@ const CreateGroup = () => {
             <div className="row">
               <input type="button" value="Create Group" onClick={ ()=> createGroup()}/>
             </div>
-    <p id="groupCreateError"></p>
+    <p class="error" id="groupCreateError"></p>
           </div>
         </div>
       </form>

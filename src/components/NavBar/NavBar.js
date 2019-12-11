@@ -12,7 +12,7 @@ const Navbar = (props) => {
   const links = auth.uid ? <SignedInLinks /> : <SignedOutLinks />;
 
   return(
-    <div className="navbar">
+    <div >
   	  <nav id="nav">
   		  <div className="nav-wrapper">
    			  <a href="/" className="brand-logo" >Study Buddy</a>

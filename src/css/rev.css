@@ -115,7 +115,21 @@ button {
   border: 2px solid #29b1cc;
 }
 
-button:hover{
+.button {
+  padding: 1em 3em;
+  border-radius: 0px;
+  font-weight: bold;
+  border: none;
+  outline: none;
+  border: 2px solid #29b1cc;
+}
+
+.button button:hover{
+  background-color: #29b1cc;
+  color: #fff;
+}
+
+input[type=button]:hover{
   background-color: #29b1cc;
   color: #fff;
 }
@@ -123,4 +137,63 @@ button:hover{
 .btn-login, .btn-create{
   width: 84%;
   margin: 0px 40px 0px 40px
+}
+
+/* Messages */
+
+.message-board{
+  width:30%;
+}
+
+.message-received{
+  color: blue;
+  padding: 5px 10px 0px 10px;
+}
+
+.bubble-text{
+  padding: 0px 10px 10px 10px;
+}
+
+.bubble-received {
+	position: relative;
+  margin-top: 30px;
+	background: #00aabb;
+	border-radius: .4em;
+}
+
+.bubble-received:after {
+	content: '';
+	position: absolute;
+	bottom: 0;
+	left: 10%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-top-color: #00aabb;
+	border-bottom: 0;
+	border-left: 0;
+	margin-left: -10px;
+	margin-bottom: -20px;
+}
+
+.bubble-sent {
+	position: relative;
+  margin-top: 30px;
+	background: #ff98a7;
+	border-radius: .4em;
+}
+
+.bubble-sent:after {
+  content: '';
+	position: absolute;
+	bottom: 0;
+	right: 10%;
+	width: 0;
+	height: 0;
+	border: 20px solid transparent;
+	border-top-color: #ff98a7;
+	border-bottom: 0;
+	border-right: 0;
+	margin-left: -10px;
+	margin-bottom: -20px;
 }

@@ -12,12 +12,13 @@ var db = firebase.firestore();
 const style = {
     height: 30,
     border: "1px solid green",
-    margin: 6,
+    margin: 5,
     padding: 8
 };
 
 
 var user = firebase.auth().currentUser;
+console.log(user)
 let GroupCollection = db.collection('groups').doc('george').collection('messages');
 var messageCount = GroupCollection.doc('--stats--').valueOf('count');
 let messageArray = [];
@@ -105,33 +106,28 @@ class messageDisplay extends React.Component {
                     next={this.fetchMoreData}
                     hasMore={this.state.hasMore}
                     loader={<h4>Loading...</h4>}
-                    height={400}
-                    endMessage={
-                        <p style={{textAlign: "center"}}>
-                            <b>Yay! You have seen it all</b>
-                        </p>
-                    }
-                >
+                    height={400}>
 
-
-                    {/*{messageArray.forEach((item) => {*/}
-                    {/*{console.log(messageArray)}*/}
-                    {/*{console.log(messageArray.length)}*/}
-                    {console.log(this.state.items)}
-
-                    {this.state.items.map((i, index) => (
-
-
-                        <div style={style}>
-                            {/*{console.log(GroupCollection.doc('1573746212542_georgemarshall@live.ie').get())}*/}
-
-                                sender: {this.state.messageSender[index]}
-
-                                message: {this.state.messageContent[index]}
-
+                <div className="container message-board">
+                  {this.state.items.map((i, index) => (
+                    <div className="row">
+                    {this.props.auth.email === this.state.messageSender[index] ? (
+                      <div className="right">
+                        <div className="bubble-sent" >
+                          <p className="bubble-text">{this.state.messageContent[index]}</p>
                         </div>
-                    ))},
-
+                      </div>) : (
+                        <div className="left">
+                          <div className="bubble-received" >
+                            <p className="message-received">{this.state.messageSender[index]}</p>
+                            <p className="bubble-text">{this.state.messageContent[index]}</p>
+                          </div>
+                        </div>
+                      )
+                    }
+                    </div>
+                  ))}
+                </div>
 
 
                 </InfiniteScroll>
@@ -141,15 +137,15 @@ class messageDisplay extends React.Component {
                       <div id="sendField">
                         <form id="sendField">
                             <input type="text" id="messageField" name="messageField" placeholder="message"/>
-                            <input type="button" value="Send" onClick={() => sendMessage()}/>
+                            <input className="button" type="button" value="Send" onClick={() => sendMessage()}/>
                         </form>
-
                     </div>
                 </div>
             </div>
         );
     }
 }
+
 function sendMessage(){
     var user = firebase.auth().currentUser;
     const admin = require('firebase-admin');
@@ -166,9 +162,8 @@ function sendMessage(){
     })
     const increment = firebase.firestore.FieldValue.increment(1); //keeps count of messages sent
     GroupCollection.doc('--stats--').update({count: increment});
-
-
 }
+
 function mapStateToProps(state) {
     return {
         auth: state.firebaseReducer.auth
@@ -181,12 +176,7 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-
-
-
 render(<messageDisplay/>, document.getElementById("root"));
-
-
 
 export default compose(
     connect(
