@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import React, {Component} from 'react'
 import ReactLoading from 'react-loading'
 import {withRouter} from 'react-router-dom'
@@ -166,6 +167,23 @@ class Profile extends Component {
             </div>
         )
     }
+=======
+import React from 'react'
+import PropTypes from 'prop-types'
+import Header from './Header'
+import Form from './Form'
+
+const Profile = (props) => (
+  <div>
+    <Header photo={props.photo} />
+    <Form values={props.profileFields} />
+  </div>
+)
+
+Profile.propTypes = {
+  photo: PropTypes.string.isRequired,
+  profileFields: PropTypes.object.isRequired
+>>>>>>> ThomasRevision
 }
 
-export default withRouter(Profile)
+export default Profile

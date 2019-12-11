@@ -3,7 +3,7 @@ import './Root.css'
 import {BrowserRouter, Route, Switch} from 'react-router-dom'
 import Login from '../Login/Login'
 import Main from '../Main/Main'
-import Profile from '../Profile/Profile'
+import Profile from '../Profile/Profile.js'
 import {toast, ToastContainer} from 'react-toastify'
 
 class Root extends Component {
@@ -44,8 +44,7 @@ class Root extends Component {
                         <Route
                             exact
                             path="/profile"
-                            render={props => (
-                                <Profile showToast={this.showToast} {...props} />
+                            render={props => <Profile showToast={this.showToast} {...props} />
                             )}
                         />
                     </Switch>

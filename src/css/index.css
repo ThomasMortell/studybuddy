@@ -29,11 +29,16 @@ body {
   font-size:30px;
 }
 
+<<<<<<< HEAD
 .banner-box{
   display:flex;
   align-items:center;
   padding-top:10px;
   margin-right:20px;
+=======
+.brand-logo{
+/*margin-left:20px;*/
+>>>>>>> ThomasRevision
 }
 
 .login-page {

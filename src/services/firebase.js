@@ -12,7 +12,6 @@ import "firebase/storage";
 var admin = require('firebase-admin');
 
 
-
 // Your app's Firebase configuration
 const firebaseConfig = {
   apiKey: "AIzaSyCBUHQ1uCqVubP47CuFUNZYf-PVmMGxdj0",
@@ -39,6 +38,7 @@ admin.initializeApp({
 // Finally, export it to use it throughout your app
 export default firebase;
 export const myStorage = firebase.storage();
+export const myFirestore = firebase.firestore();
 firebase.firestore().settings({
   timestampsInSnapshots: true
 });
