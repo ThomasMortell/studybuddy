@@ -1,8 +1,6 @@
 import React from 'react'
-import Nav from './Nav'
 import Profile from './Profile'
 import './scss/main.scss'
-
 
 export default class AppProfile extends React.Component {
   constructor (props) {
@@ -21,7 +19,6 @@ export default class AppProfile extends React.Component {
   render () {
     return (
       <div>
-        <Nav title='Profile' />
         <Profile profileFields={this.state.profileFields} photo={this.state.photo} />
       </div>
     )
