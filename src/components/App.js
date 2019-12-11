@@ -17,16 +17,15 @@ const App = () => {
       <div className="center">
       <Switch>
         <Route exact path="/" component={Main} />
-<<<<<<< HEAD
         <Route exact path="/login" component={Login} />
           <Route exact path="/message" component={Message} />
             <Route exact path="/test" component={messageDisplay}/>
-=======
+
         <Route path="/login" component={Login} />
         <Route path="/message" component={Message} />
         <Route path="/groups" component={Groups} />
         {/* <Route path="/profile" component={Profile} />*/}
->>>>>>> 5962a62099935077bf5748ec1078ec60c8209619
+
       </Switch>
  </div>
     </div>

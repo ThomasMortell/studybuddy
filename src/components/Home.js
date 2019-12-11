@@ -63,14 +63,14 @@ const Main = ({ signout }) => {
           </div>
         </div>
       </div>
-<<<<<<< HEAD
+
       {/*<button onClick={ () => profile()} hidden>Profile</button>*/}
       <button className="btn-switch" onClick={() => signout()}>Log Out</button>
-=======
+
       <button onClick={ () => profile()} hidden>Profile</button>
       {/*<button className="btn-switch" onClick={() => signout()}>Log Out</button>*/}
 	  <p id="Haha">Let's Go Website!</p>
->>>>>>> 5962a62099935077bf5748ec1078ec60c8209619
+
     </div>
   );
 };
@@ -87,21 +87,16 @@ function mapDispatchToProps(dispatch) {
   };
 }
 
-<<<<<<< HEAD
-// function buildGroup(){
-// 	document.getElementById("homePage").style.display = "none";
-// 	document.getElementById("createPage").style.display = "block";
-// }
 
-=======
 function profile(){
->>>>>>> 5962a62099935077bf5748ec1078ec60c8209619
+
 
 
 // function logOut(){
 //   document.getElementById("navbar").style.display = "none";
 //   signout();
-// }
+//
+}
 
 function searchGroups(){
 	if(document.getElementById("groupSearch").value === ""){
@@ -276,7 +271,7 @@ const ButtonA = ({ command }) => {
 const ButtonB = ({ command }) => {
   const viewGroup = command => {
 	alert(command);
-  }
+  };
 
   return (
     <button type="button" key={command} onClick={() => viewGroup(command)}>
@@ -300,10 +295,11 @@ class Button extends React.Component{
 }
 */
 
+
 export default compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),
-  requireAuth
-)(Main);
+		connect(
+			mapStateToProps,
+			mapDispatchToProps
+		),
+		requireAuth
+	)(Main)
