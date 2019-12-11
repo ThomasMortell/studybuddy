@@ -6,6 +6,7 @@ import {connect} from "react-redux";
 import requireAuth from "./hoc/requireAuth";
 import {signout} from "../store/actions/auth";
 import firebase from "../services/firebase";
+import moment from 'moment';
 
 var db = firebase.firestore();
 const style = {
@@ -30,7 +31,7 @@ class messageDisplay extends React.Component {
 
     state = {
         items: messageArray,
-        hasMore: true,
+        hasMore: false,
         messageSender: [],
         messageContent: []
 
@@ -134,11 +135,40 @@ class messageDisplay extends React.Component {
 
 
                 </InfiniteScroll>
+
+                <div className="page">
+                    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+                      <div id="sendField">
+                        <form id="sendField">
+                            <input type="text" id="messageField" name="messageField" placeholder="message"/>
+                            <input type="button" value="Send" onClick={() => sendMessage()}/>
+                        </form>
+
+                    </div>
+                </div>
             </div>
         );
     }
 }
+function sendMessage(){
+    var user = firebase.auth().currentUser;
+    const admin = require('firebase-admin');
+    const timestamp = moment() //Timestamp
+        .valueOf()
+        .toString()
 
+    let GroupCollection = db.collection('groups').doc('george').collection('messages');
+    GroupCollection.doc(timestamp +"_"+ user.email).set({   //message data
+        Sender: user.email,
+        Timestamp: timestamp,
+        Message:document.getElementById("messageField").value,
+
+    })
+    const increment = firebase.firestore.FieldValue.increment(1); //keeps count of messages sent
+    GroupCollection.doc('--stats--').update({count: increment});
+
+
+}
 function mapStateToProps(state) {
     return {
         auth: state.firebaseReducer.auth
