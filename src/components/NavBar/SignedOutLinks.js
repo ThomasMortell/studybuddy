@@ -1,0 +1,12 @@
+import React from 'react'
+
+const SignedOutLinks = () => {
+  return (
+    <ul className="right">
+      {/*<li><NavLink to="/">Sign Up</NavLink></li>
+      <li><NavLink to="/">Log in</NavLink></li>*/}
+    </ul>
+  );
+}
+
+export default SignedOutLinks;

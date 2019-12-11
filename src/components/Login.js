@@ -30,7 +30,7 @@ const Login = ({
         resetPassword(credentials.email);
       } else {
         // signin
-        signin(credentials.email, credentials.password, () => history.push("/"));
+        signin(credentials.email, credentials.password, () => history.push("/groups"));
       }
     }
   }
@@ -46,10 +46,8 @@ const Login = ({
               <i className="large material-icons prefix">https</i>
             </div>
             <div className="row">
-              <p>
-                {/*reset ? "Reset password" : newUser ? "Create an account" : "Sign in"*/}
-                {authMsg && <p className="auth-message">{authMsg}</p>}
-              </p>
+              {/*reset ? "Reset password" : newUser ? "Create an account" : "Sign in"*/}
+              {authMsg ? <p className="auth-message">{authMsg}</p> : null}
             </div>
 
             <form onSubmit={handleSubmit} noValidate>
@@ -60,7 +58,7 @@ const Login = ({
                     value={credentials.email} onChange={handleChange}
                     className={(errors.emailIsEmpty || errors.emailFormatInvalid) && "input-error"}/>
 
-                  <label className="email-placeholder" htmlFor="emailInput">email</label>
+                  <label className="email-placeholder" htmlFor="emailInput">E-mail</label>
                   {errors.emailIsEmpty && <small>{errors.emailIsEmpty}</small>}
                   {errors.emailFormatInvalid && (<small>{errors.emailFormatInvalid}</small>)}
                 </div>
@@ -72,7 +70,7 @@ const Login = ({
                       value={credentials.password} onChange={handleChange}
                       className={(errors.passIsStrong || errors.passIsEmpty) && "input-error"}/>
 
-                    <label className="password-placeholder" htmlFor="password">password</label>
+                    <label className="password-placeholder" htmlFor="password">Password</label>
                     {errors.passIsStrong && <small>{errors.passIsStrong}</small>}
                     {errors.passIsEmpty && <small>{errors.passIsEmpty}</small>}
                   </div>
@@ -123,6 +121,7 @@ const Login = ({
           </div>
         </div>
       </div>
+	  <p>Website Made By Team Dynamo</p>
     </div>
   );
 };

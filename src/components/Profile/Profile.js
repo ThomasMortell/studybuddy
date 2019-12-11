@@ -57,7 +57,7 @@ class Profile extends Component {
     uploadAvatar = () => {
         this.setState({isLoading: true})
         if (this.newAvatar) {
-            const uploadTask = myStorage
+           const uploadTask = myStorage
                 .ref()
                 .child(this.state.id)
                 .put(this.newAvatar)
