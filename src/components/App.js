@@ -14,9 +14,8 @@ import AppProfile from "./Profile/App";
 const App = () => {
   return (
     <div className="App">
-      <NavBar/>
       <div className="center">
-              <NavBar/>
+            <NavBar/>
       <Switch>
         <Route exact path="/" component={Main} />
         <Route exact path="/profile" component={AppProfile} />
