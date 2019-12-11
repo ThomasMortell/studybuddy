@@ -7,8 +7,6 @@ import { signout } from "../store/actions/auth";
 import requireAuth from "./hoc/requireAuth";
 import firebase from "../services/firebase.js";
 
-//import Calendar from "./Planner.js"
-//<Calendar />
 var db = firebase.firestore();
 
 const Main = ({ signout }) => {
