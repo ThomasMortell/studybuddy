@@ -93,8 +93,8 @@ class messageDisplay extends React.Component {
 
     render() {
         return (
-            <div>[
-                <h1>demo: react-infinite-scroll-component</h1>
+            <div>
+                <h1>Message your group below!</h1>
                 <form id="sa">
 
                     {/*<input type="button" value="Send" onClick={() => getMessage()}/>*/}
