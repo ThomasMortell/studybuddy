@@ -31,6 +31,8 @@ class messageDisplay extends React.Component {
     state = {
         items: messageArray,
         hasMore: true,
+        messageSender: [],
+        messageContent: []
 
 
 
@@ -41,13 +43,11 @@ class messageDisplay extends React.Component {
                 snapshot.forEach(doc => {
 
                     messageArray.push(doc.id);
-
+                    this.state.messageSender.push(doc.get('Sender'));
+                    this.state.messageContent.push(doc.get('Message'));
                     console.log("Run Firsta");
                     console.log(doc.get('Sender'));
                     let check = doc.get('Sender');
-                    if(check==="georgemarshall@live.ie"){
-                        console.log("gotcha");
-                    }
                     this.setState({items: messageArray});
 
 
@@ -124,9 +124,10 @@ class messageDisplay extends React.Component {
                         <div style={style}>
                             {/*{console.log(GroupCollection.doc('1573746212542_georgemarshall@live.ie').get())}*/}
 
-                                {mData = this.state.items[index]}
-                                div - #{mData}
-                            {GroupCollection.doc(mData).get()}
+                                sender: {this.state.messageSender[index]}
+
+                                message: {this.state.messageContent[index]}
+
                         </div>
                     ))},
 
