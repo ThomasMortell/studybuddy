@@ -9,8 +9,6 @@ import messageDisplay from "./diplayMessages";
 import "../css/rev.css"
 import Groups from "./Groups/Groups"
 
-
-import Bunny from "./Bunny";
 import AppProfile from "./Profile/App";
 
 const App = () => {
