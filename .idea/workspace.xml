@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="67446926-54d2-4fc9-9d67-b23e36e9b4d8" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/components/diplayMessages.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/diplayMessages.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -61,7 +61,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/diplayMessages.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
+            <state relative-caret-position="-1460">
               <caret line="39" column="6" lean-forward="true" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
@@ -260,15 +260,15 @@
       <workItem from="1575368314290" duration="1920000" />
       <workItem from="1575548186238" duration="647000" />
       <workItem from="1575549332497" duration="618000" />
-      <workItem from="1576060957898" duration="2744000" />
+      <workItem from="1576060957898" duration="3482000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="66825000" />
+    <option name="totallyTimeSpent" value="67563000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1" y="0" width="1922" height="1053" extended-state="6" />
+    <frame x="-1" y="0" width="1922" height="1053" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49839744" visible="true" weight="0.12860192" />
@@ -507,7 +507,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/diplayMessages.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
+        <state relative-caret-position="-1460">
           <caret line="39" column="6" lean-forward="true" selection-start-line="39" selection-start-column="6" selection-end-line="39" selection-end-column="6" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
