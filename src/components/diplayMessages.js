@@ -9,16 +9,9 @@ import firebase from "../services/firebase";
 import moment from 'moment';
 
 var db = firebase.firestore();
-const style = {
-    height: 30,
-    border: "1px solid green",
-    margin: 5,
-    padding: 8
-};
 
 
 var user = firebase.auth().currentUser;
-console.log(user)
 let GroupCollection = db.collection('groups').doc('george').collection('messages');
 var messageCount = GroupCollection.doc('--stats--').valueOf('count');
 let messageArray = [];
@@ -29,119 +22,108 @@ let mData = "";
 
 
 class messageDisplay extends React.Component {
+  state = {
+    items: messageArray,
+    hasMore: false,
+    messageSender: [],
+    messageContent: []
+  };
 
-    state = {
-        items: messageArray,
-        hasMore: false,
-        messageSender: [],
-        messageContent: []
+  componentDidMount() {
+    GroupCollection.get().then(snapshot => {
+      snapshot.forEach(doc => {
+        messageArray.push(doc.id);
+        this.state.messageSender.push(doc.get('Sender'));
+        this.state.messageContent.push(doc.get('Message'));
+        console.log("Run Firsta");
+        console.log(doc.get('Sender'));
+        let check = doc.get('Sender');
+        this.setState({items: messageArray});
+      });
+    }).catch(err => {
+      console.log('Error getting documents', err);
+    });
+  }
 
-
-
-    };
-    componentDidMount() {
-        GroupCollection.get()
-            .then(snapshot => {
-                snapshot.forEach(doc => {
-
-                    messageArray.push(doc.id);
-                    this.state.messageSender.push(doc.get('Sender'));
-                    this.state.messageContent.push(doc.get('Message'));
-                    console.log("Run Firsta");
-                    console.log(doc.get('Sender'));
-                    let check = doc.get('Sender');
-                    this.setState({items: messageArray});
-
-
-
-
-
-
-                });
-
-
-            })
-            .catch(err => {
-                console.log('Error getting documents', err);
-            });
+  fetchMoreData = () => {
+    if (this.state.items.length >= 500) {
+        this.setState({hasMore: false});
+        return;
     }
+    // a fake async api call like which sends
+    // 20 more records in .5 secs
+    ////////////////////////////////////////////////////////////////////////////////////////////////////////
+    var user = firebase.auth().currentUser;
+    const admin = require('firebase-admin');
+    let GroupCollection = db.collection('groups').doc('george').collection('messages');
 
-    fetchMoreData = () => {
-        if (this.state.items.length >= 500) {
-            this.setState({hasMore: false});
-            return;
-        }
-        // a fake async api call like which sends
-        // 20 more records in .5 secs
-        ////////////////////////////////////////////////////////////////////////////////////////////////////////
-        var user = firebase.auth().currentUser;
-        const admin = require('firebase-admin');
-        let GroupCollection = db.collection('groups').doc('george').collection('messages');
+    let getDoc = GroupCollection.doc('--stats--').get().then(doc => {
+      if (!doc.exists) {
+          console.log('No such document!');
+      } else {
+          console.log('Document data:', doc.data());
+      }
+    }).catch(err => {
+      console.log('Error getting document', err);
+    });
+  };
 
-        let getDoc = GroupCollection.doc('--stats--').get()
-            .then(doc => {
-                if (!doc.exists) {
-                    console.log('No such document!');
-                } else {
-                    console.log('Document data:', doc.data());
-                }
-            })
-            .catch(err => {
-                console.log('Error getting document', err);
-            });
+  render() {
+    return (
+      <div className="message-board">
+        <h4>Message Board</h4>
+        <hr />
+        {/*}<h1 className="message-h1">Message your group below!</h1>*/}
+        <form id="sa">
+          {/*<input type="button" value="Send" onClick={() => getMessage()}/>*/}
+        </form>
+        <InfiniteScroll
+          dataLength={this.state.items.length}
+          next={this.fetchMoreData}
+          hasMore={this.state.hasMore}
+          loader={<h4>Loading...</h4>}
+          height={350}>
 
-    };
+          <div className="container">
+            {this.state.items.map((i, index) => (
+              <div className="row">
+              {this.props.auth.email === this.state.messageSender[index] ? (
+                <div className="right">
+                  <div className="bubble-sent" >
+                    <p className="bubble-text">{this.state.messageContent[index]}</p>
+                  </div>
+                </div>) : (
+                  <div className="left">
+                    <div className="bubble-received" >
+                      <p className="message-received">{this.state.messageSender[index]}</p>
+                      <p className="bubble-text">{this.state.messageContent[index]}</p>
+                    </div>
+                  </div>
+                )
+              }
+              </div>
+            ))}
+          </div>
+        </InfiniteScroll>
 
-    render() {
-        return (
-            <div className="message-board">
-                {/*}<h1 className="message-h1">Message your group below!</h1>*/}
-                <form id="sa">
-                {/*<input type="button" value="Send" onClick={() => getMessage()}/>*/}
+        <div className="page">
+            <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+              <div id="sendField" className="chat-form">
+                <form className="container message-form" id="sendField">
+                  <div className="row">
+                    <div className="col l8">
+                      <input className="message-text"type="text" id="messageField" name="messageField" placeholder="message"/>
+                    </div>
+                    <div className="col l3">
+                      <input className="button" type="button" value="Send" onClick={() => sendMessage()}/>
+                    </div>
+                  </div>
                 </form>
-                <InfiniteScroll
-                    dataLength={this.state.items.length}
-                    next={this.fetchMoreData}
-                    hasMore={this.state.hasMore}
-                    loader={<h4>Loading...</h4>}
-                    height={400}>
-
-                <div className="container">
-                  {this.state.items.map((i, index) => (
-                    <div className="row">
-                    {this.props.auth.email === this.state.messageSender[index] ? (
-                      <div className="right">
-                        <div className="bubble-sent" >
-                          <p className="bubble-text">{this.state.messageContent[index]}</p>
-                        </div>
-                      </div>) : (
-                        <div className="left">
-                          <div className="bubble-received" >
-                            <p className="message-received">{this.state.messageSender[index]}</p>
-                            <p className="bubble-text">{this.state.messageContent[index]}</p>
-                          </div>
-                        </div>
-                      )
-                    }
-                    </div>
-                  ))}
-                </div>
-
-
-                </InfiniteScroll>
-
-                <div className="page ">
-                    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-                      <div id="sendField">
-                        <form id="sendField">
-                            <input className="message-text"type="text" id="messageField" name="messageField" placeholder="message"/>
-                            <input className="button" type="button" value="Send" onClick={() => sendMessage()}/>
-                        </form>
-                    </div>
-                </div>
             </div>
-        );
-    }
+        </div>
+      </div>
+    );
+  }
 }
 
 function sendMessage(){

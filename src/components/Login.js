@@ -42,10 +42,10 @@ const Login = ({
       <div className="container">
         <div className="row">
           <div className="col s6 vert-center" id="left-split">
-            <div className="row">
+            <div className="row login-icon">
               <i className="large material-icons prefix">https</i>
             </div>
-            <div className="row">
+            <div className="row" >
               {/*reset ? "Reset password" : newUser ? "Create an account" : "Sign in"*/}
               {authMsg ? <p className="auth-message">{authMsg}</p> : null}
             </div>
@@ -104,7 +104,7 @@ const Login = ({
                     <button onClick={() => SetReset(false)} className="btn-forgot">Back to sign in</button>)
                   }
                   <div className="row">
-                    <p>Don't have an account? No problem!<br />Click below to make your free account.</p>
+                    <p>Don't have an account?<br /></p>
                     <button onClick={() => {setNewUser(!newUser); if (reset) SetReset(false);}} className="btn-create">
                       {newUser ? "Sign in" : "Create an account"}
                     </button>
@@ -121,7 +121,6 @@ const Login = ({
           </div>
         </div>
       </div>
-	  <p>Website Made By Team Dynamo</p>
     </div>
   );
 };

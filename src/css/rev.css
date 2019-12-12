@@ -20,6 +20,8 @@ body {
 
   /* Set the page font */
   font-family: "Capriola", sans-serif;
+
+  /* overflow:hidden; */
 }
 
 /* Horizontally center elements */
@@ -43,16 +45,27 @@ body {
   display:none;
 }
 
+.brand-logo{
+  margin-left: 10px;
+}
+
 .logo{
-  margin-top: 15%;
+  margin-top: 20%;
+}
+
+.login-icon{
+  margin-top: 25px;
+  margin-bottom: 0px;
 }
 
 .container{
   width:100%;
+  margin-bottom:30px;
 }
 
 #left-split, #right-split{
-    margin-top: 5%;
+    margin-top: 0%;
+    margin-bottom: 0%;
 }
 
 /* For login section, apply below style left side*/
@@ -65,10 +78,8 @@ body {
 }
 
 /* For login section, apply below style to right side */
-#right-split{
-}
 
-#right-split div{
+#right-split{
     float: left;
     clear: none;
 }
@@ -141,16 +152,75 @@ input[type=button]:hover{
   margin: 0px 40px 0px 40px
 }
 
+.btn-forgot{
+  color: black;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 /* Messages */
+
+/* Message Board */
 .message-board{
   width:500px;
   min-width:390px;
-  height:600px;
+  height:510px;
   background:#fff;
   padding:25px;
   margin:20px auto;
   box-shadow:0 3px #ccc;
 }
+
+.message-form{
+  margin-top:20px;
+}
+
+h4{
+  margin:-10px auto 0px auto;
+}
+
+/* Text area and button for sending message */
+/* .chat-form{
+  margin-top:20px;
+  display:flex;
+  align-items:flex-start;
+} */
+
+/* .message-text{
+  background:#fbfbfb;
+  width:75%;
+  height:50px;
+  border: 2px solid #eee;
+  border-radius:3px;
+  resize:none;
+  padding:10px;
+  font-size:18px;
+  color:#333;
+} */
+
+/* .chat-form textarea:focus{
+  background:#fff;
+} */
+
+/* .button-mes{
+  background:#1ddced;
+  padding:5px 15px;
+  font-size:30px;
+  color:#fff;
+  border:none;
+  margin:0 10px;
+  border-radius:3px;
+  box-shadow:0 3px 0 #0eb2c1;
+  cursor:pointer;
+
+  -webkit-transition:background .2s ease;
+  -moz-transition:background .2s ease;
+  -o-transition:background .2s ease;
+} */
+
+/* .chat-form button:hover{
+  background:#13c8d9;
+} */
 
 .message-received{
   color: black;
@@ -164,8 +234,8 @@ input[type=button]:hover{
 
 .bubble-received {
 	position: relative;
-  margin-top: 30px;
-	background: #00aabb;
+  margin-top: -10px;
+	background: #29b1cc;
 	border-radius: .4em;
 }
 
@@ -177,7 +247,7 @@ input[type=button]:hover{
 	width: 0;
 	height: 0;
 	border: 20px solid transparent;
-	border-top-color: #00aabb;
+	border-top-color: #29b1cc;
 	border-bottom: 0;
 	border-left: 0;
 	margin-left: -10px;
@@ -186,8 +256,8 @@ input[type=button]:hover{
 
 .bubble-sent {
 	position: relative;
-  margin-top: 30px;
-	background: #ff5c82;
+  margin-top: -10px;
+	background: #ec407a;
 	border-radius: .4em;
 }
 
@@ -199,7 +269,7 @@ input[type=button]:hover{
 	width: 0;
 	height: 0;
 	border: 20px solid transparent;
-	border-top-color: #ff5c82;
+	border-top-color: #ec407a;
 	border-bottom: 0;
 	border-right: 0;
 	margin-left: -10px;
@@ -212,4 +282,8 @@ input[type=button]:hover{
 
 .message-h1{
   font-size:40px;
+}
+
+a:hover{
+    color: white;
 }
