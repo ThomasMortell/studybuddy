@@ -95,7 +95,7 @@ class messageDisplay extends React.Component {
     render() {
         return (
             <div>
-                <h1>Message your group below!</h1>
+                <h1 className="message-h1">Message your group below!</h1>
                 <form id="sa">
 
                     {/*<input type="button" value="Send" onClick={() => getMessage()}/>*/}
@@ -136,7 +136,7 @@ class messageDisplay extends React.Component {
                     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
                       <div id="sendField">
                         <form id="sendField">
-                            <input type="text" id="messageField" name="messageField" placeholder="message"/>
+                            <input className="message-text"type="text" id="messageField" name="messageField" placeholder="message"/>
                             <input className="button" type="button" value="Send" onClick={() => sendMessage()}/>
                         </form>
                     </div>

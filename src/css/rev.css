@@ -22,6 +22,11 @@ body {
   font-family: "Capriola", sans-serif;
 }
 
+background-image{
+  filter: blur(8px);
+ -webkit-filter: blur(8px);
+}
+
 /* Horizontally center elements */
 .hori-center {
   margin-left:auto;
@@ -122,6 +127,8 @@ button {
   border: none;
   outline: none;
   border: 2px solid #29b1cc;
+  color:black;
+
 }
 
 .button button:hover{
@@ -146,12 +153,13 @@ input[type=button]:hover{
 }
 
 .message-received{
-  color: blue;
+  color: black;
   padding: 5px 10px 0px 10px;
 }
 
 .bubble-text{
   padding: 0px 10px 10px 10px;
+  color: white;
 }
 
 .bubble-received {
@@ -179,7 +187,7 @@ input[type=button]:hover{
 .bubble-sent {
 	position: relative;
   margin-top: 30px;
-	background: #ff98a7;
+	background: #ff5c82;
 	border-radius: .4em;
 }
 
@@ -191,9 +199,17 @@ input[type=button]:hover{
 	width: 0;
 	height: 0;
 	border: 20px solid transparent;
-	border-top-color: #ff98a7;
+	border-top-color: #ff5c82;
 	border-bottom: 0;
 	border-right: 0;
 	margin-left: -10px;
 	margin-bottom: -20px;
+}
+
+.message-text{
+  color:black;
+}
+
+.message-h1{
+  font-size:40px;
 }
