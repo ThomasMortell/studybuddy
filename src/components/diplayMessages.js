@@ -94,13 +94,11 @@ class messageDisplay extends React.Component {
 
     render() {
         return (
-            <div>
-                <h1 className="message-h1">Message your group below!</h1>
+            <div className="message-board">
+                {/*}<h1 className="message-h1">Message your group below!</h1>*/}
                 <form id="sa">
-
-                    {/*<input type="button" value="Send" onClick={() => getMessage()}/>*/}
+                {/*<input type="button" value="Send" onClick={() => getMessage()}/>*/}
                 </form>
-                <hr/>
                 <InfiniteScroll
                     dataLength={this.state.items.length}
                     next={this.fetchMoreData}
@@ -108,7 +106,7 @@ class messageDisplay extends React.Component {
                     loader={<h4>Loading...</h4>}
                     height={400}>
 
-                <div className="container message-board">
+                <div className="container">
                   {this.state.items.map((i, index) => (
                     <div className="row">
                     {this.props.auth.email === this.state.messageSender[index] ? (
@@ -132,7 +130,7 @@ class messageDisplay extends React.Component {
 
                 </InfiniteScroll>
 
-                <div className="page">
+                <div className="page ">
                     <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
                       <div id="sendField">
                         <form id="sendField">
