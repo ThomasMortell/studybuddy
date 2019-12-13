@@ -66,7 +66,6 @@ export default class Calendar extends React.Component {
 	
 		return(
 			<div className = "calander_container">
-				<h1>Calendar</h1>
 				<table className ="calendar">
 					<thead>
 						<tr className = "calendar-header1">

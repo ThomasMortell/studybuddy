@@ -1,5 +1,7 @@
 import React from 'react'
 import firebase from "../../services/firebase.js";
+import Message from "../diplayMessages";
+import {Route} from "react-router-dom";
 
 var db = firebase.firestore();
 
@@ -64,6 +66,8 @@ function createGroup(){
 				GroupCollection3.doc('--stats--').set({
 				count: 0,	
 				})
+				
+				//return(<li><Route to="/message"></Route></li>);
 			} else {
 				document.getElementById("groupCreateError").innerHTML = "Group Name Already Exists.";
 			}

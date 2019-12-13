@@ -7,6 +7,7 @@ import requireAuth from "./hoc/requireAuth";
 import {signout} from "../store/actions/auth";
 import firebase from "../services/firebase";
 import moment from 'moment';
+import Planner from  './Planner.js';
 
 var db = firebase.firestore();
 
@@ -121,6 +122,7 @@ class messageDisplay extends React.Component {
                 </form>
             </div>
         </div>
+		<Planner />
       </div>
     );
   }
