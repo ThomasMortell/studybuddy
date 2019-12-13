@@ -1,12 +1,14 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import firebase from '../../services/firebase.js'
+import {browserHistory} from "react-router";
 
 const db = firebase.firestore();
 let studentEmail = 'emailInit';
 
 export default class Form extends React.Component
 {
+
     constructor(props)
     {
         super(props);
@@ -25,7 +27,9 @@ export default class Form extends React.Component
     {
         firebase.auth().onAuthStateChanged(user =>
         {
-
+            if(!user){
+              window.location.href = "/";
+            }
             if(user){
                 studentEmail = user.email;
                 let usersCollection = db.collection('users').doc(studentEmail);
@@ -48,6 +52,7 @@ export default class Form extends React.Component
                     }
                 });
             }
+
         });
     }
 
