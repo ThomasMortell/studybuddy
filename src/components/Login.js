@@ -70,7 +70,7 @@ const Login = ({
                       value={credentials.password} onChange={handleChange}
                       className={(errors.passIsStrong || errors.passIsEmpty) && "input-error"}/>
 
-                    <label className="password-placeholder" htmlFor="password">Password</label>
+                    <label className="email-placeholder" htmlFor="password">Password</label>
                     {errors.passIsStrong && <small>{errors.passIsStrong}</small>}
                     {errors.passIsEmpty && <small>{errors.passIsEmpty}</small>}
                   </div>

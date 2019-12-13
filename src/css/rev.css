@@ -320,3 +320,78 @@ tr:hover {
   top: 0;
   width: 100%
 }
+
+.email-placeholder{
+  margin-left:0px;
+}
+
+/* .about-us{
+}
+
+.align-left-about{
+  float: left;
+}
+
+.align-right-about{
+  float: right;
+} */
+
+.box{
+  position: relative;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+  margin-top: 0px;
+  margin-bottom: 5px;
+  padding-top:10px;
+  padding-left: 10px;
+  padding-right:10px;
+  box-sizing:border-box;
+  background:rgba(255,255,255,.9);
+  border-radius: 4px;
+  boz-shadow:0 5px 15px rgba(0,0,0,.5);
+  display:flex;
+  transition:.5s;
+}
+.space-top{
+  margin-bottom:107px;
+}
+.box .imgBx{
+  width:500px;
+  flex: 0 0 150px;
+}
+
+/* .box .imgBx img{
+  max-width:100%;
+} */
+
+.box .content{
+  padding-left: 20px;
+}
+
+.box .content h2{
+  margin:0;
+  padding-left: 0;
+}
+
+.aboutbanner{
+  width:100%;
+  height:auto;
+}
+
+.background-about{
+  background-color:rgba(169, 169, 169, .2)
+}
+
+.container-img {
+  position: relative;
+  text-align: center;
+  color: white;
+}
+
+/* Top right text */
+.top-right {
+  position:absolute;
+  top: 90px;
+  right: 245px;
+}

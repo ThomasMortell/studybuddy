@@ -4,6 +4,7 @@ import { Switch, Route } from "react-router-dom";
 import NavBar from "./NavBar/NavBar";
 import Main from "./Main";
 import Login from "./Login";
+import AboutUs from "./AboutUs";
 import Message from "./diplayMessages";
 import "../css/rev.css"
 import Groups from "./Groups/Groups"
@@ -21,6 +22,7 @@ const App = () => {
         <Route path="/message" component={Message} />
         <Route path="/login" component={Login} />
         <Route path="/groups" component={Groups} />
+        <Route path="/about" component={AboutUs} />
       </Switch>
  </div>
 </div>
