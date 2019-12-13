@@ -34,6 +34,11 @@ const CreateGroup = () => {
 }
 
 function createGroup(){
+	if(document.getElementById("cgroupName").value === ""){
+		document.getElementById("groupCreateError").innerHTML = "Please enter a value and try again.";
+	}
+	
+	else{
 		let GroupCollection = db.collection('groups').doc(document.getElementById("cgroupName").value);
 		GroupCollection.get()
 		  .then(doc => {
@@ -44,7 +49,7 @@ function createGroup(){
 				GroupCollection2.doc(document.getElementById("cgroupName").value).set({
 				ModuleCode:document.getElementById("cgroupModuleCode").value,
 				Timetable: "",
-				User0: "",//firebase.auth().currentUser.email,
+				User0: firebase.auth().currentUser.email,
 				User1: "",
 				User2: "",
 				User3: "",
@@ -55,6 +60,10 @@ function createGroup(){
 				User8: "",
 				User9: "",
 				})
+				const GroupCollection3 = db.collection('groups').doc(document.getElementById("cgroupName").value).collection('messages');
+				GroupCollection3.doc('--stats--').set({
+				count: 0,	
+				})
 			} else {
 				document.getElementById("groupCreateError").innerHTML = "Group Name Already Exists.";
 			}
@@ -62,6 +71,7 @@ function createGroup(){
 		  .catch(err => {
 			document.getElementById("groupCreateError").innerHTML = "Error getting document: "+err;
 		  });
+	}
 }
 
 export default CreateGroup
