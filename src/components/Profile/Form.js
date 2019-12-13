@@ -1,6 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import firebase from '../../services/firebase.js'
+import requireAuth from "../hoc/requireAuth";
+import {signout} from "../../store/actions/auth";
+import {connect} from "react-redux";
+import {compose} from "redux";
+
+
+
 
 const db = firebase.firestore();
 let studentEmail = 'emailInit';
@@ -26,13 +33,7 @@ export default class Form extends React.Component
         firebase.auth().onAuthStateChanged(user =>
         {
 
-            if (!user)
-            {
-                alert("To view this page you must sign in, Redirecting to login...");
-                window.location = '/';
-            }
-            else
-            {
+            if(user){
                 studentEmail = user.email;
                 let usersCollection = db.collection('users').doc(studentEmail);
                 usersCollection.get().then(doc =>
@@ -102,19 +103,19 @@ export default class Form extends React.Component
         return (
           <div className="Profile">
             <form onSubmit={this.handleSubmit}>
-                <label htmlFor='firstName'>
+                <label htmlFor='firstName' className="header">
                     First Name
                 </label>
                 <input type='text' value={this.state.firstName} onChange={this.handleChange} name='firstName'/>
-                <label htmlFor='studentNumber'>
+                <label htmlFor='studentNumber' className="header">
                     Student Number
                 </label>
                 <input type='text' value={this.state.studentNumber} onChange={this.handleChange} name='studentNumber'/>
-                <label htmlFor='degreeTitle'>
+                <label htmlFor='degreeTitle' className="header">
                     Degree Title
                 </label>
                 <input type='text' value={this.state.degreeTitle} onChange={this.handleChange} name='degreeTitle'/>
-                <label htmlFor='bio'>
+                <label htmlFor='bio' className="header">
                     A bit about myself!
                 </label>
                 <textarea value={this.state.bio} onChange={this.handleChange} name='bio'/>
@@ -135,3 +136,22 @@ Form.propTypes = {
         bio: PropTypes.string
     }).isRequired
 };
+
+function mapStateToProps(state) {
+    return {
+        auth: state.firebaseReducer.auth
+    };
+}
+
+function mapDispatchToProps(dispatch) {
+    return {
+        signout: () => dispatch(signout())
+    };
+}
+
+function compose(
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  ),requireAuth
+)(Form);
