@@ -1,6 +1,6 @@
 import React from 'react'
 import Profile from './Profile'
-import './scss/main.scss'
+import './scss/profile.scss'
 
 export default class AppProfile extends React.Component {
   constructor (props) {
