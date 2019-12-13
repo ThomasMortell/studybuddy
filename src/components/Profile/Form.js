@@ -1,13 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import firebase from '../../services/firebase.js'
-import requireAuth from "../hoc/requireAuth";
-import {signout} from "../../store/actions/auth";
-import {connect} from "react-redux";
-import {compose} from "redux";
-
-
-
 
 const db = firebase.firestore();
 let studentEmail = 'emailInit';
@@ -136,22 +129,3 @@ Form.propTypes = {
         bio: PropTypes.string
     }).isRequired
 };
-
-function mapStateToProps(state) {
-    return {
-        auth: state.firebaseReducer.auth
-    };
-}
-
-function mapDispatchToProps(dispatch) {
-    return {
-        signout: () => dispatch(signout())
-    };
-}
-
-function compose(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  ),requireAuth
-)(Form);

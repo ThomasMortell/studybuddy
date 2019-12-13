@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import Header from './Header'
-import form from './Form'
+import Form from './Form'
 
 const Profile = (props) => (
   <div>
