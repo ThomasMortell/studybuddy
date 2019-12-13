@@ -30,10 +30,6 @@ body {
   margin-right:auto;
 }
 
-/* Vertically center elements */
-.vert-center{
-}
-
 /* Vertically align values */
 .vert-align{
   display:flex;
@@ -99,7 +95,7 @@ body {
 }
 
 .groups{
-  margin-top: 50px;
+  margin-top: 30px;
 }
 
 /* Input */
@@ -286,4 +282,41 @@ h4{
 
 a:hover{
     color: white;
+}
+
+
+.adjust-margin{
+  margin-bottom:0px;
+}
+
+th {
+  background-color: #ec407a;
+  color: white;
+}
+
+td {
+  background-color: white;
+}
+
+tr:hover {
+}
+
+  th, td {
+  padding: 15px;
+  text-align: center;
+}
+
+.table-div{
+    width:85%;
+    height:200px;
+    margin-left:auto;
+    margin-right:auto;
+    overflow:auto;
+  }
+
+  /* The sticky class is added to the header with JS when it reaches its scroll position */
+.sticky {
+  position: fixed;
+  top: 0;
+  width: 100%
 }

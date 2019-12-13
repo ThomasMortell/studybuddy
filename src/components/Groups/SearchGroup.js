@@ -8,12 +8,12 @@ const SearchGroup = () => {
   return (
     <div class="groups" id="searchGroupPage">
       <i className="large material-icons prefix search-icon">group</i>
-      <div className="row">
+      <div className="row adjust-margin">
         <div className="col s12">
           <div className="row">
             <div className="input-field col s12 vert-align">
               <i className="material-icons prefix search-icon">search</i>
-              <input type= "text" id ="groupSearch" name="searchGroup"/>
+              <input button type= "text" id ="groupSearch" name="searchGroup"/>
               <label htmlFor="groupSearch">Search For A Group</label>
               <a className="waves-effect waves-teal btn-flat search-btn" onClick={ ()=> searchGroups()}>Search</a>
             </div>
@@ -23,8 +23,10 @@ const SearchGroup = () => {
       {/* Display any searched groups here */}
       <div className="row" id="groupDisplay">
   <p id="groupDisplayError"></p>
+  <div className="table-div">
   <table id="groupDisplayTable">
   </table>
+  </div>
       </div>
     </div>
   )
