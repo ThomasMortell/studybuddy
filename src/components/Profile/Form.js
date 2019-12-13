@@ -100,6 +100,7 @@ export default class Form extends React.Component
     render()
     {
         return (
+          <div className="Profile">
             <form onSubmit={this.handleSubmit}>
                 <label htmlFor='firstName'>
                     First Name
@@ -121,6 +122,7 @@ export default class Form extends React.Component
                     Save
                 </button>
             </form>
+            </div>
         )
     }
 }
