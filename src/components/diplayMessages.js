@@ -10,17 +10,40 @@ import moment from 'moment';
 import Planner from  './Planner.js';
 
 var db = firebase.firestore();
+/*
+var url = "";
+url = window.location.href;
+var group = "Finally";
+var checker = false;
 
+for(var i=url.length-1; i>=0&&checker===false; i--){
+	
+	if(url.charAt(i)==='/'){
+		checker = true;
+	}
+	
+	else if((url.charAt(i)==='0')&&(url.charAt(i-1)==='2')&&(url.charAt(i-2)==='%')){
+		i=i-2;
+		group = ' '+group;
+		
+	}
+	
+	else{
+		group = url.charAt(i)+group;
+	}
+}
+
+if(group.length>1){
+	group = group.substring(0,1);
+}
+*/	
 
 var user = firebase.auth().currentUser;
-let GroupCollection = db.collection('groups').doc('george').collection('messages');
+let GroupCollection = db.collection('groups').doc("Finally").collection('messages');
 var messageCount = GroupCollection.doc('--stats--').valueOf('count');
 let messageArray = [];
 let count = 0;
 let mData = "";
-
-
-
 
 class messageDisplay extends React.Component {
   state = {
@@ -36,7 +59,8 @@ class messageDisplay extends React.Component {
         messageArray.push(doc.id);
         this.state.messageSender.push(doc.get('Sender'));
         this.state.messageContent.push(doc.get('Message'));
-        console.log("Run Firsta");
+        //console.log(group);
+		console.log("Run Firsta");
         console.log(doc.get('Sender'));
         let check = doc.get('Sender');
         this.setState({items: messageArray});
@@ -56,7 +80,7 @@ class messageDisplay extends React.Component {
     ////////////////////////////////////////////////////////////////////////////////////////////////////////
     var user = firebase.auth().currentUser;
     const admin = require('firebase-admin');
-    let GroupCollection = db.collection('groups').doc('george').collection('messages');
+    let GroupCollection = db.collection('groups').doc("Finally").collection('messages');
 
     let getDoc = GroupCollection.doc('--stats--').get().then(doc => {
       if (!doc.exists) {
@@ -135,7 +159,7 @@ function sendMessage(){
         .valueOf()
         .toString()
 
-    let GroupCollection = db.collection('groups').doc('george').collection('messages');
+    let GroupCollection = db.collection('groups').doc("Finally").collection('messages');
     GroupCollection.doc(timestamp +"_"+ user.email).set({   //message data
         Sender: user.email,
         Timestamp: timestamp,

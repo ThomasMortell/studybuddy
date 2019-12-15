@@ -1,7 +1,7 @@
 import React from 'react'
 import firebase from "../../services/firebase.js";
 import Message from "../diplayMessages";
-import {Route} from "react-router-dom";
+import {Route, Redirect} from "react-router-dom";
 
 var db = firebase.firestore();
 
@@ -67,7 +67,7 @@ function createGroup(){
 				count: 0,	
 				})
 				
-				//return(<li><Route to="/message"></Route></li>);
+				window.location += 'message/' + document.getElementById("cgroupName").value;
 			} else {
 				document.getElementById("groupCreateError").innerHTML = "Group Name Already Exists.";
 			}

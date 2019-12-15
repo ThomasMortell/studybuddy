@@ -104,7 +104,6 @@ function searchGroups(){
 
 const ButtonA = ({ command }) => {
   const joinGroup = command => {
-	alert(command);
 
 	let GroupCollection3 = db.collection('groups').doc(command);
 			GroupCollection3.get()
@@ -159,12 +158,11 @@ const ButtonA = ({ command }) => {
 							User9: firebase.auth().currentUser.email,
 						})
 					}
+					window.location += 'message/' +command;
 				})
 				.catch(err => {
 					console.log('Error getting documents', err);
 				});
-
-
   }
   return (
     <button type="button" key={command} onClick={() => joinGroup(command)}>
@@ -175,7 +173,7 @@ const ButtonA = ({ command }) => {
 
 const ButtonB = ({ command }) => {
   const viewGroup = command => {
-	alert(command);
+	window.location += 'message/' +command;
   }
 
   return (
