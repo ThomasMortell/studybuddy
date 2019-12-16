@@ -13,6 +13,7 @@ const SignedInLinks = (props) => {
     <div>
       <a href="#" data-target="mobile-demo" className="right sidenav-trigger"><i className="material-icons">menu</i></a>
       <ul id="nav-mobile" className="right hide-on-med-and-down">
+      <li><NavLink to="/about">About</NavLink></li>
         <li><NavLink to="">Groups</NavLink></li>
         <li><NavLink to="/profile">Profile</NavLink></li>
         <li><NavLink to="/message">Messages</NavLink></li>
