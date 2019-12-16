@@ -13,7 +13,7 @@ const SearchGroup = () => {
           <div className="row">
             <div className="input-field col s12 vert-align">
               <i className="material-icons prefix search-icon">search</i>
-              <input button type= "text" id ="groupSearch" name="searchGroup"/>
+              <input type= "text" id ="groupSearch" name="searchGroup"/>
               <label htmlFor="groupSearch">Search For A Group</label>
               <a className="waves-effect waves-teal btn-flat search-btn" onClick={ ()=> searchGroups()}>Search</a>
             </div>

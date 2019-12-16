@@ -97,16 +97,12 @@ class messageDisplay extends React.Component {
     return (
 			<div className="container">
 				<div className="row">
-					<div className="col l3">
+					<div className="col l4">
 						<Planner/>
 					</div>
-		      <div className="col l6 message-board">
+		      <div className="col l4 message-board">
 		        <h4>Message Board</h4>
 		        <hr />
-		        {/*}<h1 className="message-h1">Message your group below!</h1>*/}
-		        <form id="sa">
-		          {/*<input type="button" value="Send" onClick={() => getMessage()}/>*/}
-		        </form>
 		        <InfiniteScroll
 		          dataLength={this.state.items.length}
 		          next={this.fetchMoreData}
@@ -141,10 +137,11 @@ class messageDisplay extends React.Component {
 		              <div id="sendField" className="chat-form">
 		                <form className="container message-form" id="sendField">
 		                  <div className="row">
-		                    <div className="col l8">
-		                      <input className="message-text"type="text" id="messageField" name="messageField" placeholder="message"/>
+		                    <div className="col l8 input-field">
+		                      <input className="message-text" type="text" id="messageField" name="messageField" autocomplete="off"/>
+													<label htmlFor="messageField">Message</label>
 		                    </div>
-		                    <div className="col l3">
+		                    <div className="col l4">
 		                      <input className="button" type="button" value="Send" onClick={() => sendMessage()}/>
 		                    </div>
 		                  </div>
@@ -152,7 +149,7 @@ class messageDisplay extends React.Component {
 		            </div>
 		        </div>
 		      </div>
-					<div className="col l3">
+					<div className="col l4">
 					</div>
 				</div>
 			</div>

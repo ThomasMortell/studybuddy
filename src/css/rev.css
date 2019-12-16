@@ -100,7 +100,7 @@ body {
 
 /* Input */
 .input-field{
-  margin:20px 40px 20px 40px;
+  /*margin:20px 40px 20px 40px;*/
 }
 
 .input-field>label{
@@ -157,16 +157,18 @@ input[type=button]:hover{
 /* Message Board */
 .message-board{
   box-shadow: 5px 5px 5px grey;
-  width:500px;
-  min-width:390px;
-  height:510px;
   background:#fff;
-  padding:25px;
+  padding:50px;
   margin:20px auto;
 }
 
+div.message-board h4{
+  margin-top: 10px;
+}
+
 .message-form{
-  margin-top:20px;
+  margin-top:10px;
+  margin-bottom: -20px;
 }
 
 h4{
@@ -186,6 +188,7 @@ h4{
 .bubble-received {
 	position: relative;
   margin-top: -10px;
+  margin-left: 12px;
 	background: #29b1cc;
 	border-radius: .4em;
 }
@@ -208,6 +211,7 @@ h4{
 .bubble-sent {
 	position: relative;
   margin-top: -10px;
+  margin-right: 14px;
 	background: #ec407a;
 	border-radius: .4em;
 }
@@ -239,7 +243,6 @@ a:hover{
     color: white;
 }
 
-
 .adjust-margin{
   margin-bottom:0px;
 }
@@ -261,13 +264,11 @@ td {
   overflow:auto;
 }
 
-
 div.table-div th,
 div.table-div td{
   padding: 15px;
   text-align: center;
 }
-
 
   /* The sticky class is added to the header with JS when it reaches its scroll position */
 .sticky {
@@ -275,17 +276,6 @@ div.table-div td{
   top: 0;
   width: 100%
 }
-
-/* .about-us{
-}
-
-.align-left-about{
-  float: left;
-}
-
-.align-right-about{
-  float: right;
-} */
 
 .box{
   position: relative;
@@ -332,7 +322,7 @@ div.table-div td{
   color: white;
 }
 
-/* Top right text */
+/* Top right text in Profile*/
 .top-right {
   position:absolute;
   top: 90px;
