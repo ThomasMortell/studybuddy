@@ -39,7 +39,7 @@ function createGroup(){
 	if(document.getElementById("cgroupName").value === ""){
 		document.getElementById("groupCreateError").innerHTML = "Please enter a value and try again.";
 	}
-	
+
 	else{
 		let GroupCollection = db.collection('groups').doc(document.getElementById("cgroupName").value);
 		GroupCollection.get()
@@ -64,9 +64,9 @@ function createGroup(){
 				})
 				const GroupCollection3 = db.collection('groups').doc(document.getElementById("cgroupName").value).collection('messages');
 				GroupCollection3.doc('--stats--').set({
-				count: 0,	
+				count: 0,
 				})
-				
+
 				window.location += 'message/' + document.getElementById("cgroupName").value;
 			} else {
 				document.getElementById("groupCreateError").innerHTML = "Group Name Already Exists.";

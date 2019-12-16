@@ -144,8 +144,8 @@ input[type=button]:hover{
 }
 
 .btn-login, .btn-create{
-  width: 84%;
-  margin: 0px 40px 0px 40px
+  width: 97%;
+  margin: 0px 0px 0px 0px
 }
 
 .btn-forgot{
@@ -276,30 +276,27 @@ div.table-div td{
   top: 0;
   width: 100%
 }
-
 .box{
-  position: relative;
-  top:50%;
-  left:50%;
-  transform:translate(-50%,-50%);
-  margin-top: 0px;
-  margin-bottom: 5px;
-  padding-top:10px;
-  padding-left: 10px;
-  padding-right:10px;
-  box-sizing:border-box;
-  background:rgba(255,255,255,.9);
+  width: 1000px;
+  padding: 60px 10px 60px 10px;
+  background:rgba(255,255,255,.5);
   border-radius: 4px;
-  boz-shadow:0 5px 15px rgba(0,0,0,.5);
-  display:flex;
-  transition:.5s;
+  box-shadow:0 5px 15px rgba(0,0,0,.5);
 }
-.space-top{
-  margin-bottom:107px;
+.box-header{
+  width: 1000px;
+  margin-top:20px;
+  padding: 5px 10px 55px 10px;
+  background:rgba(255,255,255,.5);
+  border-radius: 4px;
+  box-shadow:0 5px 15px rgba(0,0,0,.5);
+}
+
+.drop-shadow{
+  box-shadow:0 5px 15px rgba(0,0,0,.5);
 }
 .box .imgBx{
   width:500px;
-  flex: 0 0 150px;
 }
 
 .box .content h2{
@@ -312,21 +309,11 @@ div.table-div td{
   height:auto;
 }
 
-.background-about{
-  background-color:rgba(169, 169, 169, .2)
-}
-
 .container-img {
   position: relative;
   text-align: center;
   color: white;
-}
-
-/* Top right text in Profile*/
-.top-right {
-  position:absolute;
-  top: 90px;
-  right: 245px;
+  margin-bottom:-5px;
 }
 
 /*Calendar*/
