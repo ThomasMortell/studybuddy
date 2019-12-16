@@ -5,6 +5,8 @@ import SignedOutLinks from './SignedOutLinks'
 
 
 const Navbar = (props) => {
+  console.log(props)
+
   const { auth } = props;
 
   const links = auth.uid ? <SignedInLinks /> : <SignedOutLinks />;
@@ -19,10 +21,10 @@ const Navbar = (props) => {
   )
 }
 
+// export default Navbar
 
 function mapStateToProps(state){
   return{
-    location: state.location,
     auth: state.firebaseReducer.auth
   }
 }

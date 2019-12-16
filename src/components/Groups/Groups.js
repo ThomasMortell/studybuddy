@@ -3,7 +3,7 @@ import CreateGroup from './CreateGroup'
 import SearchGroup from './SearchGroup'
 import { connect } from 'react-redux'
 
-const Groups = (props) => {
+const Groups = () => {
   // console.log(props)
   return (
     <div id="homePage" className="container">
@@ -19,7 +19,6 @@ const Groups = (props) => {
   );
 }
 
-
 const showSearchGroupPage = () => {
   document.getElementById("searchGroupPage").style.display = "block";
   document.getElementById("createGroupPage").style.display = "none"
@@ -30,10 +29,4 @@ const showCreateGroupPage = () => {
   document.getElementById("createGroupPage").style.display = "block"
 }
 
-function mapStateToProps(state){
-  return {
-    location: state.location
-  }
-}
-
-export default connect(mapStateToProps)(Groups)
+export default Groups
