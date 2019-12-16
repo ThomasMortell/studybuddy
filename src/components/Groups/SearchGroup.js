@@ -22,11 +22,11 @@ const SearchGroup = () => {
       </div>
       {/* Display any searched groups here */}
       <div className="row" id="groupDisplay">
-  <p id="groupDisplayError"></p>
-  <div className="table-div">
-  <table id="groupDisplayTable">
-  </table>
-  </div>
+        <p id="groupDisplayError"></p>
+        <div className="table-div">
+          <table id="groupDisplayTable">
+          </table>
+        </div>
       </div>
     </div>
   )

@@ -7,63 +7,63 @@ export default class Calendar extends React.Component {
 		today: moment(),
 		showYearPopup: false
 	}
-	
+
 	weekdays = moment.weekdays();
 	months = moment.months();
-	
+
 	year = () => {
 		return this.state.dateContext.format("Y");
 	}
-	
+
 	month = () => {
 		return this.state.dateContext.format("MMMM");
 	}
-	
+
 	daysInMonth = () => {
 		return Number(this.state.dateContext.daysInMonth());
 	}
-	
+
 	currentDate = () => {
 		return this.state.dateContext.get("date");
 	}
-	
+
 	currentDay = () => {
 		return this.state.dateContext.format("D")
 	}
-	
+
 	firstDayOfMonth = () => {
 		let dateContext = this.state.dateContext;
 		let firstDay = moment(dateContext).startOf('month').format('d');
 		return Number(firstDay);
 	}
-	
+
 	render(){
 		var sent = "";
 		var val = "";
 
 		for(let i=1; i<= Math.ceil((this.firstDayOfMonth()+this.daysInMonth())/7)*7; i++){
-			
+
 			if((i-this.firstDayOfMonth()<1)||(i-this.firstDayOfMonth()>this.daysInMonth())){
 				val = "";
 			}
-			
+
 			else{
 				val = i-this.firstDayOfMonth();
 			}
-			
+
 			if(i%7===1){
 				sent += "<tr><td>"+val+"</td>";
 			}
-			
-			else if(i%7===0){	
+
+			else if(i%7===0){
 				sent +=	"<td>"+val+"</td></tr>";
 			}
-			
+
 			else{
 				sent += "<td>"+val+"</td>";
-			}			
+			}
 		}
-	
+
 		return(
 			<div className = "calander_container">
 				<table className ="calendar">
@@ -80,13 +80,13 @@ export default class Calendar extends React.Component {
 							</th>
 						</tr>
 						<tr className = "calendar-header2">
-							<th>Sunday</th>
-							<th>Monday</th>
-							<th>Tuesday</th>
-							<th>Wednesday</th>
-							<th>Thursday</th>
-							<th>Friday</th>
-							<th>Saturday</th>
+							<th>S</th>
+							<th>M</th>
+							<th>T</th>
+							<th>W</th>
+							<th>T</th>
+							<th>F</th>
+							<th>S</th>
 						</tr>
 					</thead>
 					<tbody className = "calendar-body" dangerouslySetInnerHTML={{__html: sent}}>

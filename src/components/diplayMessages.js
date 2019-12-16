@@ -17,17 +17,17 @@ var group = "Finally";
 var checker = false;
 
 for(var i=url.length-1; i>=0&&checker===false; i--){
-	
+
 	if(url.charAt(i)==='/'){
 		checker = true;
 	}
-	
+
 	else if((url.charAt(i)==='0')&&(url.charAt(i-1)==='2')&&(url.charAt(i-2)==='%')){
 		i=i-2;
 		group = ' '+group;
-		
+
 	}
-	
+
 	else{
 		group = url.charAt(i)+group;
 	}
@@ -36,7 +36,7 @@ for(var i=url.length-1; i>=0&&checker===false; i--){
 if(group.length>1){
 	group = group.substring(0,1);
 }
-*/	
+*/
 
 var user = firebase.auth().currentUser;
 let GroupCollection = db.collection('groups').doc("Finally").collection('messages');
@@ -95,59 +95,67 @@ class messageDisplay extends React.Component {
 
   render() {
     return (
-      <div className="message-board">
-        <h4>Message Board</h4>
-        <hr />
-        {/*}<h1 className="message-h1">Message your group below!</h1>*/}
-        <form id="sa">
-          {/*<input type="button" value="Send" onClick={() => getMessage()}/>*/}
-        </form>
-        <InfiniteScroll
-          dataLength={this.state.items.length}
-          next={this.fetchMoreData}
-          hasMore={this.state.hasMore}
-          loader={<h4>Loading...</h4>}
-          height={350}>
+			<div className="container">
+				<div className="row">
+					<div className="col l3">
+						<Planner/>
+					</div>
+		      <div className="col l6 message-board">
+		        <h4>Message Board</h4>
+		        <hr />
+		        {/*}<h1 className="message-h1">Message your group below!</h1>*/}
+		        <form id="sa">
+		          {/*<input type="button" value="Send" onClick={() => getMessage()}/>*/}
+		        </form>
+		        <InfiniteScroll
+		          dataLength={this.state.items.length}
+		          next={this.fetchMoreData}
+		          hasMore={this.state.hasMore}
+		          loader={<h4>Loading...</h4>}
+		          height={350}>
 
-          <div className="container">
-            {this.state.items.map((i, index) => (
-              <div className="row">
-              {this.props.auth.email === this.state.messageSender[index] ? (
-                <div className="right">
-                  <div className="bubble-sent" >
-                    <p className="bubble-text">{this.state.messageContent[index]}</p>
-                  </div>
-                </div>) : (
-                  <div className="left">
-                    <div className="bubble-received" >
-                      <p className="message-received">{this.state.messageSender[index]}</p>
-                      <p className="bubble-text">{this.state.messageContent[index]}</p>
-                    </div>
-                  </div>
-                )
-              }
-              </div>
-            ))}
-          </div>
-        </InfiniteScroll>
+		          <div className="container">
+		            {this.state.items.map((i, index) => (
+		              <div className="row">
+		              {this.props.auth.email === this.state.messageSender[index] ? (
+		                <div className="right">
+		                  <div className="bubble-sent" >
+		                    <p className="bubble-text">{this.state.messageContent[index]}</p>
+		                  </div>
+		                </div>) : (
+		                  <div className="left">
+		                    <div className="bubble-received" >
+		                      <p className="message-received">{this.state.messageSender[index]}</p>
+		                      <p className="bubble-text">{this.state.messageContent[index]}</p>
+		                    </div>
+		                  </div>
+		                )
+		              }
+		              </div>
+		            ))}
+		          </div>
+		        </InfiniteScroll>
 
-        <div className="page">
-            <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-              <div id="sendField" className="chat-form">
-                <form className="container message-form" id="sendField">
-                  <div className="row">
-                    <div className="col l8">
-                      <input className="message-text"type="text" id="messageField" name="messageField" placeholder="message"/>
-                    </div>
-                    <div className="col l3">
-                      <input className="button" type="button" value="Send" onClick={() => sendMessage()}/>
-                    </div>
-                  </div>
-                </form>
-            </div>
-        </div>
-		<Planner />
-      </div>
+		        <div className="page">
+		            <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+		              <div id="sendField" className="chat-form">
+		                <form className="container message-form" id="sendField">
+		                  <div className="row">
+		                    <div className="col l8">
+		                      <input className="message-text"type="text" id="messageField" name="messageField" placeholder="message"/>
+		                    </div>
+		                    <div className="col l3">
+		                      <input className="button" type="button" value="Send" onClick={() => sendMessage()}/>
+		                    </div>
+		                  </div>
+		                </form>
+		            </div>
+		        </div>
+		      </div>
+					<div className="col l3">
+					</div>
+				</div>
+			</div>
     );
   }
 }
