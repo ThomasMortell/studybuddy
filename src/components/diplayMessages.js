@@ -97,10 +97,10 @@ class MessageDisplay extends React.Component {
     return (
 			<div className="container">
 				<div className="row">
-					<div className="col l4">
+					<div className="col s12 m12 l4">
 						<Planner/>
 					</div>
-		      <div className="col l4 message-board">
+		      <div className="col s12 m12 l4 message-board">
 		        <h4>Message Board</h4>
 		        <hr />
 		        <InfiniteScroll
@@ -132,24 +132,19 @@ class MessageDisplay extends React.Component {
 		          </div>
 		        </InfiniteScroll>
 
-		        <div className="page">
-		            <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
-		              <div id="sendField" className="chat-form">
-		                <form className="container message-form" id="sendField">
-		                  <div className="row">
-		                    <div className="col l8 input-field">
-		                      <input className="message-text" type="text" id="messageField" name="messageField" autoComplete="off"/>
-													<label htmlFor="messageField">Message</label>
-		                    </div>
-		                    <div className="col l4">
-		                      <input className="button message-send-btn" type="button" value="Send" onClick={() => sendMessage()}/>
-		                    </div>
-		                  </div>
-		                </form>
-		            </div>
-		        </div>
+            <form className="container message-form" id="sendField">
+              <div className="row">
+                <div className="col s8 m8 l8 left input-field message-send-field">
+                  <input className="" type="text" id="messageField" name="messageField" autoComplete="off"/>
+									<label htmlFor="messageField">Message</label>
+                </div>
+                <div className="col s4 m4 l4 right message-send-btn">
+                  <input className="button" type="button" id="messageField" value="Send" onClick={() => sendMessage()}/>
+                </div>
+              </div>
+            </form>
 		      </div>
-					<div className="col l4">
+					<div className="col l4 hide-on-medium-and-down">
 					</div>
 				</div>
 			</div>
