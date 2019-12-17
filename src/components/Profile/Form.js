@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import firebase from '../../services/firebase.js'
 import {browserHistory} from "react-router";
+import M from "materialize-css"
 
 const db = firebase.firestore();
 let studentEmail = 'emailInit';
@@ -25,35 +26,37 @@ export default class Form extends React.Component
 
     componentDidMount()
     {
-        firebase.auth().onAuthStateChanged(user =>
-        {
-            if(!user){
-              window.location.href = "/";
+      M.updateTextFields();
+
+      firebase.auth().onAuthStateChanged(user =>
+      {
+        if(!user){
+          window.location.href = "/";
+        }
+
+        if(user){
+          studentEmail = user.email;
+          let usersCollection = db.collection('users').doc(studentEmail);
+          usersCollection.get().then(doc =>
+          {
+            if (doc.exists)
+            {
+              //TODO: Make better error handling - check if data is undefined or null.
+              let studentName = doc.data().name;
+              this.changeState(studentName);
+
+              let studentno = doc.data().stuNo;
+              this.changeState1(studentno);
+
+              let degreename = doc.data().title;
+              this.changeState2(degreename);
+
+              let biography = doc.data().bio;
+              this.changeState3(biography);
             }
-            if(user){
-                studentEmail = user.email;
-                let usersCollection = db.collection('users').doc(studentEmail);
-                usersCollection.get().then(doc =>
-                {
-                    if (doc.exists)
-                    {
-                        //TODO: Make better error handling - check if data is undefined or null.
-                        let studentName = doc.data().name;
-                        this.changeState(studentName);
-
-                        let studentno = doc.data().stuNo;
-                        this.changeState1(studentno);
-
-                        let degreename = doc.data().title;
-                        this.changeState2(degreename);
-
-                        let biography = doc.data().bio;
-                        this.changeState3(biography);
-                    }
-                });
-            }
-
-        });
+          });
+        }
+      });
     }
 
     changeState(name, stuNo, title, bio)
@@ -85,43 +88,44 @@ export default class Form extends React.Component
 
     handleSubmit(event)
     {
-        event.preventDefault();
-        const {firstName, studentNumber, degreeTitle, bio} = this.state;
-        db.collection('users').doc(studentEmail).set({
-            name: firstName,
-            stuNo: studentNumber,
-            title: degreeTitle,
-            bio: bio
-
-        }, {merge: true});
+      event.preventDefault();
+      const {firstName, studentNumber, degreeTitle, bio} = this.state;
+      db.collection('users').doc(studentEmail).set({
+          name: firstName,
+          stuNo: studentNumber,
+          title: degreeTitle,
+          bio: bio
+      }, {merge: true});
     }
 
     render()
     {
         return (
-          <div className="Profile">
+          <div className="Profile hori-center">
             <form onSubmit={this.handleSubmit}>
-                <label htmlFor='firstName' className="header">
-                    First Name
-                </label>
-                <input type='text' value={this.state.firstName} onChange={this.handleChange} name='firstName'/>
-                <label htmlFor='studentNumber' className="header">
-                    Student Number
-                </label>
-                <input type='text' value={this.state.studentNumber} onChange={this.handleChange} name='studentNumber'/>
-                <label htmlFor='degreeTitle' className="header">
-                    Degree Title
-                </label>
-                <input type='text' value={this.state.degreeTitle} onChange={this.handleChange} name='degreeTitle'/>
-                <label htmlFor='bio' className="header">
-                    A bit about myself!
-                </label>
-                <textarea value={this.state.bio} onChange={this.handleChange} name='bio'/>
-                <button className='cta-primary' type='submit'>
-                    Save
-                </button>
+              <div className="input-field">
+                <input placeholder='' value={this.state.firstName} type='text' onChange={this.handleChange} id="firstName" name="firstName"/>
+                <label htmlFor='firstName' className="">First Name</label>
+              </div>
+
+              <div className="input-field">
+                <input placeholder='' value={this.state.studentNumber} type='text' onChange={this.handleChange} name='studentNumber'/>
+                <label htmlFor='studentNumber' className="">Student Number</label>
+              </div>
+
+              <div className="input-field">
+                <input placeholder='' value={this.state.  degreeTitle} type='text' onChange={this.handleChange} name='degreeTitle'/>
+                <label htmlFor='degreeTitle' className="">Degree Title</label>
+              </div>
+
+              <div className="input-field">
+                <textarea placeholder='' value={this.state.bio} onChange={this.handleChange} name='bio'/>
+                <label htmlFor='bio' className="">Describe Yourself</label>
+              </div>
+
+              <button type='submit'>Save</button>
             </form>
-            </div>
+          </div>
         )
     }
 }

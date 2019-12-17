@@ -45,7 +45,7 @@ let messageArray = [];
 let count = 0;
 let mData = "";
 
-class messageDisplay extends React.Component {
+class MessageDisplay extends React.Component {
   state = {
     items: messageArray,
     hasMore: false,
@@ -138,11 +138,11 @@ class messageDisplay extends React.Component {
 		                <form className="container message-form" id="sendField">
 		                  <div className="row">
 		                    <div className="col l8 input-field">
-		                      <input className="message-text" type="text" id="messageField" name="messageField" autocomplete="off"/>
+		                      <input className="message-text" type="text" id="messageField" name="messageField" autoComplete="off"/>
 													<label htmlFor="messageField">Message</label>
 		                    </div>
 		                    <div className="col l4">
-		                      <input className="button" type="button" value="Send" onClick={() => sendMessage()}/>
+		                      <input className="button message-send-btn" type="button" value="Send" onClick={() => sendMessage()}/>
 		                    </div>
 		                  </div>
 		                </form>
@@ -187,7 +187,7 @@ function mapDispatchToProps(dispatch) {
     };
 }
 
-render(<messageDisplay/>, document.getElementById("root"));
+render(<MessageDisplay/>, document.getElementById("root"));
 
 export default compose(
     connect(
@@ -195,4 +195,4 @@ export default compose(
         mapDispatchToProps
     ),
     requireAuth
-)(messageDisplay);
+)(MessageDisplay);

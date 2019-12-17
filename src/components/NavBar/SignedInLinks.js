@@ -33,7 +33,7 @@ class SignedInLinks extends Component{
         <li><NavLink to="/profile" className="btn btn-floating pink lighten-1">{this.props.auth.email.charAt(0)}</NavLink></li>
       </ul>
 
-      <ul class="sidenav" id="mobile-demo">
+      <ul className="sidenav" id="mobile-demo">
         <li><NavLink to="/profile" className="pink lighten-2">Account: {this.props.auth.email}</NavLink></li>
         <li><NavLink to="/about">About</NavLink></li>
         <li><NavLink to="">Groups</NavLink></li>

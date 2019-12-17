@@ -99,6 +99,13 @@ body {
 }
 
 /* Input */
+input::placeholder,
+textarea::placeholder{
+  color: grey;
+}
+
+
+
 .input-field{
   /*margin:20px 40px 20px 40px;*/
 }
@@ -130,10 +137,11 @@ button {
   outline: none;
   border: 2px solid #29b1cc;
   color:black;
-
+  cursor: pointer;
 }
 
-.button button:hover{
+.button:hover,
+button:hover{
   background-color: #29b1cc;
   color: #fff;
 }
@@ -169,6 +177,11 @@ div.message-board h4{
 .message-form{
   margin-top:10px;
   margin-bottom: -20px;
+}
+
+.message-send-btn{
+  margin-top: 10px;
+  margin-left: -15px;
 }
 
 h4{
