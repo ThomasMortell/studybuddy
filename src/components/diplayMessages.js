@@ -13,28 +13,8 @@ var db = firebase.firestore();
 
 var url = "";
 url = window.location.href;
-var group = "";
+var group = "null";
 var checker = false;
-
-for(var i=url.length-1; i>=0&&checker===false; i--){
-
-	if(url.charAt(i)==='/'){
-		checker = true;
-        console.log(group);
-	}
-
-	else if((url.charAt(i)==='0')&&(url.charAt(i-1)==='2')&&(url.charAt(i-2)==='%')){
-		i=i-2;
-		group = ' '+group;
-        console.log(group);
-
-	}
-
-	else{
-		group = url.charAt(i)+group;
-	}
-}
-
 
 
 
@@ -56,6 +36,25 @@ class MessageDisplay extends React.Component {
   };
 
   componentDidMount() {
+      group = "";
+      for(var i=url.length-1; i>=0&&checker===false; i--){
+
+          if(url.charAt(i)==='/'){
+              checker = true;
+              console.log(group);
+          }
+
+          else if((url.charAt(i)==='0')&&(url.charAt(i-1)==='2')&&(url.charAt(i-2)==='%')){
+              i=i-2;
+              group = ' '+group;
+              console.log(group);
+
+          }
+
+          else{
+              group = url.charAt(i)+group;
+          }
+      }
       let GroupCollection = db.collection('groups').doc(this.state.messageGroup).collection('messages');
       var messageCount = GroupCollection.doc('--stats--').valueOf('count');
     GroupCollection.get().then(snapshot => {
