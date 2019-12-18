@@ -19,6 +19,9 @@ var checker = false;
 
 
 
+
+
+
 console.log(group);
 var user = firebase.auth().currentUser;
 
@@ -32,7 +35,7 @@ class MessageDisplay extends React.Component {
     hasMore: false,
     messageSender: [],
     messageContent: [],
-      messageGroup: group
+      messageGroup: group,
   };
 
   componentDidMount() {
@@ -164,9 +167,9 @@ function sendMessage(){
     const admin = require('firebase-admin');
     const timestamp = moment() //Timestamp
         .valueOf()
-        .toString()
+        .toString();
 
-    let GroupCollection = db.collection('groups').doc("Finally").collection('messages');
+    let GroupCollection = db.collection('groups').doc('Groupprojectdemo').collection('messages');
     GroupCollection.doc(timestamp +"_"+ user.email).set({   //message data
         Sender: user.email,
         Timestamp: timestamp,
