@@ -28,7 +28,7 @@ class SignedInLinks extends Component{
       <ul id="nav-mobile" className="right hide-on-med-and-down">
         <li><NavLink to="/about">About</NavLink></li>
         <li><NavLink to="">Groups</NavLink></li>
-        <li><NavLink to="/message">Messages</NavLink></li>
+        {/*}<li><NavLink to="/message">Messages</NavLink></li>*/}
         <li><a onClick={this.props.signout} href="/">Log out</a></li>
         <li><NavLink to="/profile" className="btn btn-floating pink lighten-1">{this.props.auth.email.charAt(0)}</NavLink></li>
       </ul>
@@ -37,7 +37,7 @@ class SignedInLinks extends Component{
         <li><NavLink to="/profile" className="pink lighten-2">Account: {this.props.auth.email}</NavLink></li>
         <li><NavLink to="/about">About</NavLink></li>
         <li><NavLink to="">Groups</NavLink></li>
-        <li><NavLink to="/message">Messages</NavLink></li>
+        {/*<li><NavLink to="/message">Messages</NavLink></li>*/}
         <li><a onClick={this.props.signout} href="/">Log out</a></li>
       </ul>
 
