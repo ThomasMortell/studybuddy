@@ -26,6 +26,7 @@ export const signup = (email, password) => async dispatch => {
    const userCollection = db.collection('users');
           userCollection.doc(email).set({
             UserID: uid
+            
           })
           user.sendEmailVerification();
         });
