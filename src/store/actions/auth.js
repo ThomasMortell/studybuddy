@@ -14,7 +14,6 @@ import firebase from "../../services/firebase";
 
 
 var db = firebase.firestore();
-var email = firebase.auth().currentUser;
 
 // Signing up with Firebase
 export const signup = (email, password) => async dispatch => {
