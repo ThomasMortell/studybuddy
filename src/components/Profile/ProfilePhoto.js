@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 
 const ProfilePhoto = (props) => (
   <div className='profile-photo hori-center'>
-    <img src={props.image} className="responsive-img" alt='Profile photo' />
+    <img src={props.image} className="responsive-img" alt='Profile' />
   </div>
 )
 

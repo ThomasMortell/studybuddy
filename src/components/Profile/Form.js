@@ -113,7 +113,7 @@ export default class Form extends React.Component
               </div>
 
               <div className="input-field">
-                <input placeholder='' value={this.state.  degreeTitle} type='text' onChange={this.handleChange} name='degreeTitle'/>
+                <input placeholder='' value={this.state.degreeTitle} type='text' onChange={this.handleChange} name='degreeTitle'/>
                 <label htmlFor='degreeTitle' className="">Degree Title</label>
               </div>
 
