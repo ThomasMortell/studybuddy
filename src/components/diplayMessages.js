@@ -28,6 +28,7 @@ let messageArray = [];
 let count = 0;
 let mData = "";
 let groupname = "data";
+
 class MessageDisplay extends React.Component {
   state = {
     items: [],
@@ -57,8 +58,10 @@ class MessageDisplay extends React.Component {
               group = url.charAt(i)+group;
           }
       }
-
-      groupname = group;
+      if(group.length>1){
+          groupname = group;
+      }
+    
 
       this.state.messageGroup = group;
       let GroupCollection = db.collection('groups').doc(groupname).collection('messages');
