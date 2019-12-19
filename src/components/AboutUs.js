@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import group from "../images/study group.jpg";
-import study from "../images/study.jpg";
 import notes from "../images/notes.jpg";
 import text from "../images/text.jpg";
 import code from "../images/code.jpg";
