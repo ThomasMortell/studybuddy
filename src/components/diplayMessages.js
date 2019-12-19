@@ -13,33 +13,32 @@ var db = firebase.firestore();
 
 var url = "";
 url = window.location.href;
-var group = "null";
+
 var checker = false;
 
 
 
+var groupm = "Groupprojectdemo";
 
 
 
-
-console.log(group);
 var user = firebase.auth().currentUser;
-
+let group = "";
 let messageArray = [];
 let count = 0;
 let mData = "";
-
+let groupname = "data";
 class MessageDisplay extends React.Component {
   state = {
     items: messageArray,
     hasMore: false,
     messageSender: [],
     messageContent: [],
-      messageGroup: group,
+      messageGroup: "data"
   };
 
   componentDidMount() {
-      group = "";
+
       for(var i=url.length-1; i>=0&&checker===false; i--){
 
           if(url.charAt(i)==='/'){
@@ -50,7 +49,7 @@ class MessageDisplay extends React.Component {
           else if((url.charAt(i)==='0')&&(url.charAt(i-1)==='2')&&(url.charAt(i-2)==='%')){
               i=i-2;
               group = ' '+group;
-              console.log(group);
+
 
           }
 
@@ -58,7 +57,11 @@ class MessageDisplay extends React.Component {
               group = url.charAt(i)+group;
           }
       }
-      let GroupCollection = db.collection('groups').doc(this.state.messageGroup).collection('messages');
+      console.log(group);
+      groupname = group;
+      console.log("groupname " + groupname);
+      this.state.messageGroup = group;
+      let GroupCollection = db.collection('groups').doc(groupm).collection('messages');
       var messageCount = GroupCollection.doc('--stats--').valueOf('count');
     GroupCollection.get().then(snapshot => {
       snapshot.forEach(doc => {
@@ -73,30 +76,11 @@ class MessageDisplay extends React.Component {
     }).catch(err => {
       console.log('Error getting documents', err);
     });
+
+
   }
 
-  fetchMoreData = () => {
-    if (this.state.items.length >= 500) {
-        this.setState({hasMore: false});
-        return;
-    }
-    // a fake async api call like which sends
-    // 20 more records in .5 secs
-    ////////////////////////////////////////////////////////////////////////////////////////////////////////
-    var user = firebase.auth().currentUser;
-    const admin = require('firebase-admin');
-    let GroupCollection = db.collection('groups').doc(this.state.messageGroup).collection('messages');
 
-    let getDoc = GroupCollection.doc('--stats--').get().then(doc => {
-      if (!doc.exists) {
-          console.log('No such document!');
-      } else {
-          console.log('Document data:', doc.data());
-      }
-    }).catch(err => {
-      console.log('Error getting document', err);
-    });
-  };
 
   render() {
     return (
@@ -109,13 +93,14 @@ class MessageDisplay extends React.Component {
 		        <h4>Message Board</h4>
 		        <hr />
 		        <InfiniteScroll
-		          dataLength={this.state.items.length}
+		          dataLength={this.state.messageSender.length}
 		          next={this.fetchMoreData}
 		          hasMore={this.state.hasMore}
 		          loader={<h4>Loading...</h4>}
 		          height={350}>
 
 		          <div className="container">
+
 		            {this.state.items.map((i, index) => (
 		              <div className="row">
 		              {this.props.auth.email === this.state.messageSender[index] ? (
@@ -167,9 +152,13 @@ function sendMessage(){
     const admin = require('firebase-admin');
     const timestamp = moment() //Timestamp
         .valueOf()
-        .toString();
+        .toString()
 
-    let GroupCollection = db.collection('groups').doc('Groupprojectdemo').collection('messages');
+    let datadata = "Groupprojectdemo";
+    console.log(groupm);
+    console.log(groupname);
+
+    let GroupCollection = db.collection('groups').doc(groupname).collection('messages');
     GroupCollection.doc(timestamp +"_"+ user.email).set({   //message data
         Sender: user.email,
         Timestamp: timestamp,
