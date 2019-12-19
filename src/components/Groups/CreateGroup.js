@@ -1,7 +1,5 @@
 import React from 'react'
 import firebase from "../../services/firebase.js";
-import Message from "../diplayMessages";
-import {Route, Redirect} from "react-router-dom";
 
 var db = firebase.firestore();
 
