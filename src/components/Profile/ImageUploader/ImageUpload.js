@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import {myStorage} from './../../../services/firebase';
 import firebase from './../../../services/firebase'
 
-const user = firebase.auth().currentUser;
-let studentEmail = 'emailInit';
 class ImageUpload extends Component {
   constructor(props) {
     super(props);
