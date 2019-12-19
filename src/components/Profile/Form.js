@@ -1,7 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import firebase from '../../services/firebase.js'
-import {browserHistory} from "react-router";
 import M from "materialize-css"
 
 const db = firebase.firestore();
@@ -123,7 +122,8 @@ export default class Form extends React.Component
                 <label htmlFor='bio' className="">Describe Yourself</label>
               </div>
 
-              <button type='submit'>Save</button>
+              <button type='submit' value>Save</button>
+
             </form>
           </div>
         )
