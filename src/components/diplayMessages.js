@@ -30,7 +30,7 @@ let mData = "";
 let groupname = "data";
 class MessageDisplay extends React.Component {
   state = {
-    items: messageArray,
+    items: [],
     hasMore: false,
     messageSender: [],
     messageContent: [],
@@ -43,7 +43,7 @@ class MessageDisplay extends React.Component {
 
           if(url.charAt(i)==='/'){
               checker = true;
-              console.log(group);
+
           }
 
           else if((url.charAt(i)==='0')&&(url.charAt(i-1)==='2')&&(url.charAt(i-2)==='%')){
@@ -57,17 +57,18 @@ class MessageDisplay extends React.Component {
               group = url.charAt(i)+group;
           }
       }
-      console.log(group);
+
       groupname = group;
-      console.log("groupname " + groupname);
+
       this.state.messageGroup = group;
-      let GroupCollection = db.collection('groups').doc(groupm).collection('messages');
+      let GroupCollection = db.collection('groups').doc(groupname).collection('messages');
       var messageCount = GroupCollection.doc('--stats--').valueOf('count');
     GroupCollection.get().then(snapshot => {
       snapshot.forEach(doc => {
-        messageArray.push(doc.id);
+        this.state.items.push(doc.id);
         this.state.messageSender.push(doc.get('Sender'));
         this.state.messageContent.push(doc.get('Message'));
+        console.log(doc.get('Message'));
 
 
         let check = doc.get('Sender');
@@ -79,6 +80,28 @@ class MessageDisplay extends React.Component {
 
 
   }
+    fetchMoreData = () => {
+        if (this.state.items.length >= 200) {
+            this.setState({hasMore: false});
+            return;
+        }
+        // a fake async api call like which sends
+        // 20 more records in .5 secs
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////
+        var user = firebase.auth().currentUser;
+        const admin = require('firebase-admin');
+        let GroupCollection = db.collection('groups').doc(groupname).collection('messages');
+
+        let getDoc = GroupCollection.doc('--stats--').get().then(doc => {
+            if (!doc.exists) {
+                console.log('No such document!');
+            } else {
+                console.log('Document data:', doc.data());
+            }
+        }).catch(err => {
+            console.log('Error getting document', err);
+        });
+    };
 
 
 
@@ -89,7 +112,7 @@ class MessageDisplay extends React.Component {
 					<div className="col l4">
 						<Planner/>
 					</div>
-		      <div className="col l4 message-board">
+		      <div className="col l5 message-board">
 		        <h4>Message Board</h4>
 		        <hr />
 		        <InfiniteScroll
@@ -103,16 +126,16 @@ class MessageDisplay extends React.Component {
 
 		            {this.state.items.map((i, index) => (
 		              <div className="row">
-		              {this.props.auth.email === this.state.messageSender[index] ? (
+		              {this.props.auth.email === this.state.messageSender[index+1] ? (
 		                <div className="right">
 		                  <div className="bubble-sent" >
-		                    <p className="bubble-text">{this.state.messageContent[index]}</p>
+		                    <p className="bubble-text">{this.state.messageContent[index+1]}</p>
 		                  </div>
 		                </div>) : (
 		                  <div className="left">
 		                    <div className="bubble-received" >
-		                      <p className="message-received">{this.state.messageSender[index]}</p>
-		                      <p className="bubble-text">{this.state.messageContent[index]}</p>
+		                      <p className="message-received">{this.state.messageSender[index+1]}</p>
+		                      <p className="bubble-text">{this.state.messageContent[index+1]}</p>
 		                    </div>
 		                  </div>
 		                )
@@ -155,8 +178,7 @@ function sendMessage(){
         .toString()
 
     let datadata = "Groupprojectdemo";
-    console.log(groupm);
-    console.log(groupname);
+
 
     let GroupCollection = db.collection('groups').doc(groupname).collection('messages');
     GroupCollection.doc(timestamp +"_"+ user.email).set({   //message data
