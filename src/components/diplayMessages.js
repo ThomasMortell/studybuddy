@@ -16,17 +16,8 @@ url = window.location.href;
 
 var checker = false;
 
-
-
-var groupm = "Groupprojectdemo";
-
-
-
-var user = firebase.auth().currentUser;
 let group = "";
 let messageArray = [];
-let count = 0;
-let mData = "";
 let groupname = "data";
 
 class MessageDisplay extends React.Component {
